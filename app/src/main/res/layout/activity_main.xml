@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fond_ecran_principal" />
+        app:srcCompat="@drawable/fond_ecran_principal_source" />
 
     <Button
         android:id="@+id/b_jouer"

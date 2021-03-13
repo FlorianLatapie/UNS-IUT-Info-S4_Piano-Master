@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Piano Master</string>
     <string name="jouer">PLAY</string>
+    <string name="tire_choix_du_niveau">Choose level</string>
 </resources>

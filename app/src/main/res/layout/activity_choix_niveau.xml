@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/TV_nombre"
+        android:id="@+id/tv_titre_choix_niveau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/varela_round"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toStartOf="@+id/b_niv_3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_niv_1"
-        app:layout_constraintTop_toBottomOf="@+id/TV_nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_choix_niveau" />
 
     <Button
         android:id="@+id/b_niv_3"

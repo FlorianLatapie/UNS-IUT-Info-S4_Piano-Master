@@ -25,7 +25,7 @@
         android:id="@+id/b_do"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_re"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,7 +35,7 @@
         android:id="@+id/b_re"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_mi"
         app:layout_constraintHorizontal_bias="0.5"
@@ -45,7 +45,7 @@
         android:id="@+id/b_mi"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_fa"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,7 +55,7 @@
         android:id="@+id/b_fa"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_sol"
         app:layout_constraintHorizontal_bias="0.5"
@@ -65,7 +65,7 @@
         android:id="@+id/b_sol"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_la"
         app:layout_constraintHorizontal_bias="0.5"
@@ -75,7 +75,7 @@
         android:id="@+id/b_la"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_si"
         app:layout_constraintHorizontal_bias="0.5"
@@ -85,7 +85,7 @@
         android:id="@+id/b_si"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        android:backgroundTint="#888181"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -97,7 +97,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="65dp"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/b_do" />
 
@@ -107,7 +107,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="29dp"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b_do_diese" />
 
@@ -117,7 +117,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="132dp"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b_re_diese" />
 
@@ -127,7 +127,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="29dp"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b_fa_diese" />
 
@@ -137,7 +137,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="29dp"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b_sol_diese" />
 

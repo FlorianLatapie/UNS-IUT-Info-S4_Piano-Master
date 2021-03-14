@@ -8,23 +8,40 @@
 
     <ImageView
         android:id="@+id/iv_fond_ecran"
-        android:layout_width="match_parent"
+        android:layout_width="509dp"
 
-        android:layout_height="wrap_content"
+        android:layout_height="735dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fond_ecran_principal_source" />
+        app:srcCompat="@drawable/fond_ecran_principal" />
 
     <Button
         android:id="@+id/b_jouer"
         android:layout_width="200dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/bleu_clair"
         android:text="@string/jouer"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_titre_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/montserrat_alternates_bold"
+        android:text="PIANO \n MASTER"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_fond_ecran" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

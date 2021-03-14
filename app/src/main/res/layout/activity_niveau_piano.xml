@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bleu_fonce">
+
 
     <TextView
 
@@ -15,6 +17,7 @@
         android:padding="8dp"
         android:text="Niveau piano X"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +33,7 @@
         app:layout_constraintEnd_toStartOf="@+id/b_re"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="#707070" />
+        app:strokeColor="@color/stroke_clavier" />
 
     <Button
         android:id="@+id/b_re"
@@ -41,7 +44,7 @@
         app:layout_constraintEnd_toStartOf="@+id/b_mi"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_do"
-        app:strokeColor="#707070" />
+        app:strokeColor="@color/stroke_clavier" />
 
     <Button
         android:id="@+id/b_mi"
@@ -52,7 +55,7 @@
         app:layout_constraintEnd_toStartOf="@+id/b_fa"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_re"
-        app:strokeColor="#707070" />
+        app:strokeColor="@color/stroke_clavier" />
 
     <Button
         android:id="@+id/b_fa"
@@ -63,7 +66,7 @@
         app:layout_constraintEnd_toStartOf="@+id/b_sol"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_mi"
-        app:strokeColor="#707070" />
+        app:strokeColor="@color/stroke_clavier" />
 
     <Button
         android:id="@+id/b_sol"
@@ -84,7 +87,7 @@
         app:layout_constraintEnd_toStartOf="@+id/b_si"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_sol"
-        app:strokeColor="#707070" />
+        app:strokeColor="@color/stroke_clavier" />
 
     <Button
         android:id="@+id/b_si"
@@ -95,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_la"
-        app:strokeColor="#707070" />
+        app:strokeColor="@color/stroke_clavier" />
 
     <Button
         android:id="@+id/b_do_diese"
@@ -121,7 +124,7 @@
         android:id="@+id/b_fa_diese"
         android:layout_width="75dp"
         android:layout_height="125dp"
-        android:layout_marginStart="132dp"
+        android:layout_marginStart="117dp"
         android:layout_marginBottom="75dp"
         android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -146,5 +149,18 @@
         android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b_sol_diese" />
+
+    <TextView
+        android:id="@+id/tv_question_piano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Écoutez et reproduisez"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/b_fa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_piano" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

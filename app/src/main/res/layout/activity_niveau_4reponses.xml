@@ -9,13 +9,12 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="382dp"
-        android:layout_height="332dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_height="300dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
         app:srcCompat="@drawable/box" />
 
     <TextView
@@ -64,6 +63,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 1"
             android:textSize="24sp"
+            android:background="@drawable/box"
             app:layout_constraintBottom_toTopOf="@+id/b_rep_3"
             app:layout_constraintEnd_toStartOf="@+id/b_rep_2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -78,6 +78,7 @@
             android:backgroundTint="@color/bleu_clair"
             android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 2"
+
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/b_rep_4"
             app:layout_constraintEnd_toEndOf="parent"

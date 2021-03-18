@@ -3,6 +3,7 @@
     <color name="bleu_clair">#003282</color>
     <color name="bleu_moyen">#002060</color>
     <color name="bleu_fonce">#001535</color>
+    <color name="couleur_bouton_interface">#00B0DB</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

@@ -6,21 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/bleu_fonce">
 
-
-
-
     <TextView
         android:id="@+id/tv_titre_choix_niveau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat_bold"
         android:padding="8dp"
         android:text="@string/tire_choix_du_niveau"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,11 +40,11 @@
         android:id="@+id/b_niv_2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/couleur_bouton_interface"
         android:text="2"
         android:textColor="@color/white"
         android:textSize="36sp"
-        android:backgroundTint="@color/couleur_bouton_interface"
         app:layout_constraintEnd_toStartOf="@+id/b_niv_3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_niv_1"

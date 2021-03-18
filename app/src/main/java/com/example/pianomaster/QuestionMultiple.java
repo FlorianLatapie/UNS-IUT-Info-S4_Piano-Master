@@ -7,8 +7,8 @@ public class QuestionMultiple extends Question {
     private String response;
     private String idImage;
 
-    public QuestionMultiple(String numQuestion, String titre, String idImage, List<String> reponses, String response){
-        super(numQuestion,titre);
+    public QuestionMultiple(String titre, String idImage, List<String> reponses, String response){
+        super(titre);
         this.reponses = reponses;
         this.response = response;
         this.idImage = idImage;
@@ -26,9 +26,15 @@ public class QuestionMultiple extends Question {
         this.reponses = reponses;
     }
 
+    @Override
+    public String getTitre() {
+        return super.getTitre();
+    }
+
     public String getResponse() {
         return response;
     }
+
     public String getIdImage() {
         return idImage;
     }

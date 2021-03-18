@@ -52,7 +52,6 @@ public class QuestionActivity extends Activity {
      */
     private class GetRessources extends AsyncTask<Void, Void, Void> {
         Drawable d;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -70,43 +69,42 @@ public class QuestionActivity extends Activity {
             System.out.println("background task lanched");
             HttpHandler sh = new HttpHandler();
 
-            String jsonStr = sh.makeServiceCall(url_ressources + "/Niveau1/Niveau1.json");
+            String jsonStr = sh.makeServiceCall(url_ressources +"/Niveau1/Niveau1.json");
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
                     JSONObject jsonObj = jsonArray.getJSONObject(0);
-                    System.out.println("longueur json object : " + jsonObj.length());
-                    System.out.println("json object : " + jsonObj);
-                    String numQuestion = jsonObj.getString("num_question");
+                    System.out.println(jsonObj.length());
+                    System.out.println(jsonObj);
                     String questions = jsonObj.getString("questions");
                     String image = jsonObj.getString("image");
                     JSONArray propositions = jsonObj.getJSONArray("proposition");
                     List<String> listProposition = new ArrayList<>();
-                    System.out.println("longueur propositions : " + propositions.length());
-                    for (int i = 0; i < propositions.length(); i++) {
+                    System.out.println(propositions.length());
+                    for(int i=0; i<propositions.length(); i++){
                         String jsonString = propositions.getString(i);
                         listProposition.add(jsonString);
                     }
-                    System.out.println("print listProposition :" + listProposition);
+                    System.out.println("print listProposition :"+listProposition);
                     String reponse = jsonObj.getString("reponse");
 
-                    question = new QuestionMultiple(numQuestion, questions, image, listProposition, reponse);
+                    question = new QuestionMultiple(questions, image, listProposition, reponse);
                     System.out.println("question creee");
-
-                    String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png";
-                    InputStream is = (InputStream) new URL(url).getContent();
-                    System.out.println("is créé");
-                    d = Drawable.createFromStream(is, "lvl1");
-                    System.out.println("drawable créé");
-
                 } catch (final JSONException e) {
                     System.err.println("Erreur : lecture JSON :" + e.getMessage());
 
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
                 }
             } else {
                 System.err.println("JSON introuvable, veuillez vérifier l'URL");
+            }
+            try {
+                String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png";
+                InputStream is = (InputStream) new URL(url).getContent();
+                System.out.println("is créé");
+                d = Drawable.createFromStream(is, "lvl1");
+                System.out.println("drawable créé");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
             }
             return null;
         }
@@ -118,12 +116,13 @@ public class QuestionActivity extends Activity {
             if (pDialog.isShowing())
                 pDialog.dismiss();
 
-            System.out.println("id de l'image : " + question.getIdImage());
-            tvNiveau.setText("Niveau " + question.getNumQuestion());
+            System.out.println("id de l'image : "+question.getIdImage());
             tvQuestion.setText(question.getTitre());
-            String url_site_image = url_ressources + "/Niveau1/" + question.getIdImage();
+            String url_site_image = url_ressources +"/Niveau1/"+ question.getIdImage();
             System.out.println(url_site_image);
             ivQuestion.setImageDrawable(d);
+
+
 
             b1.setText(question.getReponses().get(0));
             b2.setText(question.getReponses().get(1));

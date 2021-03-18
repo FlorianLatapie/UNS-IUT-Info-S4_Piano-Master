@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bleu_fonce">
+
+    <!--<ImageView
+        android:id="@+id/fond_sms"
+        android:layout_width="385dp"
+        android:layout_height="280dp"
+
+        app:layout_constraintTop_toTopOf="@+id/tv_question_sms"
+        app:srcCompat="@drawable/box"
+        tools:layout_editor_absoluteX="16dp" />-->
+
+    <TextView
+        android:id="@+id/tv_titre_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/montserrat_bold"
+        android:padding="8dp"
+        android:text="@string/envoyer_sms_titre"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+
+
+        android:id="@+id/constraintLayout"
+        android:layout_width="385dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    ]]>
+
+    <Button
+        android:id="@+id/b_rep_1"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:background="@drawable/box"
+        android:backgroundTint="@color/bleu_clair"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/retour_accueil"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/b_rep_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/b_rep_2"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:background="@drawable/box"
+        android:backgroundTint="@color/bleu_clair"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/envoyer"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/b_rep_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/tv_question_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/q_envoyer_resultat"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_numero_sms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_sms" />
+
+    <EditText
+        android:id="@+id/et_numero_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="06 10 20 30 40"
+        android:inputType="phone"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/et_contenu_sms"
+        app:layout_constraintEnd_toEndOf="@+id/tv_question_sms"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tv_question_sms"
+        app:layout_constraintTop_toBottomOf="@+id/tv_question_sms" />
+
+    <EditText
+        android:id="@+id/et_contenu_sms"
+        android:layout_width="385dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="J'ai fait un score de XX/XX dans 'Piano Master' !"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/b_rep_1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_question_sms"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tv_question_sms"
+        app:layout_constraintTop_toBottomOf="@+id/et_numero_sms" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

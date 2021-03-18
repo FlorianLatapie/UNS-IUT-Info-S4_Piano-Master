@@ -4,6 +4,7 @@
     <color name="bleu_moyen">#002070</color>
     <color name="bleu_fonce">#00154A</color>
     <color name="couleur_bouton_interface">#003088</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

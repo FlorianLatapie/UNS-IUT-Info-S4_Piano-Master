@@ -11,12 +11,11 @@
         android:layout_width="385dp"
         android:layout_height="290dp"
         android:background="@drawable/box"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_question_q4rep"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/iv_question_q4rep"
         app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="@+id/iv_question_q4rep"
-        app:layout_constraintTop_toTopOf="@+id/tv_question_q4rep"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep" />
 
     <TextView
         android:id="@+id/tv_titre_niveau_q4rep"
@@ -37,11 +36,13 @@
         android:id="@+id/iv_question_q4rep"
         android:layout_width="370dp"
         android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fond_question_q4rep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_question_q4rep"
         app:srcCompat="@drawable/lvl1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +53,6 @@
         android:background="@drawable/box"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
@@ -122,14 +122,15 @@
         android:id="@+id/tv_question_q4rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Voici une question ?"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/iv_question_q4rep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep"
+        app:layout_constraintTop_toTopOf="@+id/fond_question_q4rep" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

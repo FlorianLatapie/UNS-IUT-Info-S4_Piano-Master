@@ -3,4 +3,7 @@
     <string name="jouer">JOUER</string>
     <string name="tire_choix_du_niveau">Choix du niveau</string>
     <string name="envoyer_sms_titre">Bravo !</string>
+    <string name="retour_accueil">"Retour à l\'accueil"</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="q_envoyer_resultat">Envoyer le résultat ?</string>
 </resources>

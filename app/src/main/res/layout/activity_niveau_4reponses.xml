@@ -11,10 +11,10 @@
         android:layout_width="382dp"
         android:layout_height="300dp"
 
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_question_q4rep"
+        app:layout_constraintEnd_toEndOf="@+id/iv_question_q4rep"
+        app:layout_constraintStart_toStartOf="@+id/iv_question_q4rep"
+        app:layout_constraintTop_toTopOf="@+id/iv_question_q4rep"
         app:srcCompat="@drawable/box" />
 
     <TextView
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_question_q4rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
@@ -123,7 +123,7 @@
         android:text="Voici une question ?"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/iv_question_q4rep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau" />

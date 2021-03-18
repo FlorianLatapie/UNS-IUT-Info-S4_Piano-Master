@@ -63,7 +63,6 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 1"
             android:textSize="24sp"
-            android:background="@drawable/box"
             app:layout_constraintBottom_toTopOf="@+id/b_rep_3"
             app:layout_constraintEnd_toStartOf="@+id/b_rep_2"
             app:layout_constraintHorizontal_bias="0.5"

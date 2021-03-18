@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bleu_fonce">
 
     <TextView
         android:id="@+id/tv_titre_niveau"
@@ -14,6 +15,7 @@
         android:padding="8dp"
         android:text="Niveau X"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +37,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:background="@color/bleu_moyen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -43,7 +46,10 @@
             android:id="@+id/b_rep_1"
             android:layout_width="150dp"
             android:layout_height="80dp"
+            android:backgroundTint="#ABAB10"
+
             android:text="Bouton réponse 1"
+
             app:layout_constraintBottom_toTopOf="@+id/b_rep_3"
             app:layout_constraintEnd_toStartOf="@+id/b_rep_2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -85,4 +91,14 @@
             app:layout_constraintTop_toBottomOf="@+id/b_rep_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_question_q4rep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau" />
 </androidx.constraintlayout.widget.ConstraintLayout>

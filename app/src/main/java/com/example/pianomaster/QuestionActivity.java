@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,10 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,17 +115,8 @@ public class QuestionActivity extends Activity {
             questionTitle.setText(questionMultiple.getTitre());
             String url_site_image = url_site+"/Niveau1/"+questionMultiple.getIdImage();
             System.out.println(url_site_image);
-            URL url = null;
-            try {
-                url = new URL("https://androidpianomaster.000webhostapp.com/ressources/Niveau1/level1.JPG");
-                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                imageQuestion.setImageBitmap(bmp);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
+            new DownloadImage().execute(url_site_image);
 
             propositionButton1.setText(questionMultiple.getQuestionPossibilities().get(0));
             propositionButton2.setText(questionMultiple.getQuestionPossibilities().get(1));
@@ -137,5 +124,39 @@ public class QuestionActivity extends Activity {
             propositionButton4.setText(questionMultiple.getQuestionPossibilities().get(3));
         }
 
+    }
+    ProgressDialog mProgressDialog;
+    private class DownloadImage extends AsyncTask {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(QuestionActivity.this);
+            mProgressDialog.setTitle("Download Image");
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+        }
+        @Override
+        protected Bitmap doInBackground(Object... URL) {
+            String imageURL = (String)URL[0];
+            Bitmap bitmap = null;
+            try {
+                // Download Image from URL
+                InputStream input = new java.net.URL(imageURL).openStream();
+                // Decode Bitmap
+                bitmap = BitmapFactory.decodeStream(input);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Object result) {
+            // Set the bitmap into ImageView
+            imageQuestion.setImageBitmap((Bitmap)result);
+            // Close progressdialog
+            mProgressDialog.dismiss();
+        }
     }
 }

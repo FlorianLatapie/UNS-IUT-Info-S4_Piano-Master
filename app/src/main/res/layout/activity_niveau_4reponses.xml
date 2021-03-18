@@ -6,12 +6,24 @@
     android:layout_height="match_parent"
     android:background="@color/bleu_fonce">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="382dp"
+        android:layout_height="332dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/box" />
+
     <TextView
         android:id="@+id/tv_titre_niveau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:fontFamily="@font/varela_round"
+        android:fontFamily="@font/montserrat_bold"
         android:padding="8dp"
         android:text="Niveau X"
         android:textAlignment="center"
@@ -35,19 +47,23 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/bleu_moyen"
+        android:layout_width="383dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/box"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/b_rep_1"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
+            android:layout_width="171dp"
+            android:layout_height="114dp"
             android:backgroundTint="@color/bleu_clair"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 1"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/b_rep_3"
             app:layout_constraintEnd_toStartOf="@+id/b_rep_2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -57,10 +73,12 @@
 
         <Button
             android:id="@+id/b_rep_2"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
+            android:layout_width="162dp"
+            android:layout_height="113dp"
             android:backgroundTint="@color/bleu_clair"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 2"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/b_rep_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -69,10 +87,12 @@
 
         <Button
             android:id="@+id/b_rep_3"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
+            android:layout_width="163dp"
+            android:layout_height="114dp"
             android:backgroundTint="@color/bleu_clair"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 3"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_rep_4"
             app:layout_constraintHorizontal_bias="0.5"
@@ -81,10 +101,12 @@
 
         <Button
             android:id="@+id/b_rep_4"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
+            android:layout_width="161dp"
+            android:layout_height="111dp"
             android:backgroundTint="@color/bleu_clair"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Bouton réponse 4"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -97,11 +119,13 @@
         android:id="@+id/tv_question_q4rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Voici une question ?"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

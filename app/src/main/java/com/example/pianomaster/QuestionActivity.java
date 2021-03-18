@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -42,7 +44,7 @@ public class QuestionActivity extends Activity {
     Button propositionButton4;
     TextView questionTitle;
     ImageView imageQuestion;
-
+    Typeface type;
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,10 +128,20 @@ public class QuestionActivity extends Activity {
             System.out.println(url_site_image);
             imageQuestion.setImageDrawable(d);
 
+
+
             propositionButton1.setText(questionMultiple.getQuestionPossibilities().get(0));
+            propositionButton1.setTextColor(Color.WHITE);
+            //propositionButton1.setTypeface(type);
             propositionButton2.setText(questionMultiple.getQuestionPossibilities().get(1));
+            propositionButton2.setTextColor(Color.WHITE);
+           // propositionButton2.setTypeface(type);
             propositionButton3.setText(questionMultiple.getQuestionPossibilities().get(2));
+            propositionButton3.setTextColor(Color.WHITE);
+            //propositionButton3.setTypeface(type);
             propositionButton4.setText(questionMultiple.getQuestionPossibilities().get(3));
+            propositionButton4.setTextColor(Color.WHITE);
+            //propositionButton4.setTypeface(type);
         }
 
     }

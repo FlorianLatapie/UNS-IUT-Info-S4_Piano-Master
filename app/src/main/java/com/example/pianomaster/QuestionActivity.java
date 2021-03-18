@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +19,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,8 +54,6 @@ public class QuestionActivity extends Activity {
         propositionButton4 = findViewById(R.id.b_rep_4);
         questionTitle = findViewById(R.id.tv_question_q4rep);
         imageQuestion = findViewById(R.id.iv_question_q4rep);
-        /*webview = findViewById(R.id.webView);
-        webview.getSettings().setJavaScriptEnabled(true);*/
         new GetRessources().execute();
     }
 
@@ -58,7 +61,7 @@ public class QuestionActivity extends Activity {
      * Tache asynchrone
      */
     private class GetRessources extends AsyncTask<Void, Void, Void> {
-
+        Drawable d;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -100,7 +103,13 @@ public class QuestionActivity extends Activity {
             } else {
                 Log.e(TAG, "Probleme connexion ");
             }
-
+            try {
+                String url = ("https://androidpianomaster.000webhostapp.com/ressources/Niveau1/level1.JPG");
+                InputStream is = (InputStream) new URL(url).getContent();
+                d = Drawable.createFromStream(is, "level1");
+            } catch (Exception e) {
+                e.getMessage();
+            }
             return null;
         }
 
@@ -115,8 +124,7 @@ public class QuestionActivity extends Activity {
             questionTitle.setText(questionMultiple.getTitre());
             String url_site_image = url_site+"/Niveau1/"+questionMultiple.getIdImage();
             System.out.println(url_site_image);
-
-            new DownloadImage().execute(url_site_image);
+            imageQuestion.setImageDrawable(d);
 
             propositionButton1.setText(questionMultiple.getQuestionPossibilities().get(0));
             propositionButton2.setText(questionMultiple.getQuestionPossibilities().get(1));
@@ -124,39 +132,5 @@ public class QuestionActivity extends Activity {
             propositionButton4.setText(questionMultiple.getQuestionPossibilities().get(3));
         }
 
-    }
-    ProgressDialog mProgressDialog;
-    private class DownloadImage extends AsyncTask {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressDialog = new ProgressDialog(QuestionActivity.this);
-            mProgressDialog.setTitle("Download Image");
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setIndeterminate(false);
-            mProgressDialog.show();
-        }
-        @Override
-        protected Bitmap doInBackground(Object... URL) {
-            String imageURL = (String)URL[0];
-            Bitmap bitmap = null;
-            try {
-                // Download Image from URL
-                InputStream input = new java.net.URL(imageURL).openStream();
-                // Decode Bitmap
-                bitmap = BitmapFactory.decodeStream(input);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-        @Override
-        protected void onPostExecute(Object result) {
-            // Set the bitmap into ImageView
-            imageQuestion.setImageBitmap((Bitmap)result);
-            // Close progressdialog
-            mProgressDialog.dismiss();
-        }
     }
 }

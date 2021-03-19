@@ -76,6 +76,7 @@ public class QuestionActivity extends Activity {
                     JSONObject jsonObj = jsonArray.getJSONObject(0);
                     System.out.println(jsonObj.length());
                     System.out.println(jsonObj);
+                    String numQuestion = jsonObj.getString("num_question");
                     String questions = jsonObj.getString("questions");
                     String image = jsonObj.getString("image");
                     JSONArray propositions = jsonObj.getJSONArray("proposition");
@@ -88,7 +89,7 @@ public class QuestionActivity extends Activity {
                     System.out.println("print listProposition :"+listProposition);
                     String reponse = jsonObj.getString("reponse");
 
-                    question = new QuestionMultiple(questions, image, listProposition, reponse);
+                    question = new QuestionMultiple(numQuestion,questions, image, listProposition, reponse);
                     System.out.println("question creee");
                 } catch (final JSONException e) {
                     System.err.println("Erreur : lecture JSON :" + e.getMessage());
@@ -118,6 +119,7 @@ public class QuestionActivity extends Activity {
 
             System.out.println("id de l'image : "+question.getIdImage());
             tvQuestion.setText(question.getTitre());
+            tvNiveau.setText("Niveau "+question.getNumQuestion());
             String url_site_image = url_ressources +"/Niveau1/"+ question.getIdImage();
             System.out.println(url_site_image);
             ivQuestion.setImageDrawable(d);

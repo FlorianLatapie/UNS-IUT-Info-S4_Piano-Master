@@ -7,8 +7,8 @@ public class QuestionMultiple extends Question {
     private String response;
     private String idImage;
 
-    public QuestionMultiple(String titre, String idImage, List<String> reponses, String response){
-        super(titre);
+    public QuestionMultiple(String numQuestion, String titre, String idImage, List<String> reponses, String response){
+        super(numQuestion,titre);
         this.reponses = reponses;
         this.response = response;
         this.idImage = idImage;

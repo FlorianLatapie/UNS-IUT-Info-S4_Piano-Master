@@ -23,6 +23,7 @@
         <activity android:name=".PianoActivity" />
         <activity android:name=".CreerQuestionActivity"/>
         <activity android:name=".Question4RepActivity"/>
+        <activity android:name=".SMSActivity"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -3,6 +3,7 @@ package com.example.pianomaster;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionMultiple extends Question implements Parcelable {
@@ -80,5 +81,15 @@ public class QuestionMultiple extends Question implements Parcelable {
         dest.writeString(url);
         dest.writeStringList(reponses);
         dest.writeString(response);
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionMultiple{" +
+                "reponses=" + reponses +
+                ", response='" + response + '\'' +
+                ", idImage='" + idImage + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

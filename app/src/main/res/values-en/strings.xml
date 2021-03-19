@@ -9,4 +9,7 @@
     <string name="q_envoyer_resultat">Send the result?</string>
     <string name="sms_contenu">I scored XX/XX on level X in \"Piano Master\"! Download the app to beat me!</string>
     <string name="recommencer">Listen again</string>
+    <string name="sms_contenu1">"I scored "</string>
+    <string name="sms_contenu2">" on level "</string>
+    <string name="sms_contenu3">" in \"Piano Master\"! Download the app to beat me!"</string>
 </resources>

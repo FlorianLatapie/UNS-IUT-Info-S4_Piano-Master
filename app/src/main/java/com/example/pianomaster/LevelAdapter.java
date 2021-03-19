@@ -1,29 +1,37 @@
 package com.example.pianomaster;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.util.TypedValue;
+import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LevelAdapter extends BaseAdapter {
     private Context mContext;
-    private int btn_id = 0;
-    private int total_btns = 6;
+    private int btn_id = 1;
+    private int nbNiveaux = 10;
+
 
     public LevelAdapter(Context context) {
         this.mContext = context;
     }
 
+    public LevelAdapter(Context context, int nbNiveaux) {
+        this.mContext = context;
+        this.nbNiveaux = nbNiveaux;
+    }
+
     @Override
     public int getCount() {
-        return total_btns;
+        return nbNiveaux;
     }
 
     @Override
@@ -41,7 +49,7 @@ public class LevelAdapter extends BaseAdapter {
         Button btn;
         if (view == null) {
             btn = new Button(mContext);
-            btn.setText("" + ++btn_id);
+            btn.setText(btn_id++ +"");
             btn.setTextColor(Color.WHITE);
             btn.setTextSize(30);
             btn.setBackgroundResource(R.drawable.button_style);
@@ -54,10 +62,14 @@ public class LevelAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CreerQuestionActivity.class);
                 mContext.startActivity(intent);
+                //TODO parcellable avec le btn id pour lancer le bon niveau
             }
         });
 
         return btn;
     }
 
+
+
 }
+

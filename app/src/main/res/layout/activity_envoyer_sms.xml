@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/bleu_fonce">
 
-    <!--<ImageView
-        android:id="@+id/fond_sms"
-        android:layout_width="385dp"
-        android:layout_height="280dp"
-
-        app:layout_constraintTop_toTopOf="@+id/tv_question_sms"
-        app:srcCompat="@drawable/box"
-        tools:layout_editor_absoluteX="16dp" />-->
-
     <TextView
         android:id="@+id/tv_titre_sms"
         android:layout_width="wrap_content"

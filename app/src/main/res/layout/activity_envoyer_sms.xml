@@ -35,6 +35,7 @@
         android:id="@+id/b_retour_accueil"
         android:layout_width="165dp"
         android:layout_height="75dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/box"
         android:backgroundTint="@color/bleu_clair"
         android:fontFamily="@font/montserrat_bold"
@@ -43,8 +44,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b_envoyer_sms"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/b_envoyer_sms"
@@ -55,13 +56,11 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/envoyer"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/b_retour_accueil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_retour_accueil"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintTop_toTopOf="@+id/b_retour_accueil" />
 
     <TextView
         android:id="@+id/tv_question_sms"

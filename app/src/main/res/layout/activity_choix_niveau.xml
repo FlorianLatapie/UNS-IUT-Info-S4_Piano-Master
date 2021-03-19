@@ -24,23 +24,17 @@
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="368dp"
-        android:layout_height="349dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:horizontalSpacing="15dp"
         android:numColumns="2"
         android:stretchMode="columnWidth"
         android:textAlignment="center"
         android:verticalSpacing="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.417" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_choix_niveau" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

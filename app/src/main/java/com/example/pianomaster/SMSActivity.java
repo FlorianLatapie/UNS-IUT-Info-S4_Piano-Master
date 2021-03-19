@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SMSActivity extends AppCompatActivity {
-
+    private Context mContext =this;
     private static final int MY_PERMISSION_REQUEST_CODE_SEND_SMS = 1;
 
     private static final String LOG_TAG = "AndroidExample";
@@ -41,13 +42,13 @@ public class SMSActivity extends AppCompatActivity {
             }
         });
 
-        /*b_retour = findViewById(R.id.b_retour_accueil);
+        b_retour = findViewById(R.id.b_retour_accueil);
         b_retour.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LevelActivity.class);
+                Intent intent = new Intent(mContext, LevelActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
     private void askPermissionAndSendSMS() {

@@ -12,8 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class LevelAdapter extends BaseAdapter
-{
+public class LevelAdapter extends BaseAdapter {
     private Context mContext;
     private int btn_id = 0;
     private int total_btns = 6;
@@ -36,13 +35,13 @@ public class LevelAdapter extends BaseAdapter
     public long getItemId(int i) {
         return 0;
     }
+
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup)
-    {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         Button btn;
         if (view == null) {
             btn = new Button(mContext);
-            btn.setText(""+(++btn_id));
+            btn.setText("" + ++btn_id);
             btn.setTextColor(Color.WHITE);
             btn.setTextSize(30);
             btn.setBackgroundResource(R.drawable.button_style);
@@ -50,13 +49,11 @@ public class LevelAdapter extends BaseAdapter
             btn = (Button) view;
         }
 
-        btn.setOnClickListener(new View.OnClickListener()
-        {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Toast.makeText(v.getContext(), "Button #" + (i + 1), Toast.LENGTH_SHORT).show();
-                Intent intent= new Intent(mContext, CreerQuestionActivity.class);
+                Intent intent = new Intent(mContext, CreerQuestionActivity.class);
                 mContext.startActivity(intent);
             }
         });

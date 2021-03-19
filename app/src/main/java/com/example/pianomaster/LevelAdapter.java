@@ -2,6 +2,10 @@ package com.example.pianomaster;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -32,15 +36,16 @@ public class LevelAdapter extends BaseAdapter
     public long getItemId(int i) {
         return 0;
     }
-
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup)
     {
         Button btn;
-
         if (view == null) {
             btn = new Button(mContext);
             btn.setText(""+(++btn_id));
+            btn.setTextColor(Color.WHITE);
+            btn.setTextSize(30);
+            btn.setBackgroundResource(R.drawable.button_style);
         } else {
             btn = (Button) view;
         }
@@ -58,4 +63,5 @@ public class LevelAdapter extends BaseAdapter
 
         return btn;
     }
+
 }

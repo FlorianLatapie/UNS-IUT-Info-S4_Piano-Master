@@ -39,6 +39,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_choix_niveau" />
 
+    <Button
+        android:id="@+id/b_sms_a_supprimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SMS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_choix_niveau" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

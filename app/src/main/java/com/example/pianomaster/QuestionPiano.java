@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class QuestionPiano extends Question implements Parcelable {
-    private List<String> reponse;
+    private List<String> listNotes;
     private String url;
 
     public QuestionPiano(String numQuestion, String titre, String url){
@@ -33,11 +33,11 @@ public class QuestionPiano extends Question implements Parcelable {
     };
 
     public List<String> getReponse() {
-        return reponse;
+        return listNotes;
     }
 
     public void setReponse(List<String> reponse) {
-        this.reponse = reponse;
+        this.listNotes = reponse;
     }
 
     public String getUrl() {

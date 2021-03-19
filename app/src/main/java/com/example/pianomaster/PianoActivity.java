@@ -21,6 +21,8 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PianoActivity extends Activity {
     private ProgressDialog pDialog;
@@ -38,15 +40,27 @@ public class PianoActivity extends Activity {
     private MediaPlayer media_si_bemol;
     private MediaPlayer media_si;
 
+    private List<String> listNote = new ArrayList<>();
+    private int numNote = 0;
+
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     QuestionPiano question;
     TextView tvQuestion, tvNiveau;
+    private int nbTentative = 0;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveau_piano);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        listNote.add("do");
+        listNote.add("re");
+        listNote.add("mi");
+        listNote.add("do_diese");
+
+
         Button btn_do = findViewById(R.id.b_do);
         Button btn_do_diese = findViewById(R.id.b_do_diese);
         Button btn_re = findViewById(R.id.b_re);
@@ -75,70 +89,96 @@ public class PianoActivity extends Activity {
         media_si_bemol = MediaPlayer.create(getApplicationContext(), R.raw.si_bemol);
         media_si = MediaPlayer.create(getApplicationContext(), R.raw.si);
 
-        question = getIntent().getExtras().getParcelable("questionPiano");
-        tvQuestion.setText(question.getTitre());
-        tvNiveau.setText("Niveau piano "+question.getNumQuestion());
+        //question = getIntent().getExtras().getParcelable("questionPiano");
+        //tvQuestion.setText(question.getTitre());
+        //tvNiveau.setText("Niveau piano "+question.getNumQuestion());
 
         btn_do.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_do.start();
+                checkNote("do");
             }
         });
 
         btn_do_diese.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_do_diese.start();
+                checkNote("do_diese");
             }
         });
         btn_re.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_re.start();
+                checkNote("re");
             }
         });
         btn_re_diese.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_re_diese.start();
+                checkNote("re_diese");
             }
         });
         btn_mi.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_mi.start();
+                checkNote("mi");
             }
         });
         btn_fa.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_fa.start();
+                checkNote("fa");
             }
         });
         btn_fa_diese.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_fa_diese.start();
+                checkNote("fa_diese");
             }
         });
         btn_sol.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_sol.start();
+                checkNote("sol");
             }
         });
         btn_sol_diese.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_sol_diese.start();
+                checkNote("sol_diese");
             }
         });
         btn_la.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_la.start();
+                checkNote("la");
             }
         });
         btn_si_bemol.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_si_bemol.start();
+                checkNote("si_bemol");
             }
         });
         btn_si.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 media_si.start();
+                checkNote("si");
             }
         });
+    }
+
+    public void checkNote(String note){
+        if(listNote.get(numNote).equals(note)) {
+            System.out.println("good");
+            numNote++;
+            if(numNote == 4)
+                System.out.println("termine");
+            return;
+        }
+        System.out.println("noob");
+        nbTentative++;
+        if(nbTentative == 3) System.out.println("Trop nul question suivante");
+        numNote = 0;
     }
 }

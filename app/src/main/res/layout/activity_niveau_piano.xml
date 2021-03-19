@@ -165,4 +165,30 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_piano"
         app:layout_constraintVertical_bias="0.202" />
 
+    <Button
+        android:id="@+id/b_recommencer_piano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recommencer"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="50"
+        android:progressTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/b_do"
+        app:layout_constraintEnd_toStartOf="@+id/b_recommencer_piano"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_question_piano" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

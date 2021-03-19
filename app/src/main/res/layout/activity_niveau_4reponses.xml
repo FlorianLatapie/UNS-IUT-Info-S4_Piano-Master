@@ -57,7 +57,7 @@
 
         <Button
             android:id="@+id/b_rep_1"
-            android:layout_width="165dp"
+            android:layout_width="175dp"
             android:layout_height="115dp"
             android:background="@drawable/box"
             android:backgroundTint="@color/bleu_clair"
@@ -73,7 +73,7 @@
 
         <Button
             android:id="@+id/b_rep_2"
-            android:layout_width="165dp"
+            android:layout_width="175dp"
             android:layout_height="115dp"
             android:background="@drawable/box"
             android:backgroundTint="@color/bleu_clair"
@@ -88,7 +88,7 @@
 
         <Button
             android:id="@+id/b_rep_3"
-            android:layout_width="165dp"
+            android:layout_width="175dp"
             android:layout_height="115dp"
             android:background="@drawable/box"
             android:backgroundTint="@color/bleu_clair"
@@ -103,7 +103,7 @@
 
         <Button
             android:id="@+id/b_rep_4"
-            android:layout_width="165dp"
+            android:layout_width="175dp"
             android:layout_height="115dp"
             android:background="@drawable/box"
             android:backgroundTint="@color/bleu_clair"

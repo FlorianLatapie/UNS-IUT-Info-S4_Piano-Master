@@ -166,8 +166,11 @@
         app:layout_constraintVertical_bias="0.202" />
 
     <Button
+        android:background="@drawable/button_style"
+        android:backgroundTint="@color/bleu_clair"
+        android:fontFamily="@font/montserrat_bold"
         android:id="@+id/b_recommencer_piano"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/recommencer"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
@@ -178,9 +181,12 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+
         android:layout_width="500dp"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+
+        android:layout_height="20dp"
+        android:progressDrawable="@drawable/progress_bar"
         android:indeterminate="false"
         android:max="100"
         android:progress="50"

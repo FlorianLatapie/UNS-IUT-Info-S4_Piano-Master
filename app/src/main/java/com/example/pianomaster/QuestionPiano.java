@@ -1,9 +1,12 @@
 package com.example.pianomaster;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.List;
 
-public class QuestionPiano extends Question{
+public class QuestionPiano extends Question implements Parcelable {
     private List<String> reponse;
     private String url;
 
@@ -11,6 +14,23 @@ public class QuestionPiano extends Question{
         super(numQuestion,titre);
         this.url = url;
     }
+
+    protected QuestionPiano(Parcel in) {
+        super(in.readString(), in.readString());
+        url = in.readString();
+    }
+
+    public static final Creator<QuestionPiano> CREATOR = new Creator<QuestionPiano>() {
+        @Override
+        public QuestionPiano createFromParcel(Parcel in) {
+            return new QuestionPiano(in);
+        }
+
+        @Override
+        public QuestionPiano[] newArray(int size) {
+            return new QuestionPiano[size];
+        }
+    };
 
     public List<String> getReponse() {
         return reponse;
@@ -26,5 +46,17 @@ public class QuestionPiano extends Question{
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(getNumQuestion());
+        dest.writeString(getTitre());
+        dest.writeString(url);
     }
 }

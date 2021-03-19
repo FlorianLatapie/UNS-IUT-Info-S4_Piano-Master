@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -45,6 +46,7 @@ public class PianoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveau_piano);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         Button btn_do = findViewById(R.id.b_do);
         Button btn_do_diese = findViewById(R.id.b_do_diese);
         Button btn_re = findViewById(R.id.b_re);
@@ -76,7 +78,6 @@ public class PianoActivity extends Activity {
         question = getIntent().getExtras().getParcelable("questionPiano");
         tvQuestion.setText(question.getTitre());
         tvNiveau.setText("Niveau piano "+question.getNumQuestion());
-        System.out.println("Salut le frère");
 
         btn_do.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

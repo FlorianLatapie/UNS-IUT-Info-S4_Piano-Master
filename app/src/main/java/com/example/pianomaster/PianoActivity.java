@@ -1,13 +1,29 @@
 package com.example.pianomaster;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class PianoActivity extends Activity {
+    private ProgressDialog pDialog;
+
     private MediaPlayer media_do;
     private MediaPlayer media_do_diese;
     private MediaPlayer media_re;
@@ -20,6 +36,11 @@ public class PianoActivity extends Activity {
     private MediaPlayer media_la;
     private MediaPlayer media_si_bemol;
     private MediaPlayer media_si;
+
+    private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
+    QuestionPiano question;
+    TextView tvQuestion, tvNiveau;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +57,8 @@ public class PianoActivity extends Activity {
         Button btn_la = findViewById(R.id.b_la);
         Button btn_si_bemol = findViewById(R.id.b_si_bemol);
         Button btn_si = findViewById(R.id.b_si);
+        tvNiveau = findViewById(R.id.tv_titre_niveau_piano);
+        tvQuestion = findViewById(R.id.tv_question_piano);
 
         media_do = MediaPlayer.create(getApplicationContext(), R.raw.note_do);
         media_do_diese = MediaPlayer.create(getApplicationContext(), R.raw.do_diese);
@@ -50,7 +73,10 @@ public class PianoActivity extends Activity {
         media_si_bemol = MediaPlayer.create(getApplicationContext(), R.raw.si_bemol);
         media_si = MediaPlayer.create(getApplicationContext(), R.raw.si);
 
-
+        question = getIntent().getExtras().getParcelable("questionPiano");
+        tvQuestion.setText(question.getTitre());
+        tvNiveau.setText("Niveau piano "+question.getNumQuestion());
+        System.out.println("Salut le frère");
 
         btn_do.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

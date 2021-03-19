@@ -1,6 +1,7 @@
 package com.example.pianomaster;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,7 +40,7 @@ public class LevelAdapter extends BaseAdapter
 
         if (view == null) {
             btn = new Button(mContext);
-            btn.setText((++btn_id));
+            btn.setText(""+(++btn_id));
         } else {
             btn = (Button) view;
         }
@@ -50,6 +51,8 @@ public class LevelAdapter extends BaseAdapter
             public void onClick(View v)
             {
                 Toast.makeText(v.getContext(), "Button #" + (i + 1), Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(mContext, CreerQuestionActivity.class);
+                mContext.startActivity(intent);
             }
         });
 

@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionActivity extends Activity {
+public class Question4RepActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
 
     private ProgressDialog pDialog;
@@ -45,6 +45,7 @@ public class QuestionActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
+        question = getIntent().getExtras().getParcelable("questionMultiple");
         new GetRessources().execute();
     }
 
@@ -56,7 +57,7 @@ public class QuestionActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(QuestionActivity.this);
+            pDialog = new ProgressDialog(Question4RepActivity.this);
             pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
             pDialog.setCancelable(false);
             pDialog.show();
@@ -68,39 +69,8 @@ public class QuestionActivity extends Activity {
         // appelee automatiquement après onPreExecute
         protected Void doInBackground(Void... arg0) {
             System.out.println("background task lanched");
-            HttpHandler sh = new HttpHandler();
-
-            String jsonStr = sh.makeServiceCall(url_ressources +"/Niveau1/Niveau1.json");
-            if (jsonStr != null) {
-                try {
-                    JSONArray jsonArray = new JSONArray(jsonStr);
-                    JSONObject jsonObj = jsonArray.getJSONObject(0);
-                    System.out.println(jsonObj.length());
-                    System.out.println(jsonObj);
-                    String numQuestion = jsonObj.getString("num_question");
-                    String questions = jsonObj.getString("questions");
-                    String image = jsonObj.getString("image");
-                    JSONArray propositions = jsonObj.getJSONArray("proposition");
-                    List<String> listProposition = new ArrayList<>();
-                    System.out.println(propositions.length());
-                    for(int i=0; i<propositions.length(); i++){
-                        String jsonString = propositions.getString(i);
-                        listProposition.add(jsonString);
-                    }
-                    System.out.println("print listProposition :"+listProposition);
-                    String reponse = jsonObj.getString("reponse");
-
-                    question = new QuestionMultiple(numQuestion,questions, image, listProposition, reponse);
-                    System.out.println("question creee");
-                } catch (final JSONException e) {
-                    System.err.println("Erreur : lecture JSON :" + e.getMessage());
-
-                }
-            } else {
-                System.err.println("JSON introuvable, veuillez vérifier l'URL");
-            }
             try {
-                String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png";
+                String url = question.getUrl()+question.getIdImage(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png"
                 InputStream is = (InputStream) new URL(url).getContent();
                 System.out.println("is créé");
                 d = Drawable.createFromStream(is, "lvl1");
@@ -121,12 +91,7 @@ public class QuestionActivity extends Activity {
             System.out.println("id de l'image : "+question.getIdImage());
             tvQuestion.setText(question.getTitre());
             tvNiveau.setText("Niveau "+question.getNumQuestion());
-            String url_site_image = url_ressources +"/Niveau1/"+ question.getIdImage();
-            System.out.println(url_site_image);
             ivQuestion.setImageDrawable(d);
-
-
-
             b1.setText(question.getReponses().get(0));
             b1.setTextColor(Color.WHITE);
             b2.setText(question.getReponses().get(1));
@@ -135,7 +100,6 @@ public class QuestionActivity extends Activity {
             b3.setTextColor(Color.WHITE);
             b4.setText(question.getReponses().get(3));
             b4.setTextColor(Color.WHITE);
-
         }
 
     }

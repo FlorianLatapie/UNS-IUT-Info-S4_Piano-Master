@@ -2,6 +2,7 @@ package com.example.pianomaster;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -127,9 +128,13 @@ public class QuestionActivity extends Activity {
 
 
             b1.setText(question.getReponses().get(0));
+            b1.setTextColor(Color.WHITE);
             b2.setText(question.getReponses().get(1));
+            b2.setTextColor(Color.WHITE);
             b3.setText(question.getReponses().get(2));
+            b3.setTextColor(Color.WHITE);
             b4.setText(question.getReponses().get(3));
+            b4.setTextColor(Color.WHITE);
 
         }
 

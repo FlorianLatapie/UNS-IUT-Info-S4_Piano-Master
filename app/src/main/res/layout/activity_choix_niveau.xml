@@ -22,89 +22,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/b_niv_1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="1"
-        android:textColor="@color/white"
-        android:textSize="36sp"
-        android:backgroundTint="@color/couleur_bouton_interface"
-        app:layout_constraintBottom_toBottomOf="@+id/b_niv_2"
-        app:layout_constraintEnd_toStartOf="@+id/b_niv_2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/b_niv_2" />
-
-    <Button
-        android:id="@+id/b_niv_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/couleur_bouton_interface"
-        android:text="2"
-        android:textColor="@color/white"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toStartOf="@+id/b_niv_3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_niv_1"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titre_choix_niveau" />
-
-    <Button
-        android:id="@+id/b_niv_3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="3"
-        android:textColor="@color/white"
-        android:textSize="36sp"
-        android:backgroundTint="@color/couleur_bouton_interface"
-        app:layout_constraintBottom_toBottomOf="@+id/b_niv_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_niv_2"
-        app:layout_constraintTop_toTopOf="@+id/b_niv_2" />
-
-    <Button
-        android:id="@+id/b_niv_4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:textColor="@color/white"
-        android:text="4"
-        android:textSize="36sp"
-        android:backgroundTint="@color/couleur_bouton_interface"
-        app:layout_constraintBottom_toBottomOf="@+id/b_niv_5"
-        app:layout_constraintEnd_toStartOf="@+id/b_niv_5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/b_niv_5" />
-
-    <Button
-        android:id="@+id/b_niv_5"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="382dp"
+        android:layout_height="497dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/white"
-        android:text="5"
-        android:textSize="36sp"
-        android:backgroundTint="@color/couleur_bouton_interface"
-        app:layout_constraintEnd_toStartOf="@+id/b_niv_6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_niv_4"
-        app:layout_constraintTop_toBottomOf="@+id/b_niv_2" />
-
-    <Button
-        android:id="@+id/b_niv_6"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="6"
-        android:textColor="@color/white"
-        android:textSize="36sp"
-        android:backgroundTint="@color/couleur_bouton_interface"
-        app:layout_constraintBottom_toBottomOf="@+id/b_niv_5"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_niv_5"
-        app:layout_constraintTop_toTopOf="@+id/b_niv_5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

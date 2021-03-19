@@ -1,54 +1,58 @@
 package com.example.pianomaster;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.List;
+public class LevelAdapter extends BaseAdapter
+{
+    private Context mContext;
+    private int btn_id = 0;
+    private int total_btns = 6;
 
-public class LevelAdapter extends BaseAdapter {
-    private List<Button> list;
-    private LayoutInflater layoutInflater;
-    private Context context;
-
-    public LevelAdapter(Context aContext,  List<Button> list) {
-        this.context = aContext;
-        this.list = list;
-        layoutInflater = LayoutInflater.from(aContext);
+    public LevelAdapter(Context context) {
+        this.mContext = context;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return total_btns;
     }
 
     @Override
-    public Object getItem(int position) {
-        return list.get(position);
+    public Object getItem(int i) {
+        return null;
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int i) {
+        return 0;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout layoutItem;
+    public View getView(final int i, View view, ViewGroup viewGroup)
+    {
+        Button btn;
 
-        if(convertView==null){
-            layoutItem = (LinearLayout) layoutInflater.inflate(R.layout.activity_level_grid, parent, false);
-        }else{
-            layoutItem = (LinearLayout) convertView;
+        if (view == null) {
+            btn = new Button(mContext);
+            btn.setText((++btn_id));
+        } else {
+            btn = (Button) view;
         }
 
-        return layoutItem;
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(v.getContext(), "Button #" + (i + 1), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return btn;
     }
 }

@@ -6,6 +6,6 @@
     <string name="retour_accueil">"Retour "</string>
     <string name="envoyer">Envoyer</string>
     <string name="q_envoyer_resultat">Envoyer le résultat ?</string>
-    <string name="sms_contenu">J\'ai fait un score de XX/XX dans \"Piano Master\" !</string>
+    <string name="sms_contenu">J\'ai fait un score de XX/XX sur le niveau X dans \"Piano Master\" ! Télécharge l\'appli pour me battre !</string>
     <string name="recommencer">Réécouter</string>
 </resources>

@@ -7,6 +7,6 @@
     <string name="retour_accueil">"Back "</string>
     <string name="envoyer">Send it</string>
     <string name="q_envoyer_resultat">Send the result?</string>
-    <string name="sms_contenu">I scored XX/XX in \"Piano Master\"!</string>
+    <string name="sms_contenu">I scored XX/XX on level X in \"Piano Master\"! Download the app to beat me!</string>
     <string name="recommencer">Listen again</string>
 </resources>

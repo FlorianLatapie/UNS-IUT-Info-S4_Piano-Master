@@ -52,7 +52,6 @@ public class LevelAdapter extends BaseAdapter {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Button #" + (i + 1), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, CreerQuestionActivity.class);
                 mContext.startActivity(intent);
             }

@@ -46,7 +46,7 @@
     ]]>
 
     <Button
-        android:id="@+id/b_rep_1"
+        android:id="@+id/b_retour_accueil"
         android:layout_width="165dp"
         android:layout_height="75dp"
         android:background="@drawable/box"
@@ -55,13 +55,13 @@
         android:text="@string/retour_accueil"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_rep_2"
+        app:layout_constraintEnd_toStartOf="@+id/b_envoyer_sms"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/b_rep_2"
+        android:id="@+id/b_envoyer_sms"
         android:layout_width="165dp"
         android:layout_height="75dp"
         android:background="@drawable/box"
@@ -72,7 +72,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_rep_1"
+        app:layout_constraintStart_toEndOf="@+id/b_retour_accueil"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -117,7 +117,7 @@
         android:text="J'ai fait un score de XX/XX dans 'Piano Master' !"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/b_rep_1"
+        app:layout_constraintBottom_toTopOf="@+id/b_retour_accueil"
         app:layout_constraintEnd_toEndOf="@+id/tv_question_sms"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tv_question_sms"

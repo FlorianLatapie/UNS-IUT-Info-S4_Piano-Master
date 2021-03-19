@@ -43,8 +43,8 @@ public class CreerQuestionActivity extends Activity {
     private List<String> listProposition = new ArrayList<>();
     private String reponse;
     private String image;
-    private List<QuestionMultiple> listQuestionMultiple = new ArrayList<>();
-    private List<QuestionPiano> listQuestionPiano = new ArrayList<>();
+    private ArrayList<QuestionMultiple> listQuestionMultiple = new ArrayList<>();
+    private ArrayList<QuestionPiano> listQuestionPiano = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +136,7 @@ public class CreerQuestionActivity extends Activity {
             }
 
             Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
-            intent.putExtra("listQuestion4Rep", (Parcelable) listQuestionMultiple);
+            intent.putParcelableArrayListExtra("listQuestion4Rep", listQuestionMultiple);
             startActivity(intent);
         }
     }

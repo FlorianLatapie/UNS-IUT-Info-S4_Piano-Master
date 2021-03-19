@@ -29,21 +29,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
-
-
-        android:id="@+id/constraintLayout"
-        android:layout_width="385dp"
-        android:layout_height="280dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/box"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-    ]]>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/b_retour_accueil"
@@ -113,7 +99,11 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:minLines="1"
+        android:maxLines="10"
+        android:scrollbars="vertical"
         android:text="J'ai fait un score de XX/XX dans 'Piano Master' !"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -121,6 +111,11 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_question_sms"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tv_question_sms"
-        app:layout_constraintTop_toBottomOf="@+id/et_numero_sms" />
+        app:layout_constraintTop_toBottomOf="@+id/et_numero_sms"
+
+        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

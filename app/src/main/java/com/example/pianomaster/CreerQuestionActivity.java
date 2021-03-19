@@ -25,6 +25,7 @@ import java.util.List;
 public class CreerQuestionActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int score = 0;
+    private static int nbQuestion=4;
 
     private ProgressDialog pDialog;
     private ListView lv;
@@ -34,7 +35,16 @@ public class CreerQuestionActivity extends Activity {
     Button b1, b2, b3, b4; // boutons de réponse
     TextView tvQuestion, tvNiveau;
     ImageView ivQuestion;
+    private boolean isPassed=false;
 
+    private String numQuestion;
+    private String typeQuestion;
+    private String questions;
+    private List<String> listProposition = new ArrayList<>();
+    private String reponse;
+    private String image;
+    private List<QuestionMultiple> listQuestionMultiple = new ArrayList<>();
+    private List<QuestionPiano> listQuestionPiano = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,29 +89,24 @@ public class CreerQuestionActivity extends Activity {
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
-                    JSONObject jsonObj = jsonArray.getJSONObject(0);
-                    String numQuestion = jsonObj.getString("num_question");
-                    String typeQuestion = jsonObj.getString("type");
-                    String questions = jsonObj.getString("questions");
-                    List<String> listProposition = new ArrayList<>();
-                    if(typeQuestion.equals("multiple")) {
-                        String reponse = jsonObj.getString("reponse");
-                        String image = jsonObj.getString("image");
-                        JSONArray propositions = jsonObj.getJSONArray("proposition");
-                        for(int i=0; i<propositions.length(); i++){
-                            String jsonString = propositions.getString(i);
-                            listProposition.add(jsonString);
+                    for(int j=0; j<nbQuestion; j++) {
+                        JSONObject jsonObj = jsonArray.getJSONObject(j);
+                        numQuestion = jsonObj.getString("num_question");
+                        typeQuestion = jsonObj.getString("type");
+                        questions = jsonObj.getString("questions");
+                        if (typeQuestion.equals("multiple")) {
+                            reponse = jsonObj.getString("reponse");
+                            image = jsonObj.getString("image");
+                            JSONArray propositions = jsonObj.getJSONArray("proposition");
+                            for (int i = 0; i < propositions.length(); i++) {
+                                String jsonString = propositions.getString(i);
+                                listProposition.add(jsonString);
+                            }
+                            listQuestionMultiple.add(new QuestionMultiple(numQuestion, questions, image, url_ressources + "/Niveau1/", listProposition, reponse));
                         }
-                        QuestionMultiple question = new QuestionMultiple(numQuestion, questions, image, url_ressources+"/Niveau1/", listProposition, reponse);
-                        Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
-                        intent.putExtra("questionMultiple", (Parcelable) question);
-                        startActivity(intent);
-                    }
-                    else if(typeQuestion.equals("piano")){
-                        QuestionPiano question = new QuestionPiano(numQuestion, typeQuestion, url_ressources+"/Niveau1/");
-                        Intent intent = new Intent(CreerQuestionActivity.this, QuestionPiano.class);
-                        intent.putExtra("questionPiano", (Parcelable) question);
-                        startActivity(intent);
+                        else if(typeQuestion.equals("piano")){
+                            listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/"));
+                        }
                     }
                 } catch (final JSONException e) {
                     System.err.println("Erreur : lecture JSON :" + e.getMessage());
@@ -118,7 +123,21 @@ public class CreerQuestionActivity extends Activity {
 
             if (pDialog.isShowing())
                 pDialog.dismiss();
-        }
 
+            String score_c;
+
+            if((score_c=getIntent().getStringExtra("score"))!=null){
+                if(Integer.parseInt(score_c)>0)
+                    score++;
+            }
+            String nb;
+            if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
+                nbQuestion = Integer.parseInt(nb);
+            }
+
+            Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
+            intent.putExtra("listQuestion4Rep", (Parcelable) listQuestionMultiple);
+            startActivity(intent);
+        }
     }
 }

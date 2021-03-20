@@ -166,13 +166,14 @@
         app:layout_constraintVertical_bias="0.202" />
 
     <Button
-        android:background="@drawable/button_style"
-        android:backgroundTint="@color/bleu_clair"
-        android:fontFamily="@font/montserrat_bold"
         android:id="@+id/b_recommencer_piano"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
+        android:backgroundTint="@color/bleu_clair"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/recommencer"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

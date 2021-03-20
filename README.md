@@ -1,5 +1,9 @@
 # Piano-Master
 
-## Internet site :
-Site : AndroidPianoMaster
-Mdp : 8NIkl$z7aabgt#x6Lavs
+## Site des ressources 
+https://androidpianomaster.000webhostapp.com/
+
+## Accès aux ressources
+https://files.000webhost.com/
+Username : AndroidPianoMaster
+Password : 8NIkl$z7aabgt#x6Lavs

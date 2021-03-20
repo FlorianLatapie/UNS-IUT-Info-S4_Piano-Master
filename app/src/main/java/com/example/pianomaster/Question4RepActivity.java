@@ -73,57 +73,72 @@ public class Question4RepActivity extends Activity {
             b4.setTextColor(Color.WHITE);
         }
         b1.setOnClickListener(v -> {
-            checkReponse(question.getResponse());
+            checkReponse(0);
         });
         b2.setOnClickListener(v -> {
-            checkReponse(question.getResponse());
+            checkReponse(1);
         });
         b3.setOnClickListener(v -> {
-            checkReponse(question.getResponse());
+            checkReponse(2);
         });
         b4.setOnClickListener(v -> {
-            checkReponse(question.getResponse());
+            checkReponse(3);
         });
 
     }
 
 
 
-    public void checkReponse(String rep){
+    public void checkReponse(int index){
         MediaPlayer sonRep;
-        if (question.getReponses().get(0).equals(rep)) {
-            colorReponseButton();
+        if (question.getReponses().get(index).equals(question.getResponse())) {
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.bonne_reponse);
             sonRep.start();
             intent.putExtra("score", 1);
         } else {
-            colorReponseButton();
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.mauvaise_reponse);
             sonRep.start();
             intent.putExtra("score", 0);
         }
+        colorReponseButton();
         count++;
-        intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
-        startActivity(intent);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    Thread.sleep(3000);
+                    intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
+                    startActivity(intent);
+                }
+                catch (InterruptedException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void colorReponseButton(){
-        if (question.getReponses().get(0).equals(b1.getText().toString())) {
+        if (question.getReponses().get(0).equals(question.getResponse())) {
             b1.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b1.setBackground(getDrawable(R.drawable.button_mrep));
         }
-        if (question.getReponses().get(0).equals(b2.getText().toString())) {
+        if (question.getReponses().get(1).equals(question.getResponse())) {
             b2.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b2.setBackground(getDrawable(R.drawable.button_mrep));
         }
-        if (question.getReponses().get(0).equals(b3.getText().toString())) {
+        if (question.getReponses().get(2).equals(question.getResponse())) {
             b3.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b3.setBackground(getDrawable(R.drawable.button_mrep));
         }
-        if (question.getReponses().get(0).equals(b4.getText().toString())) {
+        if (question.getReponses().get(3).equals(question.getResponse())) {
             b4.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b4.setBackground(getDrawable(R.drawable.button_mrep));

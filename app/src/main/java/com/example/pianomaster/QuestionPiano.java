@@ -1,5 +1,6 @@
 package com.example.pianomaster;
 
+import android.media.MediaPlayer;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,16 +9,25 @@ import java.util.List;
 
 public class QuestionPiano extends Question implements Parcelable {
     private List<String> listNotes;
+    private String idAudio;
     private String url;
+
+    public QuestionPiano(String numQuestion, String titre, String url, String idAudio){
+        super(numQuestion,titre);
+        this.url = url;
+        this.idAudio = idAudio;
+    }
 
     public QuestionPiano(String numQuestion, String titre, String url){
         super(numQuestion,titre);
         this.url = url;
+        this.idAudio = "";
     }
 
     protected QuestionPiano(Parcel in) {
         super(in.readString(), in.readString());
         url = in.readString();
+        idAudio = in.readString();
     }
 
     public static final Creator<QuestionPiano> CREATOR = new Creator<QuestionPiano>() {
@@ -48,6 +58,10 @@ public class QuestionPiano extends Question implements Parcelable {
         this.url = url;
     }
 
+    public String getIdAudio() {
+        return idAudio;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -58,5 +72,6 @@ public class QuestionPiano extends Question implements Parcelable {
         dest.writeString(getNumQuestion());
         dest.writeString(getTitre());
         dest.writeString(url);
+        dest.writeString(idAudio);
     }
 }

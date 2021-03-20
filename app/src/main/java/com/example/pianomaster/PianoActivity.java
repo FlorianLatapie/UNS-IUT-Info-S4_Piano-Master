@@ -3,24 +3,15 @@ package com.example.pianomaster;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +30,8 @@ public class PianoActivity extends Activity {
     private MediaPlayer media_la;
     private MediaPlayer media_si_bemol;
     private MediaPlayer media_si;
+
+    private MediaPlayer currentSong = new MediaPlayer();
 
     private List<String> listNote = new ArrayList<>();
     private int numNote = 0;
@@ -73,6 +66,7 @@ public class PianoActivity extends Activity {
         Button btn_la = findViewById(R.id.b_la);
         Button btn_si_bemol = findViewById(R.id.b_si_bemol);
         Button btn_si = findViewById(R.id.b_si);
+        Button btn_reecoutez = findViewById(R.id.b_recommencer_piano);
         tvNiveau = findViewById(R.id.tv_titre_niveau_piano);
         tvQuestion = findViewById(R.id.tv_question_piano);
 
@@ -166,6 +160,60 @@ public class PianoActivity extends Activity {
                 checkNote("si");
             }
         });
+
+        btn_reecoutez.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentSong.start();
+            }
+        });
+
+        new PianoActivity.GetRessources().execute();
+    }
+
+    private class GetRessources extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(PianoActivity.this);
+            pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }
+
+        @Override
+        // appelee automatiquement après onPreExecute
+        protected Void doInBackground(Void... arg0) {
+            System.out.println("background task lanched");
+            try {
+                String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav";
+               // String url = question.getUrl()+ question.getIdAudio(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
+                currentSong.setAudioAttributes(
+                        new AudioAttributes.Builder()
+                                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                .setUsage(AudioAttributes.USAGE_MEDIA)
+                                .build()
+                );
+                currentSong.setDataSource(url);
+                currentSong.prepare();
+                currentSong.start();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+        }
+
+
     }
 
     public void checkNote(String note){

@@ -10,8 +10,10 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import java.util.List;
 
 public class PianoActivity extends Activity {
     private ProgressDialog pDialog;
+    private int pourcentagePB =0 ;
+    private Handler mHandler = new Handler();
 
     private static int count = 0;
 
@@ -251,5 +255,36 @@ public class PianoActivity extends Activity {
             if (nbTentative == 3) System.out.println("Trop nul question suivante") ; // passe a la question suivante
             numNote = 0;
         }
+    }
+
+    private void runProgressBar(int nbMS, ProgressBar pb, Button bRecommencer) throws InterruptedException {
+        //todo bouton recommencer griser
+        bRecommencer.setEnabled(false);
+        pourcentagePB = 0;
+        pb.setProgress(pourcentagePB);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (pourcentagePB < 100) {
+                    pourcentagePB++;
+                    android.os.SystemClock.sleep(nbMS / 100);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            pb.setProgress(pourcentagePB);
+                        }
+                    });
+                }
+                ;
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        bRecommencer.setEnabled(true);
+                        //TODO bouton recommencer visible
+                    }
+                });
+            }
+        });
+        t.start();
     }
 }

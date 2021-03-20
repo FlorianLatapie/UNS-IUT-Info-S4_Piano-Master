@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -237,17 +238,27 @@ public class PianoActivity extends Activity {
     }
 
     public void checkNote(String note){
+        Intent intent = new Intent(PianoActivity.this, PianoActivity.class);
         if(tvQuestion.getText().equals("Recommencer")) tvQuestion.setText("Ecoutez et jouez !");
         if(numNote <= listNote.size()-1 && listNote.get(numNote).equals(note)) {
             System.out.println("good");
             numNote++;
-            if(numNote == 4)
+            if(numNote == 4) {
                 System.out.println("termine");
+                count++;
+                intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                startActivity(intent);
+            }
         }
         else {
             tvQuestion.setText("Recommencer");
             nbTentative++;
-            if (nbTentative == 3) System.out.println("Trop nul question suivante") ; // passe a la question suivante
+            if (nbTentative == 3){
+                System.out.println("Trop nul question suivante") ; // passe a la question suivante
+                count++;
+                intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                startActivity(intent);
+            }
             numNote = 0;
         }
     }

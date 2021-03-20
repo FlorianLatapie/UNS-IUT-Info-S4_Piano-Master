@@ -28,17 +28,6 @@ public class LevelActivity extends Activity {
         GridView gridview = findViewById(R.id.gridView);
 
         new GetNbNiveau().execute();
-
-
-        Button b_sms_a_supprimer  = findViewById(R.id.b_sms_a_supprimer);
-        b_sms_a_supprimer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, SMSActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
-
     }
 
     private class GetNbNiveau extends AsyncTask<Void, Void, Void> {

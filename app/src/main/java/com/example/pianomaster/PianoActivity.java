@@ -169,16 +169,18 @@ public class PianoActivity extends Activity {
     }
 
     public void checkNote(String note){
-        if(listNote.get(numNote).equals(note)) {
+        if(tvQuestion.getText().equals("IL FAUT RECOMMENCER !")) tvQuestion.setText("ECOUTEZ ET JOUEZ !");
+        if(numNote <= listNote.size()-1 && listNote.get(numNote).equals(note)) {
             System.out.println("good");
             numNote++;
             if(numNote == 4)
                 System.out.println("termine");
-            return;
         }
-        System.out.println("noob");
-        nbTentative++;
-        if(nbTentative == 3) System.out.println("Trop nul question suivante");
-        numNote = 0;
+        else {
+            tvQuestion.setText("IL FAUT RECOMMENCER !");
+            nbTentative++;
+            if (nbTentative == 3) System.out.println("Trop nul question suivante") ; // passe a la question suivante
+            numNote = 0;
+        }
     }
 }

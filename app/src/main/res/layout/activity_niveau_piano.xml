@@ -174,39 +174,50 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_piano"
         app:layout_constraintVertical_bias="0.202" />
 
-    <Button
-        android:id="@+id/b_recommencer_piano"
-        android:layout_width="150dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="739dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_style"
-        android:backgroundTint="@color/bleu_clair"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/recommencer"
-        android:textColor="@color/white"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/progressBar"
-        app:layout_constraintTop_toTopOf="@+id/progressBar" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-
-        android:layout_width="500dp"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-
-        android:layout_height="20dp"
-        android:progressDrawable="@drawable/progress_bar"
-        android:indeterminate="false"
-        android:max="100"
-        android:progress="50"
-
         app:layout_constraintBottom_toTopOf="@+id/containerTouches"
-        app:layout_constraintEnd_toStartOf="@+id/b_recommencer_piano"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_question_piano" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_question_piano">
+
+        <Button
+            android:id="@+id/b_recommencer_piano"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_style"
+            android:backgroundTint="@color/bleu_clair"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/recommencer"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="500dp"
+
+            android:layout_height="20dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/progress_bar"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_recommencer_piano"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

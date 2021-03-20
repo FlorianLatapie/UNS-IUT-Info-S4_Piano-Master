@@ -3,7 +3,9 @@ package com.example.pianomaster;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -21,6 +23,8 @@ public class PianoActivity extends Activity {
     private ProgressDialog pDialog;
     private int pourcentagePB =0 ;
     private Handler mHandler = new Handler();
+
+    private static int count = 0;
 
     private MediaPlayer media_do;
     private MediaPlayer media_do_diese;
@@ -44,6 +48,9 @@ public class PianoActivity extends Activity {
     QuestionPiano question;
     TextView tvQuestion, tvNiveau;
     private int nbTentative = 0;
+
+    Intent intent;
+    private List<QuestionPiano> questionPianoList;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -90,6 +97,20 @@ public class PianoActivity extends Activity {
         //question = getIntent().getExtras().getParcelable("questionPiano");
         //tvQuestion.setText(question.getTitre());
         //tvNiveau.setText("Niveau piano "+question.getNumQuestion());
+
+        intent = new Intent(PianoActivity.this, PianoActivity.class);
+        if(count>1){
+            Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
+            intent.putExtra("nbQuestion", "4");
+            startActivity(intent);
+        }
+        else{
+            questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
+            new GetRessources().execute();
+            question = questionPianoList.get(count);
+            tvQuestion.setText(question.getTitre());
+            tvNiveau.setText("Niveau 1"+ " - Question " + question.getNumQuestion());
+        }
 
         btn_do.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

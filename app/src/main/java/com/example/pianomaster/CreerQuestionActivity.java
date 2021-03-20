@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -133,8 +134,10 @@ public class CreerQuestionActivity extends Activity {
                     score++;
             }
             String nb;
+            System.out.println(getIntent().getStringExtra("nbQuestion"));
             if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
                 nbQuestion = Integer.parseInt(nb);
+                System.out.println(nbQuestion);
             }
 
             if(nbQuestion>1){
@@ -142,10 +145,11 @@ public class CreerQuestionActivity extends Activity {
                 intent.putParcelableArrayListExtra("listQuestionPiano", listQuestionPiano);
                 startActivity(intent);
             }
-
-            Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
-            intent.putParcelableArrayListExtra("listQuestion4Rep", listQuestionMultiple);
-            startActivity(intent);
+            else {
+                Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
+                intent.putParcelableArrayListExtra("listQuestion4Rep", listQuestionMultiple);
+                startActivity(intent);
+            }
         }
     }
 }

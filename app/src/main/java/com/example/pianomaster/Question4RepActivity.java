@@ -5,8 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ public class Question4RepActivity extends Activity {
     ImageView ivQuestion;
     QuestionMultiple question;
     Drawable d;
+    Intent intent;
     private List<QuestionMultiple> questionMultipleList;
 
 
@@ -45,87 +48,62 @@ public class Question4RepActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
+        intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
         if(count>1){
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
-            intent.putExtra("nbQuestion", 2);
+            intent.putExtra("nbQuestion", "2");
             startActivity(intent);
         }
-        questionMultipleList = getIntent().getParcelableArrayListExtra("listQuestion4Rep");
-        System.out.println(questionMultipleList);
-        System.out.println(count);
-        System.out.println(questionMultipleList.get(1));
-        question = questionMultipleList.get(count);
-        tvQuestion.setText(question.getTitre());
-        tvNiveau.setText("Niveau " + question.getNumQuestion());
-        ivQuestion.setImageDrawable(d);
-        b1.setText(question.getReponses().get(0));
-        b1.setTextColor(Color.WHITE);
-        b2.setText(question.getReponses().get(1));
-        b2.setTextColor(Color.WHITE);
-        b3.setText(question.getReponses().get(2));
-        b3.setTextColor(Color.WHITE);
-        b4.setText(question.getReponses().get(3));
-        b4.setTextColor(Color.WHITE);
-        new GetRessources().execute();
+        else{
+            questionMultipleList = getIntent().getParcelableArrayListExtra("listQuestion4Rep");
+            new GetRessources().execute();
+            question = questionMultipleList.get(count);
+            tvQuestion.setText(question.getTitre());
+            tvNiveau.setText("Niveau 1"+ " - Question " + question.getNumQuestion());
+            b1.setText(question.getReponses().get(0));
+            b1.setTextColor(Color.WHITE);
+            b2.setText(question.getReponses().get(1));
+            b2.setTextColor(Color.WHITE);
+            b3.setText(question.getReponses().get(2));
+            b3.setTextColor(Color.WHITE);
+            b4.setText(question.getReponses().get(3));
+            b4.setTextColor(Color.WHITE);
+        }
         b1.setOnClickListener(v -> {
-            Intent intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
-            if (question.getReponses().get(0).equals(question.getResponse())) {
-                System.out.println("bonne réponse");
-                intent.putExtra("score", 1);
-                // Son bonne réponse
-            } else {
-                System.out.println("Mauvaise réponse");
-                intent.putExtra("score", 0);
-                // Son mauvaise réponse
-            }
-            count++;
-            intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
-            startActivity(intent);
+            checkReponse(question.getResponse());
         });
         b2.setOnClickListener(v -> {
-            Intent intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
-            if (question.getReponses().get(0).equals(question.getResponse())) {
-                System.out.println("bonne réponse");
-                intent.putExtra("score", 1);
-                // Son bonne réponse
-            } else {
-                System.out.println("Mauvaise réponse");
-                intent.putExtra("score", 0);
-                // Son mauvaise réponse
-            }
-            count++;
-            intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
-            startActivity(intent);
+            checkReponse(question.getResponse());
         });
         b3.setOnClickListener(v -> {
-            Intent intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
-            if (question.getReponses().get(0).equals(question.getResponse())) {
-                System.out.println("bonne réponse");
-                intent.putExtra("score", 1);
-                // Son bonne réponse
-            } else {
-                System.out.println("Mauvaise réponse");
-                intent.putExtra("score", 0);
-                // Son mauvaise réponse
-            }
-            count++;
-            startActivity(intent);
+            checkReponse(question.getResponse());
         });
         b4.setOnClickListener(v -> {
-            Intent intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
-            if (question.getReponses().get(0).equals(question.getResponse())) {
-                System.out.println("bonne réponse");
-                intent.putExtra("score", 1);
-                // Son bonne réponse
-            } else {
-                System.out.println("Mauvaise réponse");
-                intent.putExtra("score", 0);
-                // Son mauvaise réponse
-            }
-            count++;
-            intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
-            startActivity(intent);
+            checkReponse(question.getResponse());
         });
+
+    }
+
+
+
+    public void checkReponse(String rep){
+        MediaPlayer sonRep;
+        if (question.getReponses().get(0).equals(rep)) {
+            System.out.println("bonne réponse");
+            sonRep = MediaPlayer.create(getApplicationContext(), R.raw.bonne_reponse);
+            sonRep.start();
+            intent.putExtra("score", 1);
+            // Son bonne réponse
+        } else {
+            System.out.println("Mauvaise réponse");
+            sonRep = MediaPlayer.create(getApplicationContext(), R.raw.mauvaise_reponse);
+            sonRep.start();
+            intent.putExtra("score", 0);
+            // Son mauvaise réponse
+        }
+        count++;
+        intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
+        startActivity(intent);
     }
 
     /**
@@ -148,7 +126,6 @@ public class Question4RepActivity extends Activity {
         protected Void doInBackground(Void... arg0) {
             System.out.println("background task lanched");
             try {
-                System.out.println("Je suis passé par la");
                 String url = question.getUrl()+ question.getIdImage(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png"
                 System.out.println(url);
                 InputStream is = (InputStream) new URL(url).getContent();
@@ -165,8 +142,10 @@ public class Question4RepActivity extends Activity {
 
             if (pDialog.isShowing())
                 pDialog.dismiss();
+
+            if(count<2) {
+                ivQuestion.setImageDrawable(d);
+            }
         }
-
-
     }
 }

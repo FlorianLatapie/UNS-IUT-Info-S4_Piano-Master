@@ -11,4 +11,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="stroke_clavier">#707070</color>
     <color name="gris_clair">#FFBCBCBC</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
 </resources>

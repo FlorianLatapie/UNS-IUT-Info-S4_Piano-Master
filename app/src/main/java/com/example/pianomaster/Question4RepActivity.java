@@ -19,6 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static android.os.SystemClock.sleep;
 
 public class Question4RepActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
@@ -89,21 +92,42 @@ public class Question4RepActivity extends Activity {
     public void checkReponse(String rep){
         MediaPlayer sonRep;
         if (question.getReponses().get(0).equals(rep)) {
-            System.out.println("bonne réponse");
+            colorReponseButton();
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.bonne_reponse);
             sonRep.start();
             intent.putExtra("score", 1);
-            // Son bonne réponse
         } else {
-            System.out.println("Mauvaise réponse");
+            colorReponseButton();
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.mauvaise_reponse);
             sonRep.start();
             intent.putExtra("score", 0);
-            // Son mauvaise réponse
         }
         count++;
         intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
         startActivity(intent);
+    }
+
+    public void colorReponseButton(){
+        if (question.getReponses().get(0).equals(b1.getText().toString())) {
+            b1.setBackground(getDrawable(R.drawable.button_brep));
+        } else {
+            b1.setBackground(getDrawable(R.drawable.button_mrep));
+        }
+        if (question.getReponses().get(0).equals(b2.getText().toString())) {
+            b2.setBackground(getDrawable(R.drawable.button_brep));
+        } else {
+            b2.setBackground(getDrawable(R.drawable.button_mrep));
+        }
+        if (question.getReponses().get(0).equals(b3.getText().toString())) {
+            b3.setBackground(getDrawable(R.drawable.button_brep));
+        } else {
+            b3.setBackground(getDrawable(R.drawable.button_mrep));
+        }
+        if (question.getReponses().get(0).equals(b4.getText().toString())) {
+            b4.setBackground(getDrawable(R.drawable.button_brep));
+        } else {
+            b4.setBackground(getDrawable(R.drawable.button_mrep));
+        }
     }
 
     /**
@@ -148,4 +172,6 @@ public class Question4RepActivity extends Activity {
             }
         }
     }
+
+
 }

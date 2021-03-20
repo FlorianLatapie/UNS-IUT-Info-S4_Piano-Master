@@ -51,6 +51,7 @@ public class PianoActivity extends Activity {
 
     Intent intent;
     private List<QuestionPiano> questionPianoList;
+    private ProgressBar pb;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -63,7 +64,7 @@ public class PianoActivity extends Activity {
         listNote.add("re");
         listNote.add("mi");
         listNote.add("do_diese");
-
+        pb = findViewById(R.id.progressBar);
 
         Button btn_do = findViewById(R.id.b_do);
         Button btn_do_diese = findViewById(R.id.b_do_diese);
@@ -189,10 +190,14 @@ public class PianoActivity extends Activity {
         btn_reecoutez.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    runProgressBar(3000, pb, btn_reecoutez);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 currentSong.start();
             }
         });
-
         new PianoActivity.GetRessources().execute();
     }
 
@@ -201,11 +206,6 @@ public class PianoActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(PianoActivity.this);
-            pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
-            pDialog.setCancelable(false);
-            pDialog.show();
-
         }
 
         @Override
@@ -213,8 +213,8 @@ public class PianoActivity extends Activity {
         protected Void doInBackground(Void... arg0) {
             System.out.println("background task lanched");
             try {
-                String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav";
-               // String url = question.getUrl()+ question.getIdAudio(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
+                //String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav";
+                String url = question.getUrl()+ question.getIdAudio(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
                 currentSong.setAudioAttributes(
                         new AudioAttributes.Builder()
                                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -233,9 +233,6 @@ public class PianoActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-
-            if (pDialog.isShowing())
-                pDialog.dismiss();
         }
 
 

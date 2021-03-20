@@ -13,7 +13,6 @@
         android:background="@drawable/box"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/iv_question_q4rep"
-        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="@+id/iv_question_q4rep"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep" />
 
@@ -36,12 +35,9 @@
         android:id="@+id/iv_question_q4rep"
         android:layout_width="370dp"
         android:layout_height="200dp"
-
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/fond_question_q4rep"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/lvl1" />
 
@@ -124,7 +120,6 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep"
         app:layout_constraintTop_toTopOf="@+id/fond_question_q4rep" />

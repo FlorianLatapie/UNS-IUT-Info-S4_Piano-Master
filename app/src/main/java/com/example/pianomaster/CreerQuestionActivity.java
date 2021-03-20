@@ -25,7 +25,7 @@ import java.util.List;
 public class CreerQuestionActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int score = 0;
-    private static int nbQuestion=4;
+    private static int nbQuestion=0;
 
     private ProgressDialog pDialog;
     private ListView lv;
@@ -86,10 +86,11 @@ public class CreerQuestionActivity extends Activity {
             HttpHandler sh = new HttpHandler();
 
             String jsonStr = sh.makeServiceCall(url_ressources +"/Niveau1/Niveau1.json");
+
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
-                    for(int j=0; j<nbQuestion; j++) {
+                    for(int j=0; j<4; j++) {
                         JSONObject jsonObj = jsonArray.getJSONObject(j);
                         numQuestion = jsonObj.getString("num_question");
                         typeQuestion = jsonObj.getString("type");
@@ -105,7 +106,8 @@ public class CreerQuestionActivity extends Activity {
                             listQuestionMultiple.add(new QuestionMultiple(numQuestion, questions, image, url_ressources + "/Niveau1/", listProposition, reponse));
                         }
                         else if(typeQuestion.equals("piano")){
-                            listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/"));
+                            String audio = jsonObj.getString("sons");
+                            listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/", audio));
                         }
                     }
                 } catch (final JSONException e) {
@@ -133,6 +135,12 @@ public class CreerQuestionActivity extends Activity {
             String nb;
             if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
                 nbQuestion = Integer.parseInt(nb);
+            }
+
+            if(nbQuestion>1){
+                Intent intent = new Intent(CreerQuestionActivity.this, PianoActivity.class);
+                intent.putParcelableArrayListExtra("listQuestionPiano", listQuestionPiano);
+                startActivity(intent);
             }
 
             Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);

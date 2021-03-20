@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class QuestionPiano extends Question implements Parcelable {
         super(in.readString(), in.readString());
         url = in.readString();
         idAudio = in.readString();
+        listNotes = in.createStringArrayList();
     }
 
     public static final Creator<QuestionPiano> CREATOR = new Creator<QuestionPiano>() {
@@ -74,5 +76,6 @@ public class QuestionPiano extends Question implements Parcelable {
         dest.writeString(getTitre());
         dest.writeString(url);
         dest.writeString(idAudio);
+        dest.writeStringList(listNotes);
     }
 }

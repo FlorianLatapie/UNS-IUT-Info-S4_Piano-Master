@@ -115,6 +115,7 @@ public class CreerQuestionActivity extends Activity {
                             String note = jsonObj.getString("reponse");
                             String[] parts = note.split(" ");
                             List<String> list = List.of(parts);
+                            System.out.println(list);
                             listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/", audio, list));
                         }
                     }
@@ -141,10 +142,8 @@ public class CreerQuestionActivity extends Activity {
                     score++;
             }
             String nb;
-            System.out.println(getIntent().getStringExtra("nbQuestion"));
             if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
                 nbQuestion = Integer.parseInt(nb);
-                System.out.println(nbQuestion);
             }
 
             if(nbQuestion>1){

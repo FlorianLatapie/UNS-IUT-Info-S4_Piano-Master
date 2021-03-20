@@ -95,10 +95,7 @@ public class PianoActivity extends Activity {
         media_si_bemol = MediaPlayer.create(getApplicationContext(), R.raw.si_bemol);
         media_si = MediaPlayer.create(getApplicationContext(), R.raw.si);
 
-        //question = getIntent().getExtras().getParcelable("questionPiano");
-        //tvQuestion.setText(question.getTitre());
-        //tvNiveau.setText("Niveau piano "+question.getNumQuestion());
-
+        tvQuestion.setText("Ecoutez et jouez");
         intent = new Intent(PianoActivity.this, PianoActivity.class);
         if(count>1){
             Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
@@ -109,6 +106,8 @@ public class PianoActivity extends Activity {
             questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
             new GetRessources().execute();
             question = questionPianoList.get(count);
+            listNote = question.getReponse();
+            System.out.println(listNote);
             tvQuestion.setText(question.getTitre());
             tvNiveau.setText("Niveau 1"+ " - Question " + question.getNumQuestion());
         }
@@ -213,7 +212,6 @@ public class PianoActivity extends Activity {
         protected Void doInBackground(Void... arg0) {
             System.out.println("background task lanched");
             try {
-                //String url = "https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav";
                 String url = question.getUrl()+ question.getIdAudio(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
                 currentSong.setAudioAttributes(
                         new AudioAttributes.Builder()
@@ -239,7 +237,7 @@ public class PianoActivity extends Activity {
     }
 
     public void checkNote(String note){
-        if(tvQuestion.getText().equals("IL FAUT RECOMMENCER !")) tvQuestion.setText("ECOUTEZ ET JOUEZ !");
+        if(tvQuestion.getText().equals("Recommencer")) tvQuestion.setText("Ecoutez et jouez !");
         if(numNote <= listNote.size()-1 && listNote.get(numNote).equals(note)) {
             System.out.println("good");
             numNote++;
@@ -247,7 +245,7 @@ public class PianoActivity extends Activity {
                 System.out.println("termine");
         }
         else {
-            tvQuestion.setText("IL FAUT RECOMMENCER !");
+            tvQuestion.setText("Recommencer");
             nbTentative++;
             if (nbTentative == 3) System.out.println("Trop nul question suivante") ; // passe a la question suivante
             numNote = 0;

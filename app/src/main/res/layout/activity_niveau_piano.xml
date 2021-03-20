@@ -190,7 +190,7 @@
         android:indeterminate="false"
         android:max="100"
         android:progress="50"
-        android:progressTint="@color/white"
+
         app:layout_constraintBottom_toTopOf="@+id/b_do"
         app:layout_constraintEnd_toStartOf="@+id/b_recommencer_piano"
         app:layout_constraintHorizontal_bias="0.5"

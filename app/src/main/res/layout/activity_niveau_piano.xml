@@ -25,12 +25,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerTouches"
         android:layout_width="730dp"
         android:layout_height="200dp"
-        android:id="@+id/containerTouches"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <Button
             android:id="@+id/b_do"
             android:layout_width="100dp"
@@ -38,7 +39,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_re"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/stroke_clavier" />
 
@@ -49,7 +49,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_mi"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/b_do"
             app:strokeColor="@color/stroke_clavier" />
 
@@ -60,7 +59,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_fa"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/b_re"
             app:strokeColor="@color/stroke_clavier" />
 
@@ -71,7 +69,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_sol"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/b_mi"
             app:strokeColor="@color/stroke_clavier" />
 
@@ -82,7 +79,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_la"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/b_fa" />
 
         <Button
@@ -92,7 +88,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_si"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/b_sol"
             app:strokeColor="@color/stroke_clavier" />
 
@@ -103,7 +98,6 @@
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/b_la"
             app:strokeColor="@color/stroke_clavier" />
 
@@ -168,17 +162,19 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/containerTouches"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_piano"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_piano" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="739dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/containerTouches"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_question_piano">
 
@@ -194,7 +190,6 @@
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/progressBar"
             app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
@@ -213,12 +208,9 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_recommencer_piano"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
         android:id="@android:id/background"
         android:gravity="center_vertical|fill_horizontal">
         <shape android:shape="rectangle">
-            <corners android:radius="10dp"/>
+            <corners android:radius="8dp"/>
             <size android:height="20dp"/>
             <solid android:color="@color/gris_clair"/>
         </shape>
@@ -15,7 +15,7 @@
         <scale android:scaleWidth="100%">
             <shape android:shape="rectangle">
                 <corners
-                    android:radius="10dp"
+                    android:radius="8dp"
                     />
                 <size android:height="20dp"/>
                 <solid android:color="@color/white"/>

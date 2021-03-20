@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         playButton = findViewById(R.id.b_jouer);
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.sortie);
+                animation.setDuration(100);
+                playButton.startAnimation(animation);
+
                 Intent intent = new Intent(MainActivity.this, LevelActivity.class);
                 startActivity(intent);
             }

@@ -7,12 +7,15 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,6 +82,7 @@ public class CreerQuestionActivity extends Activity {
 
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.R)
         @Override
 
         // appelee automatiquement après onPreExecute
@@ -108,7 +112,10 @@ public class CreerQuestionActivity extends Activity {
                         }
                         else if(typeQuestion.equals("piano")){
                             String audio = jsonObj.getString("sons");
-                            listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/", audio));
+                            String note = jsonObj.getString("reponse");
+                            String[] parts = note.split(" ");
+                            List<String> list = List.of(parts);
+                            listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/", audio, list));
                         }
                     }
                 } catch (final JSONException e) {

@@ -12,10 +12,11 @@ public class QuestionPiano extends Question implements Parcelable {
     private String idAudio;
     private String url;
 
-    public QuestionPiano(String numQuestion, String titre, String url, String idAudio){
+    public QuestionPiano(String numQuestion, String titre, String url, String idAudio, List<String> list){
         super(numQuestion,titre);
         this.url = url;
         this.idAudio = idAudio;
+        this.listNotes = list;
     }
 
     public QuestionPiano(String numQuestion, String titre, String url){

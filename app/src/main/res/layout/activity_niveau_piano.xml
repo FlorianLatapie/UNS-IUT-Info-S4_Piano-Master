@@ -24,131 +24,140 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/b_do"
-        android:layout_width="100dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="730dp"
         android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_re"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/stroke_clavier" />
-
-    <Button
-        android:id="@+id/b_re"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_mi"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_do"
-        app:strokeColor="@color/stroke_clavier" />
-
-    <Button
-        android:id="@+id/b_mi"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_fa"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_re"
-        app:strokeColor="@color/stroke_clavier" />
-
-    <Button
-        android:id="@+id/b_fa"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_sol"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_mi"
-        app:strokeColor="@color/stroke_clavier" />
-
-    <Button
-        android:id="@+id/b_sol"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_la"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_fa" />
-
-    <Button
-        android:id="@+id/b_la"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/b_si"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_sol"
-        app:strokeColor="@color/stroke_clavier" />
-
-    <Button
-        android:id="@+id/b_si"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
+        android:id="@+id/containerTouches"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/b_la"
-        app:strokeColor="@color/stroke_clavier" />
+        app:layout_constraintStart_toStartOf="parent">
+        <Button
+            android:id="@+id/b_do"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_re"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/stroke_clavier" />
 
-    <Button
-        android:id="@+id/b_do_diese"
-        android:layout_width="75dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginBottom="75dp"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/b_do" />
+        <Button
+            android:id="@+id/b_re"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_mi"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_do"
+            app:strokeColor="@color/stroke_clavier" />
 
-    <Button
-        android:id="@+id/b_re_diese"
-        android:layout_width="75dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="75dp"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/b_do_diese" />
+        <Button
+            android:id="@+id/b_mi"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_fa"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_re"
+            app:strokeColor="@color/stroke_clavier" />
 
-    <Button
-        android:id="@+id/b_fa_diese"
-        android:layout_width="75dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="117dp"
-        android:layout_marginBottom="75dp"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/b_re_diese" />
+        <Button
+            android:id="@+id/b_fa"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_sol"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_mi"
+            app:strokeColor="@color/stroke_clavier" />
 
-    <Button
-        android:id="@+id/b_sol_diese"
-        android:layout_width="75dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="75dp"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/b_fa_diese" />
+        <Button
+            android:id="@+id/b_sol"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_la"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_fa" />
 
-    <Button
-        android:id="@+id/b_si_bemol"
-        android:layout_width="75dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="75dp"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/b_sol_diese" />
+        <Button
+            android:id="@+id/b_la"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_si"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_sol"
+            app:strokeColor="@color/stroke_clavier" />
+
+        <Button
+            android:id="@+id/b_si"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_la"
+            app:strokeColor="@color/stroke_clavier" />
+
+        <Button
+            android:id="@+id/b_do_diese"
+            android:layout_width="75dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginBottom="75dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/b_do" />
+
+        <Button
+            android:id="@+id/b_re_diese"
+            android:layout_width="75dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="75dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_do_diese" />
+
+        <Button
+            android:id="@+id/b_fa_diese"
+            android:layout_width="75dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="117dp"
+            android:layout_marginBottom="75dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_re_diese" />
+
+        <Button
+            android:id="@+id/b_sol_diese"
+            android:layout_width="75dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="75dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_fa_diese" />
+
+        <Button
+            android:id="@+id/b_si_bemol"
+            android:layout_width="75dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="75dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_sol_diese" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/tv_question_piano"
@@ -159,7 +168,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/b_fa"
+        app:layout_constraintBottom_toTopOf="@+id/containerTouches"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_piano"
@@ -192,10 +201,12 @@
         android:max="100"
         android:progress="50"
 
-        app:layout_constraintBottom_toTopOf="@+id/b_do"
+        app:layout_constraintBottom_toTopOf="@+id/containerTouches"
         app:layout_constraintEnd_toStartOf="@+id/b_recommencer_piano"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_question_piano" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

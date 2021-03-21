@@ -1,5 +1,6 @@
 package com.example.pianomaster;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,11 +11,13 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.json.JSONArray;
@@ -61,7 +64,10 @@ public class CreerQuestionActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
-        niveau = getIntent().getExtras().getInt("numNiveau");
+        if (niveau!= 0){
+            niveau = getIntent().getExtras().getInt("numNiveau");
+            niveau = savedInstanceState.getInt("niv");
+        }
         System.out.println("Niveau dans creerQuestion : "+niveau);
         if(score>0) {
             score = getIntent().getExtras().getInt("score");
@@ -103,6 +109,7 @@ public class CreerQuestionActivity extends Activity {
                         JSONObject jsonObj = jsonArray.getJSONObject(j);
                         numQuestion = jsonObj.getString("num_question");
                         typeQuestion = jsonObj.getString("type");
+                        System.out.println(typeQuestion);
                         questions = jsonObj.getString("questions");
                         if (typeQuestion.equals("multiple")) {
                             reponse = jsonObj.getString("reponse");
@@ -113,8 +120,8 @@ public class CreerQuestionActivity extends Activity {
                                 listProposition.add(jsonString);
                             }
                             System.out.println(listProposition);
-                            listProposition = new ArrayList<>();
                             listQuestionMultiple.add(new QuestionMultiple(questions, numQuestion, niveau, score, image, url_ressources, listProposition, reponse));
+                            listProposition = new ArrayList<>();
                         }
                         else if(typeQuestion.equals("piano")){
                             String audio = jsonObj.getString("sons");
@@ -162,5 +169,10 @@ public class CreerQuestionActivity extends Activity {
                     break;
             }
         }
+    }
+
+    protected void onSaveInstanceState(Bundle saveInstance) {
+        super.onSaveInstanceState(saveInstance);
+        saveInstance.putInt("niv", niveau);
     }
 }

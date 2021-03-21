@@ -60,7 +60,6 @@ public class Question4RepActivity extends Activity {
         }
         else{
             questionMultipleList = getIntent().getParcelableArrayListExtra("listQuestion4Rep");
-            niveau = getIntent().getExtras().getInt("numNiveau");
             new GetRessources().execute();
             question = questionMultipleList.get(count);
             tvQuestion.setText(question.getTitre());
@@ -128,6 +127,7 @@ public class Question4RepActivity extends Activity {
                 {
                     Thread.sleep(3000);
                     intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
+                    intent.putExtra("numNiveau", question.getNumNiveau());
                     startActivity(intent);
                 }
                 catch (InterruptedException e)
@@ -183,7 +183,6 @@ public class Question4RepActivity extends Activity {
             System.out.println("background task lanched");
             try {
                 String url = question.getUrl()+ question.getIdImage(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png"
-                System.out.println(url);
                 InputStream is = (InputStream) new URL(url).getContent();
                 d = Drawable.createFromStream(is, "lvl1");
             } catch (Exception e) {

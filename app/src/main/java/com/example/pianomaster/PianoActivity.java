@@ -26,7 +26,7 @@ public class PianoActivity extends Activity {
     private int pourcentagePB =0 ;
     private Handler mHandler = new Handler();
 
-    private int count = 0;
+    private static int count = 0;
     private int nbPoint = 0;
 
     private int niveau;
@@ -111,111 +111,102 @@ public class PianoActivity extends Activity {
         media_si = MediaPlayer.create(getApplicationContext(), R.raw.si);
 
         tvQuestion.setText("Ecoutez et jouez");
-        intent = new Intent(PianoActivity.this, PianoActivity.class);
-        if(count>1){
-            nbTentative = 0;
-            count = 0;
-            numNote = 0;
-            Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
-            intent.putExtra("nbQuestion", "4");
-            Question.addScore(nbPoint);
-            startActivity(intent);
+
+        if (savedInstanceState != null){
+            questionPianoList = savedInstanceState.getParcelableArrayList("list");
+            System.out.println("Data recup "+questionPianoList);
+            count = savedInstanceState.getInt("count");
         }
-        else{
-            questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
-            new GetRessources().execute();
-            question = questionPianoList.get(count);
-            listNote = question.getReponse();
-            tvQuestion.setText(question.getTitre());
-            tvNiveau.setText("Niveau "+question.getNumNiveau()+" - Question " + question.getNumQuestion());
+        else {
+
+            intent = new Intent(PianoActivity.this, PianoActivity.class);
+            if (count > 1) {
+                nbTentative = 0;
+                count = 0;
+                numNote = 0;
+                Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
+                intent.putExtra("nbQuestion", "4");
+                Question.addScore(nbPoint);
+                startActivity(intent);
+            } else {
+                questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
+                System.out.println(questionPianoList);
+                new GetRessources().execute();
+                question = questionPianoList.get(count);
+                System.out.println("Count piano" + count);
+                listNote = question.getReponse();
+                tvQuestion.setText(question.getTitre());
+                tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
+            }
         }
 
-        btn_do.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_do.start();
-                checkNote("do");
-            }
+        btn_do.setOnClickListener(v -> {
+            media_do.start();
+            checkNote("do");
         });
 
-        btn_do_diese.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_do_diese.start();
-                checkNote("do_diese");
-            }
+        btn_do_diese.setOnClickListener(v -> {
+            media_do_diese.start();
+            checkNote("do_diese");
         });
-        btn_re.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_re.start();
-                checkNote("re");
-            }
+        btn_re.setOnClickListener(v -> {
+            media_re.start();
+            checkNote("re");
         });
-        btn_re_diese.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_re_diese.start();
-                checkNote("re_diese");
-            }
+        btn_re_diese.setOnClickListener(v -> {
+            media_re_diese.start();
+            checkNote("re_diese");
         });
-        btn_mi.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_mi.start();
-                checkNote("mi");
-            }
+        btn_mi.setOnClickListener(v -> {
+            media_mi.start();
+            checkNote("mi");
         });
-        btn_fa.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_fa.start();
-                checkNote("fa");
-            }
+        btn_fa.setOnClickListener(v -> {
+            media_fa.start();
+            checkNote("fa");
         });
-        btn_fa_diese.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_fa_diese.start();
-                checkNote("fa_diese");
-            }
+        btn_fa_diese.setOnClickListener(v -> {
+            media_fa_diese.start();
+            checkNote("fa_diese");
         });
-        btn_sol.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_sol.start();
-                checkNote("sol");
-            }
+        btn_sol.setOnClickListener(v -> {
+            media_sol.start();
+            checkNote("sol");
         });
-        btn_sol_diese.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_sol_diese.start();
-                checkNote("sol_diese");
-            }
+        btn_sol_diese.setOnClickListener(v -> {
+            media_sol_diese.start();
+            checkNote("sol_diese");
         });
-        btn_la.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_la.start();
-                checkNote("la");
-            }
+        btn_la.setOnClickListener(v -> {
+            media_la.start();
+            checkNote("la");
         });
-        btn_si_bemol.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_si_bemol.start();
-                checkNote("si_bemol");
-            }
+        btn_si_bemol.setOnClickListener(v -> {
+            media_si_bemol.start();
+            checkNote("si_bemol");
         });
-        btn_si.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                media_si.start();
-                checkNote("si");
-            }
+        btn_si.setOnClickListener(v -> {
+            media_si.start();
+            checkNote("si");
         });
 
-        btn_reecoutez.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    runProgressBar(3000, pb, btn_reecoutez);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                currentSong.start();
+        btn_reecoutez.setOnClickListener(v -> {
+            try {
+                runProgressBar(3000, pb, btn_reecoutez);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            currentSong.start();
         });
         new PianoActivity.GetRessources().execute();
+    }
+
+    protected void onSaveInstanceState(Bundle saveInstance) {
+        super.onSaveInstanceState(saveInstance);
+        saveInstance.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) questionPianoList);
+        System.out.println("Save list "+ questionPianoList);
+        count++;
+        saveInstance.putInt("count", count);
     }
 
     private class GetRessources extends AsyncTask<Void, Void, Void> {
@@ -230,7 +221,7 @@ public class PianoActivity extends Activity {
         protected Void doInBackground(Void... arg0) {
             if(question != null) {
                 String url = question.getUrl() + question.getIdAudio();
-                System.out.println("background task lanched");
+                System.out.println("background task lanched piano activity");
                 try {
                     //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
                     currentSong.reset();
@@ -251,32 +242,26 @@ public class PianoActivity extends Activity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void checkNote(String note){
         Intent intent = new Intent(PianoActivity.this, PianoActivity.class);
         if(tvQuestion.getText().equals("Recommencer")) tvQuestion.setText("Ecoutez et jouez !");
         if(numNote <= listNote.size()-1 && listNote.get(numNote).equals(note)) {
-            System.out.println("good");
             numNote++;
             if(numNote == 4) {
                 colorNote();
                 count++;
                 nbPoint++;
-                new Thread(new Runnable()
-                {
-                    @Override
-                    public void run()
+                new Thread(() -> {
+                    try
                     {
-                        try
-                        {
-                            Thread.sleep(3000);
-                            intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
-                            startActivity(intent);
-                        }
-                        catch (InterruptedException e)
-                        {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+                        Thread.sleep(3000);
+                        //intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                        startActivity(intent);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
                     }
                 }).start();
             }
@@ -297,7 +282,7 @@ public class PianoActivity extends Activity {
                         try
                         {
                             Thread.sleep(3000);
-                            intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                            //intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                             startActivity(intent);
                         }
                         catch (InterruptedException e)

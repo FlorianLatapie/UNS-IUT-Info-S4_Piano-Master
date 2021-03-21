@@ -1,5 +1,6 @@
 package com.example.pianomaster;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,6 +39,7 @@ public class Question4RepActivity extends Activity {
     private List<QuestionMultiple> questionMultipleList;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,7 @@ public class Question4RepActivity extends Activity {
             b4.setText(question.getReponses().get(3));
             b4.setTextColor(Color.WHITE);
         }
+        System.out.println("Count :" + count);
         b1.setOnClickListener(v -> {
             checkReponse(0);
             b1.setClickable(false);
@@ -118,27 +121,23 @@ public class Question4RepActivity extends Activity {
         }
         colorReponseButton();
         count++;
-        new Thread(new Runnable()
-        {
-            @Override
-            public void run()
+        new Thread(() -> {
+            try
             {
-                try
-                {
-                    Thread.sleep(3000);
-                    intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
-                    intent.putExtra("numNiveau", question.getNumNiveau());
-                    startActivity(intent);
-                }
-                catch (InterruptedException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                Thread.sleep(3000);
+                intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
+                intent.putExtra("numNiveau", question.getNumNiveau());
+                startActivity(intent);
+            }
+            catch (InterruptedException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }).start();
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void colorReponseButton(){
         if (question.getReponses().get(0).equals(question.getResponse())) {
             b1.setBackground(getDrawable(R.drawable.button_brep));
@@ -165,6 +164,7 @@ public class Question4RepActivity extends Activity {
     /**
      * Tache asynchrone
      */
+    @SuppressLint("StaticFieldLeak")
     private class GetRessources extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -180,11 +180,11 @@ public class Question4RepActivity extends Activity {
         @Override
         // appelee automatiquement après onPreExecute
         protected Void doInBackground(Void... arg0) {
-            System.out.println("background task lanched");
+            System.out.println("background task lanched question4rep");
             try {
                 String url = question.getUrl()+ question.getIdImage(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/lvl1.png"
                 InputStream is = (InputStream) new URL(url).getContent();
-                d = Drawable.createFromStream(is, "lvl1");
+                d = Drawable.createFromStream(is, "img");
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }

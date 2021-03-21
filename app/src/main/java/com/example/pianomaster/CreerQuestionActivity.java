@@ -57,6 +57,7 @@ public class CreerQuestionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creer_question);
+
         b1 = findViewById(R.id.b_rep_1);
         b2 = findViewById(R.id.b_rep_2);
         b3 = findViewById(R.id.b_rep_3);
@@ -64,9 +65,8 @@ public class CreerQuestionActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
-        if (niveau!= 0){
+        if (niveau == 0){
             niveau = getIntent().getExtras().getInt("numNiveau");
-            niveau = savedInstanceState.getInt("niv");
         }
         System.out.println("Niveau dans creerQuestion : "+niveau);
         if(score>0) {
@@ -76,6 +76,7 @@ public class CreerQuestionActivity extends Activity {
         url_ressources = "https://androidpianomaster.000webhostapp.com/ressources/Niveau"+niveau+"/";
         new GetRessources().execute();
     }
+
 
     /**
      * Tache asynchrone
@@ -98,7 +99,7 @@ public class CreerQuestionActivity extends Activity {
 
         // appelee automatiquement après onPreExecute
         protected Void doInBackground(Void... arg0) {
-            System.out.println("background task lanched");
+            System.out.println("background task lanched creer question");
             HttpHandler sh = new HttpHandler();
 
             String jsonStr = sh.makeServiceCall(url_ressources +"Niveau"+niveau+".json");
@@ -109,7 +110,6 @@ public class CreerQuestionActivity extends Activity {
                         JSONObject jsonObj = jsonArray.getJSONObject(j);
                         numQuestion = jsonObj.getString("num_question");
                         typeQuestion = jsonObj.getString("type");
-                        System.out.println(typeQuestion);
                         questions = jsonObj.getString("questions");
                         if (typeQuestion.equals("multiple")) {
                             reponse = jsonObj.getString("reponse");
@@ -119,7 +119,6 @@ public class CreerQuestionActivity extends Activity {
                                 String jsonString = propositions.getString(i);
                                 listProposition.add(jsonString);
                             }
-                            System.out.println(listProposition);
                             listQuestionMultiple.add(new QuestionMultiple(questions, numQuestion, niveau, score, image, url_ressources, listProposition, reponse));
                             listProposition = new ArrayList<>();
                         }
@@ -159,7 +158,7 @@ public class CreerQuestionActivity extends Activity {
                     break;
                 case 4:
                     nbQuestion = 0;
-                    Intent intent2 = new Intent(CreerQuestionActivity.this, ResultatActivity.class);
+                    Intent intent2 = new Intent(CreerQuestionActivity.this, SMSActivity.class);
                     startActivity(intent2);
                     break;
                 case 0:
@@ -171,8 +170,4 @@ public class CreerQuestionActivity extends Activity {
         }
     }
 
-    protected void onSaveInstanceState(Bundle saveInstance) {
-        super.onSaveInstanceState(saveInstance);
-        saveInstance.putInt("niv", niveau);
-    }
 }

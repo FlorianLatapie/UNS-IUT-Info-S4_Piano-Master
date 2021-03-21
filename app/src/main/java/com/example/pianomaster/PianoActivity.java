@@ -41,7 +41,7 @@ public class PianoActivity extends Activity {
     private MediaPlayer media_si;
 
     private MediaPlayer currentSong = new MediaPlayer();
-
+    private TextView tvNbTentative;
     private List<String> listNote = new ArrayList<>();
     private int numNote = 0;
 
@@ -54,6 +54,19 @@ public class PianoActivity extends Activity {
     private List<QuestionPiano> questionPianoList;
     private ProgressBar pb;
 
+    Button btn_do;
+    Button btn_do_diese;
+    Button btn_re;
+    Button btn_re_diese;
+    Button btn_mi;
+    Button btn_fa;
+    Button btn_fa_diese;
+    Button btn_sol;
+    Button btn_sol_diese;
+    Button btn_la;
+    Button btn_si_bemol;
+    Button btn_si;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +74,21 @@ public class PianoActivity extends Activity {
         setContentView(R.layout.activity_niveau_piano);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        listNote.add("do");
-        listNote.add("re");
-        listNote.add("mi");
-        listNote.add("do_diese");
+        tvNbTentative = findViewById(R.id.tvNbTentative);
         pb = findViewById(R.id.progressBar);
 
-        Button btn_do = findViewById(R.id.b_do);
-        Button btn_do_diese = findViewById(R.id.b_do_diese);
-        Button btn_re = findViewById(R.id.b_re);
-        Button btn_re_diese = findViewById(R.id.b_re_diese);
-        Button btn_mi = findViewById(R.id.b_mi);
-        Button btn_fa = findViewById(R.id.b_fa);
-        Button btn_fa_diese = findViewById(R.id.b_fa_diese);
-        Button btn_sol = findViewById(R.id.b_sol);
-        Button btn_sol_diese = findViewById(R.id.b_sol_diese);
-        Button btn_la = findViewById(R.id.b_la);
-        Button btn_si_bemol = findViewById(R.id.b_si_bemol);
-        Button btn_si = findViewById(R.id.b_si);
+        btn_do = findViewById(R.id.b_do);
+        btn_do_diese = findViewById(R.id.b_do_diese);
+        btn_re = findViewById(R.id.b_re);
+        btn_re_diese = findViewById(R.id.b_re_diese);
+        btn_mi = findViewById(R.id.b_mi);
+        btn_fa = findViewById(R.id.b_fa);
+        btn_fa_diese = findViewById(R.id.b_fa_diese);
+        btn_sol = findViewById(R.id.b_sol);
+        btn_sol_diese = findViewById(R.id.b_sol_diese);
+        btn_la = findViewById(R.id.b_la);
+        btn_si_bemol = findViewById(R.id.b_si_bemol);
+        btn_si = findViewById(R.id.b_si);
         Button btn_reecoutez = findViewById(R.id.b_recommencer_piano);
         tvNiveau = findViewById(R.id.tv_titre_niveau_piano);
         tvQuestion = findViewById(R.id.tv_question_piano);
@@ -214,12 +224,6 @@ public class PianoActivity extends Activity {
             System.out.println("background task lanched");
             try {
                 String url = question.getUrl()+ question.getIdAudio(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
-                currentSong.setAudioAttributes(
-                        new AudioAttributes.Builder()
-                                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                                .setUsage(AudioAttributes.USAGE_MEDIA)
-                                .build()
-                );
                 currentSong.setDataSource(url);
                 currentSong.prepare();
                 currentSong.start();
@@ -233,8 +237,6 @@ public class PianoActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
         }
-
-
     }
 
     public void checkNote(String note){
@@ -244,22 +246,96 @@ public class PianoActivity extends Activity {
             System.out.println("good");
             numNote++;
             if(numNote == 4) {
-                System.out.println("termine");
+                colorNote();
                 count++;
-                intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
-                startActivity(intent);
+                new Thread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        try
+                        {
+                            Thread.sleep(3000);
+                            intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                            startActivity(intent);
+                        }
+                        catch (InterruptedException e)
+                        {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         }
         else {
             tvQuestion.setText("Recommencer");
             nbTentative++;
+            tvNbTentative.setText(""+nbTentative);
             if (nbTentative == 3){
-                System.out.println("Trop nul question suivante") ; // passe a la question suivante
+                colorNote();
+                new Thread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        try
+                        {
+                            Thread.sleep(3000);
+                            intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionPianoList);
+                            startActivity(intent);
+                        }
+                        catch (InterruptedException e)
+                        {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                 // passe a la question suivante ou retourne au levelactivity
                 count++;
                 intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                 startActivity(intent);
             }
             numNote = 0;
+        }
+    }
+
+    public void colorNote(){
+        for (String bonneNote: listNote) {
+            getButtonByName(bonneNote).setBackground(getDrawable(R.drawable.button_brep));
+            getButtonByName(bonneNote).setBackgroundColor(Color.GREEN);
+        }
+    }
+
+    public Button getButtonByName(String name){
+        switch (name){
+            case "do":
+                return btn_do;
+            case "do_diese":
+                return btn_do_diese;
+            case "re":
+                return btn_re;
+            case "re_diese":
+                return btn_re_diese;
+            case "mi":
+                return btn_mi;
+            case "fa":
+                return btn_fa;
+            case "fa_diese":
+                return btn_fa_diese;
+            case "sol":
+                return btn_sol;
+            case "sol_diese":
+                return btn_sol_diese;
+            case "la":
+                return btn_la;
+            case "si_bemol":
+                return btn_si_bemol;
+            case "si":
+                return btn_si;
+            default:
+                return btn_do;
         }
     }
 

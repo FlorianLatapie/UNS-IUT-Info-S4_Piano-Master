@@ -124,7 +124,7 @@ public class SMSActivity extends AppCompatActivity {
                 // Cancelled or denied.
                 else {
                     Log.i( LOG_TAG,"Permission denied!");
-                    Toast.makeText(this, getString(R.string.autorisation_sms_non).", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.autorisation_sms_non), Toast.LENGTH_LONG).show();
                 }
                 break;
             }

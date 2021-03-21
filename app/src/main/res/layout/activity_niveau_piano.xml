@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+
         android:fontFamily="@font/montserrat_bold"
-        android:padding="8dp"
         android:text="Niveau piano X"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -213,6 +214,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:id="@+id/containerTentative"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -223,13 +225,14 @@
 
         <TextView
             android:id="@+id/tvTentatives"
-            android:layout_width="98dp"
-            android:layout_height="59dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Nombre \n tentatives"
+            android:text="Erreurs"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvNbTentative"
             app:layout_constraintHorizontal_bias="0.5"
@@ -237,9 +240,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+
             android:id="@+id/tvNbTentative"
-            android:layout_width="33dp"
-            android:layout_height="59dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:text="0"
             android:textAlignment="center"

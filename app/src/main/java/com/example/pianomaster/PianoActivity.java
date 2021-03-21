@@ -301,7 +301,6 @@ public class PianoActivity extends Activity {
     public void colorNote(){
         for (String bonneNote: listNote) {
             getButtonByName(bonneNote).setBackground(getDrawable(R.drawable.button_brep));
-            getButtonByName(bonneNote).setBackgroundColor(Color.GREEN);
         }
     }
 

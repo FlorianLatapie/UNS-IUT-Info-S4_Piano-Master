@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -227,10 +228,13 @@ public class PianoActivity extends Activity {
         @Override
         // appelee automatiquement après onPreExecute
         protected Void doInBackground(Void... arg0) {
+            String url = question.getUrl()+ question.getIdAudio();
             System.out.println("background task lanched");
             try {
-                String url = question.getUrl()+ question.getIdAudio(); //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
+                //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
+                currentSong.reset();
                 currentSong.setDataSource(url);
+                currentSong.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 currentSong.prepare();
                 currentSong.start();
             } catch (Exception e) {
@@ -263,6 +267,7 @@ public class PianoActivity extends Activity {
                         try
                         {
                             Thread.sleep(3000);
+                            currentSong.stop();
                             intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                             startActivity(intent);
                         }

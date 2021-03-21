@@ -1,4 +1,5 @@
 package com.example.pianomaster;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -88,11 +89,11 @@ public class SMSActivity extends AppCompatActivity {
                     null);
 
             Log.i( LOG_TAG,"Your sms has successfully sent!");
-            Toast.makeText(getApplicationContext(),"Votre SMS a été envoyé !",
+            Toast.makeText(getApplicationContext(),getString(R.string.sms_envoye),
                     Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
-            Log.e( LOG_TAG,"Your sms has failed...", ex);
-            Toast.makeText(getApplicationContext(),"Oh non, votre sms ne s'est pas envoyé\nErreur :" + ex.getMessage(),
+            Log.e( LOG_TAG,"Your sms has failed...\n Error :", ex);
+            Toast.makeText(getApplicationContext(),getString(R.string.sms_refuse) + ex.getMessage(),
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
@@ -115,14 +116,14 @@ public class SMSActivity extends AppCompatActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     Log.i( LOG_TAG,"Permission granted!");
-                    Toast.makeText(this, "Vous avez autorisé l'envoi de SMS.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.autorisation_sms_oui), Toast.LENGTH_LONG).show();
 
                     this.sendSMS_by_smsManager();
                 }
                 // Cancelled or denied.
                 else {
                     Log.i( LOG_TAG,"Permission denied!");
-                    Toast.makeText(this, "Permission SMS refusée.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.autorisation_sms_non).", Toast.LENGTH_LONG).show();
                 }
                 break;
             }
@@ -137,11 +138,11 @@ public class SMSActivity extends AppCompatActivity {
         if (requestCode == MY_PERMISSION_REQUEST_CODE_SEND_SMS) {
             if (resultCode == RESULT_OK) {
                 // Do something with data (Result returned).
-                Toast.makeText(this, "Action OK", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.action_ok), Toast.LENGTH_LONG).show();
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Action canceled", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Action Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.action_failed), Toast.LENGTH_LONG).show();
             }
         }
     }

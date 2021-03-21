@@ -69,14 +69,9 @@ public class LevelAdapter extends BaseAdapter {
                 intent.putExtra("numNiveau", (i+1));
                 intent.putExtra("score", 0);
                 mContext.startActivity(intent);
-                //TODO parcellable avec le btn id pour lancer le bon niveau
             }
         });
-
         return btn;
     }
-
-
-
 }
 

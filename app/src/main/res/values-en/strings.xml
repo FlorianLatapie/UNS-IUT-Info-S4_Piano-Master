@@ -15,4 +15,11 @@
     <string name="erreurs">Errors</string>
     <string name="recommencez">Try again</string>
     <string name="chargement_niveau">Download the number of levels in progress...</string>
+    <string name="sms_envoye">Your sms has successfully sent!</string>
+    <string name="sms_refuse">"Your sms has failed...\n Error :"</string>
+    <string name="autorisation_sms_oui">Permission granted!</string>
+    <string name="autorisation_sms_non">Permission denied!</string>
+    <string name="action_ok">Action OK</string>
+    <string name="action_failed">Action Failed</string>
+    <string name="action_canceled">Action canceled</string>
 </resources>

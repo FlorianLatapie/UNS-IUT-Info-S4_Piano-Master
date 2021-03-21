@@ -1,11 +1,8 @@
 package com.example.pianomaster;
 
-import android.media.MediaPlayer;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class QuestionPiano extends Question implements Parcelable {

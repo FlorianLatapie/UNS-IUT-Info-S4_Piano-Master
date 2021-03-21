@@ -14,4 +14,11 @@
     <string name="erreurs">Erreurs</string>
     <string name="recommencez">Recommencez</string>
     <string name="chargement_niveau">Téléchargement du nombre de niveaux en cours...</string>
+    <string name="sms_envoye">Votre SMS a été envoyé !</string>
+    <string name="sms_refuse">"Oh non, votre sms ne s'est pas envoyé\nErreur :"</string>
+    <string name="autorisation_sms_oui">"Vous avez autorisé l'envoi de SMS."</string>
+    <string name="autorisation_sms_non">Permission SMS refusée.</string>
+    <string name="action_ok">Action OK</string>
+    <string name="action_canceled">Action annulée</string>
+    <string name="action_failed">Action échouée</string>
 </resources>

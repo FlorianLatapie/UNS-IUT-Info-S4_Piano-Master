@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-
 public class HttpHandler {
 
     //Pour affichage en cas d'erreur
@@ -20,7 +19,6 @@ public class HttpHandler {
 
     public HttpHandler() {
     }
-
 
     //appel du service
     public String makeServiceCall(String reqUrl) {

@@ -110,6 +110,10 @@ public class PianoActivity extends Activity {
         tvQuestion.setText("Ecoutez et jouez");
         intent = new Intent(PianoActivity.this, PianoActivity.class);
         if(count>1){
+            nbPoint = 0;
+            nbTentative = 0;
+            count = 0;
+            numNote = 0;
             Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "4");
             intent.putExtra("nbPoint", ""+nbPoint);

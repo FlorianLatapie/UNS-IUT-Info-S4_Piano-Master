@@ -49,6 +49,8 @@ public class Question4RepActivity extends Activity {
         ivQuestion = findViewById(R.id.iv_question_q4rep);
         intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
         if(count>1){
+            nbPoint = 0;
+            count = 0;
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "2");
             intent.putExtra("nbPoint", ""+ nbPoint);

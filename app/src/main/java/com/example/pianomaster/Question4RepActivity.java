@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,15 +16,12 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static android.os.SystemClock.sleep;
 
 public class Question4RepActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int count = 0;
+    private static int nbPoint = 0;
 
     private ProgressDialog pDialog;
 
@@ -55,6 +51,7 @@ public class Question4RepActivity extends Activity {
         if(count>1){
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "2");
+            intent.putExtra("nbPoint", ""+ nbPoint);
             startActivity(intent);
         }
         else{
@@ -94,11 +91,10 @@ public class Question4RepActivity extends Activity {
         if (question.getReponses().get(index).equals(question.getResponse())) {
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.bonne_reponse);
             sonRep.start();
-            intent.putExtra("score", 1);
+            nbPoint++;
         } else {
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.mauvaise_reponse);
             sonRep.start();
-            intent.putExtra("score", 0);
         }
         colorReponseButton();
         count++;

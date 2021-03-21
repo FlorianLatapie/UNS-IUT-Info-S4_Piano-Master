@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".LevelActivity" />
         <activity android:name=".PianoActivity" />
+        <activity android:name=".ResultatActivity"/>
         <activity android:name=".CreerQuestionActivity"/>
         <activity android:name=".Question4RepActivity"/>
         <activity android:name=".SMSActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>

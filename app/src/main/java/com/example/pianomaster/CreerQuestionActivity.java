@@ -75,10 +75,10 @@ public class CreerQuestionActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(CreerQuestionActivity.this);
-            pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
-            pDialog.setCancelable(false);
-            pDialog.show();
+            //pDialog = new ProgressDialog(CreerQuestionActivity.this);
+            //pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
+            //pDialog.setCancelable(false);
+            //pDialog.show();
 
         }
 
@@ -91,7 +91,6 @@ public class CreerQuestionActivity extends Activity {
             HttpHandler sh = new HttpHandler();
 
             String jsonStr = sh.makeServiceCall(url_ressources +"/Niveau1/Niveau1.json");
-
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
@@ -115,7 +114,6 @@ public class CreerQuestionActivity extends Activity {
                             String note = jsonObj.getString("reponse");
                             String[] parts = note.split(" ");
                             List<String> list = List.of(parts);
-                            System.out.println(list);
                             listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/", audio, list));
                         }
                     }
@@ -132,29 +130,37 @@ public class CreerQuestionActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            if (pDialog.isShowing())
-                pDialog.dismiss();
+           /* if (pDialog.isShowing())
+                pDialog.dismiss();*/
 
             String score_c;
 
-            if((score_c=getIntent().getStringExtra("score"))!=null){
+            if((score_c=getIntent().getStringExtra("nbPoint"))!=null){
                 if(Integer.parseInt(score_c)>0)
-                    score++;
+                    score+=Integer.parseInt(score_c);
             }
             String nb;
             if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
                 nbQuestion = Integer.parseInt(nb);
             }
-
-            if(nbQuestion>1){
-                Intent intent = new Intent(CreerQuestionActivity.this, PianoActivity.class);
-                intent.putParcelableArrayListExtra("listQuestionPiano", listQuestionPiano);
-                startActivity(intent);
-            }
-            else {
-                Intent intent = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
-                intent.putParcelableArrayListExtra("listQuestion4Rep", listQuestionMultiple);
-                startActivity(intent);
+            System.out.println(nbQuestion);
+            switch (nbQuestion){
+                case 2:
+                    Intent intent = new Intent(CreerQuestionActivity.this, PianoActivity.class);
+                    intent.putParcelableArrayListExtra("listQuestionPiano", listQuestionPiano);
+                    startActivity(intent);
+                    break;
+                case 4:
+                    System.out.println("je viens d'arriver");
+                    Intent intent2 = new Intent(CreerQuestionActivity.this, ResultatActivity.class);
+                    intent2.putExtra("score", score);
+                    startActivity(intent2);
+                    break;
+                case 0:
+                    Intent intent3 = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
+                    intent3.putParcelableArrayListExtra("listQuestion4Rep", listQuestionMultiple);
+                    startActivity(intent3);
+                    break;
             }
         }
     }

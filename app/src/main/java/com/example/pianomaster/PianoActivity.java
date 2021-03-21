@@ -26,6 +26,7 @@ public class PianoActivity extends Activity {
     private Handler mHandler = new Handler();
 
     private static int count = 0;
+    private static int nbPoint = 0;
 
     private MediaPlayer media_do;
     private MediaPlayer media_do_diese;
@@ -111,6 +112,7 @@ public class PianoActivity extends Activity {
         if(count>1){
             Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "4");
+            intent.putExtra("nbPoint", ""+nbPoint);
             startActivity(intent);
         }
         else{
@@ -248,6 +250,7 @@ public class PianoActivity extends Activity {
             if(numNote == 4) {
                 colorNote();
                 count++;
+                nbPoint++;
                 new Thread(new Runnable()
                 {
                     @Override

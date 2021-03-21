@@ -10,7 +10,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="stroke_clavier">#707070</color>
-    <color name="gris_clair">#FFBCBCBC</color>
+    <color name="gris_clair">#FFcCcCcC</color>
     <color name="green">#00FF00</color>
     <color name="red">#FF0000</color>
     <color name="white_piano">#EEEEEE</color>

@@ -11,4 +11,5 @@
     <string name="sms_contenu2"> sur le niveau </string>
     <string name="sms_contenu3"> dans \"Piano Master\" ! Télécharge l\'appli pour me battre !</string>
     <string name="recommencer">Réécouter</string>
+    <string name="erreurs">Erreurs</string>
 </resources>

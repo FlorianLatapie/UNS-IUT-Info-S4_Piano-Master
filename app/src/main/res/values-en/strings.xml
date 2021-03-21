@@ -12,4 +12,5 @@
     <string name="sms_contenu1">"I scored "</string>
     <string name="sms_contenu2">" on level "</string>
     <string name="sms_contenu3">" in \"Piano Master\"! Download the app to beat me!"</string>
+    <string name="erreurs">Errors</string>
 </resources>

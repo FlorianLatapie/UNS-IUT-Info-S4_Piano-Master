@@ -203,7 +203,7 @@
             android:layout_height="20dp"
             android:indeterminate="false"
             android:max="100"
-            android:progress="50"
+            android:progress="0"
             android:progressDrawable="@drawable/progress_bar"
 
 
@@ -229,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Erreurs"
+            android:text="@string/erreurs"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="28sp"

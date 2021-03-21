@@ -33,7 +33,8 @@ public class SMSActivity extends AppCompatActivity {
 
         this.etNumroSMS = (EditText) this.findViewById(R.id.et_numero_sms);
         this.etContenuSMS = (EditText) this.findViewById(R.id.et_contenu_sms);
-
+        int score = Question.getScore();
+        etContenuSMS.setText(getString(R.string.sms_contenu1)+score+getString(R.string.sms_contenu2)+"X"+getString(R.string.sms_contenu3));
         this.buttonSend = (Button) this.findViewById(R.id.b_envoyer_sms);
 
         this.buttonSend.setOnClickListener(new View.OnClickListener() {

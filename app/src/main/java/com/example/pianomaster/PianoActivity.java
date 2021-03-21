@@ -126,7 +126,6 @@ public class PianoActivity extends Activity {
             new GetRessources().execute();
             question = questionPianoList.get(count);
             listNote = question.getReponse();
-            System.out.println(listNote);
             tvQuestion.setText(question.getTitre());
             tvNiveau.setText("Niveau "+question.getNumNiveau()+" - Question " + question.getNumQuestion());
         }

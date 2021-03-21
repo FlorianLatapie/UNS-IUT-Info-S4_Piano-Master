@@ -73,15 +73,31 @@ public class Question4RepActivity extends Activity {
         }
         b1.setOnClickListener(v -> {
             checkReponse(0);
+            b1.setClickable(false);
+            b2.setClickable(false);
+            b3.setClickable(false);
+            b4.setClickable(false);
         });
         b2.setOnClickListener(v -> {
             checkReponse(1);
+            b1.setClickable(false);
+            b2.setClickable(false);
+            b3.setClickable(false);
+            b4.setClickable(false);
         });
         b3.setOnClickListener(v -> {
             checkReponse(2);
+            b1.setClickable(false);
+            b2.setClickable(false);
+            b3.setClickable(false);
+            b4.setClickable(false);
         });
         b4.setOnClickListener(v -> {
             checkReponse(3);
+            b1.setClickable(false);
+            b2.setClickable(false);
+            b3.setClickable(false);
+            b4.setClickable(false);
         });
 
     }

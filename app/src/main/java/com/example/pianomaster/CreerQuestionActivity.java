@@ -31,15 +31,15 @@ public class CreerQuestionActivity extends Activity {
     private static int score = 0;
     private static int nbQuestion=0;
 
+    private static int niveau = 0;
+
     private ProgressDialog pDialog;
-    private ListView lv;
 
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     Button b1, b2, b3, b4; // boutons de réponse
     TextView tvQuestion, tvNiveau;
     ImageView ivQuestion;
-    private boolean isPassed=false;
 
     private String numQuestion;
     private String typeQuestion;
@@ -61,9 +61,13 @@ public class CreerQuestionActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
-        //Intent intent = getIntent();
-        //int imageIdPersonne = getIntent().getExtras().getInt("idImage");
-        //question = getIntent().getExtras().getParcelable("");
+        niveau = getIntent().getExtras().getInt("numNiveau");
+        System.out.println("Niveau dans creerQuestion : "+niveau);
+        if(score>0) {
+            score = getIntent().getExtras().getInt("score");
+        }
+        Question.setScore(score);
+        url_ressources = "https://androidpianomaster.000webhostapp.com/ressources/Niveau"+niveau+"/";
         new GetRessources().execute();
     }
 
@@ -72,6 +76,7 @@ public class CreerQuestionActivity extends Activity {
      */
     private class GetRessources extends AsyncTask<Void, Void, Void> {
         Drawable d;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -90,7 +95,7 @@ public class CreerQuestionActivity extends Activity {
             System.out.println("background task lanched");
             HttpHandler sh = new HttpHandler();
 
-            String jsonStr = sh.makeServiceCall(url_ressources +"/Niveau1/Niveau1.json");
+            String jsonStr = sh.makeServiceCall(url_ressources +"Niveau"+niveau+".json");
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
@@ -107,14 +112,16 @@ public class CreerQuestionActivity extends Activity {
                                 String jsonString = propositions.getString(i);
                                 listProposition.add(jsonString);
                             }
-                            listQuestionMultiple.add(new QuestionMultiple(numQuestion, questions, image, url_ressources + "/Niveau1/", listProposition, reponse));
+                            System.out.println(listProposition);
+                            listProposition = new ArrayList<>();
+                            listQuestionMultiple.add(new QuestionMultiple(questions, numQuestion, niveau, score, image, url_ressources, listProposition, reponse));
                         }
                         else if(typeQuestion.equals("piano")){
                             String audio = jsonObj.getString("sons");
                             String note = jsonObj.getString("reponse");
                             String[] parts = note.split(" ");
                             List<String> list = List.of(parts);
-                            listQuestionPiano.add(new QuestionPiano(numQuestion, questions, url_ressources + "/Niveau1/", audio, list));
+                            listQuestionPiano.add(new QuestionPiano(questions, numQuestion, niveau, score, url_ressources, audio, list));
                         }
                     }
                 } catch (final JSONException e) {
@@ -133,17 +140,10 @@ public class CreerQuestionActivity extends Activity {
            /* if (pDialog.isShowing())
                 pDialog.dismiss();*/
 
-            String score_c;
-
-            if((score_c=getIntent().getStringExtra("nbPoint"))!=null){
-                if(Integer.parseInt(score_c)>0)
-                    score+=Integer.parseInt(score_c);
-            }
             String nb;
             if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
                 nbQuestion = Integer.parseInt(nb);
             }
-            System.out.println(nbQuestion);
             switch (nbQuestion){
                 case 2:
                     Intent intent = new Intent(CreerQuestionActivity.this, PianoActivity.class);
@@ -151,9 +151,8 @@ public class CreerQuestionActivity extends Activity {
                     startActivity(intent);
                     break;
                 case 4:
-                    System.out.println("je viens d'arriver");
+                    nbQuestion = 0;
                     Intent intent2 = new Intent(CreerQuestionActivity.this, ResultatActivity.class);
-                    intent2.putExtra("score", score);
                     startActivity(intent2);
                     break;
                 case 0:

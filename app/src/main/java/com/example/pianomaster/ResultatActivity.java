@@ -21,7 +21,7 @@ public class ResultatActivity extends Activity {
         setContentView(R.layout.activity_envoyer_sms);
         affichage = findViewById(R.id.et_contenu_sms);
         retour = findViewById(R.id.b_retour_accueil);
-        int score = getIntent().getExtras().getInt("score");
+        int score = Question.getScore();
         affichage.setText("J\'ai fait un score de "+score+"/4 sur le niveau 1 dans \"Piano Master\" ! Télécharge l\'appli pour me battre !");
 
         retour.setOnClickListener(new View.OnClickListener() {

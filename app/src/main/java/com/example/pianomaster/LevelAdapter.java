@@ -61,6 +61,8 @@ public class LevelAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CreerQuestionActivity.class);
+                intent.putExtra("numNiveau", (i+1));
+                intent.putExtra("score", 0);
                 mContext.startActivity(intent);
                 //TODO parcellable avec le btn id pour lancer le bon niveau
             }

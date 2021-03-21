@@ -23,6 +23,8 @@ public class Question4RepActivity extends Activity {
     private static int count = 0;
     private static int nbPoint = 0;
 
+    private int niveau;
+
     private ProgressDialog pDialog;
 
 
@@ -48,20 +50,21 @@ public class Question4RepActivity extends Activity {
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
         intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
+
         if(count>1){
-            nbPoint = 0;
             count = 0;
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "2");
-            intent.putExtra("nbPoint", ""+ nbPoint);
+            Question.addScore(nbPoint);
             startActivity(intent);
         }
         else{
             questionMultipleList = getIntent().getParcelableArrayListExtra("listQuestion4Rep");
+            niveau = getIntent().getExtras().getInt("numNiveau");
             new GetRessources().execute();
             question = questionMultipleList.get(count);
             tvQuestion.setText(question.getTitre());
-            tvNiveau.setText("Niveau 1"+ " - Question " + question.getNumQuestion());
+            tvNiveau.setText("Niveau "+question.getNumNiveau()+ " - Question " + question.getNumQuestion());
             b1.setText(question.getReponses().get(0));
             b1.setTextColor(Color.WHITE);
             b2.setText(question.getReponses().get(1));

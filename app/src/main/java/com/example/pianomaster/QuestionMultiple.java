@@ -12,8 +12,8 @@ public class QuestionMultiple extends Question implements Parcelable {
     private String idImage;
     private String url;
 
-    public QuestionMultiple(String numQuestion, String titre, String idImage, String url, List<String> reponses, String response){
-        super(numQuestion,titre);
+    public QuestionMultiple(String titre, String numQuestion, int numNiveau, int score, String idImage, String url, List<String> reponses, String response){
+        super(titre, numQuestion, numNiveau, score);
         this.reponses = reponses;
         this.response = response;
         this.idImage = idImage;
@@ -21,7 +21,7 @@ public class QuestionMultiple extends Question implements Parcelable {
     }
 
     protected QuestionMultiple(Parcel in) {
-        super(in.readString(), in.readString());
+        super(in.readString(), in.readString(), in.readInt(), in.readInt());
         idImage = in.readString();
         url = in.readString();
         reponses = in.createStringArrayList();
@@ -75,8 +75,10 @@ public class QuestionMultiple extends Question implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(getNumQuestion());
         dest.writeString(getTitre());
+        dest.writeString(getNumQuestion());
+        dest.writeInt(getNumNiveau());
+        dest.writeInt(getScore());
         dest.writeString(idImage);
         dest.writeString(url);
         dest.writeStringList(reponses);
@@ -86,6 +88,7 @@ public class QuestionMultiple extends Question implements Parcelable {
     @Override
     public String toString() {
         return "QuestionMultiple{" +
+                "numNiveau="+ super.getNumNiveau() +
                 "reponses=" + reponses +
                 ", response='" + response + '\'' +
                 ", idImage='" + idImage + '\'' +

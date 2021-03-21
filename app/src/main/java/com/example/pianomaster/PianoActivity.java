@@ -26,8 +26,10 @@ public class PianoActivity extends Activity {
     private int pourcentagePB =0 ;
     private Handler mHandler = new Handler();
 
-    private static int count = 0;
-    private static int nbPoint = 0;
+    private int count = 0;
+    private int nbPoint = 0;
+
+    private int niveau;
 
     private MediaPlayer media_do;
     private MediaPlayer media_do_diese;
@@ -111,13 +113,12 @@ public class PianoActivity extends Activity {
         tvQuestion.setText("Ecoutez et jouez");
         intent = new Intent(PianoActivity.this, PianoActivity.class);
         if(count>1){
-            nbPoint = 0;
             nbTentative = 0;
             count = 0;
             numNote = 0;
             Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "4");
-            intent.putExtra("nbPoint", ""+nbPoint);
+            Question.addScore(nbPoint);
             startActivity(intent);
         }
         else{
@@ -127,7 +128,7 @@ public class PianoActivity extends Activity {
             listNote = question.getReponse();
             System.out.println(listNote);
             tvQuestion.setText(question.getTitre());
-            tvNiveau.setText("Niveau 1"+ " - Question " + question.getNumQuestion());
+            tvNiveau.setText("Niveau "+question.getNumNiveau()+" - Question " + question.getNumQuestion());
         }
 
         btn_do.setOnClickListener(new View.OnClickListener() {
@@ -228,17 +229,19 @@ public class PianoActivity extends Activity {
         @Override
         // appelee automatiquement après onPreExecute
         protected Void doInBackground(Void... arg0) {
-            String url = question.getUrl()+ question.getIdAudio();
-            System.out.println("background task lanched");
-            try {
-                //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
-                currentSong.reset();
-                currentSong.setDataSource(url);
-                currentSong.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                currentSong.prepare();
-                currentSong.start();
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+            if(question != null) {
+                String url = question.getUrl() + question.getIdAudio();
+                System.out.println("background task lanched");
+                try {
+                    //"https://androidpianomaster.000webhostapp.com/ressources/Niveau1/1.wav"
+                    currentSong.reset();
+                    currentSong.setDataSource(url);
+                    currentSong.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    currentSong.prepare();
+                    currentSong.start();
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
             }
             return null;
         }
@@ -267,7 +270,6 @@ public class PianoActivity extends Activity {
                         try
                         {
                             Thread.sleep(3000);
-                            currentSong.stop();
                             intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                             startActivity(intent);
                         }
@@ -287,6 +289,7 @@ public class PianoActivity extends Activity {
             if (nbTentative == 3){
                 colorNote();
                 count++;
+                nbPoint++;
                 new Thread(new Runnable()
                 {
                     @Override

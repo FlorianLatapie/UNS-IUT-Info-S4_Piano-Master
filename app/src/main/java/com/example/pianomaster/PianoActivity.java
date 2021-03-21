@@ -274,6 +274,7 @@ public class PianoActivity extends Activity {
             tvNbTentative.setText(""+nbTentative);
             if (nbTentative == 3){
                 colorNote();
+                count++;
                 new Thread(new Runnable()
                 {
                     @Override
@@ -282,7 +283,7 @@ public class PianoActivity extends Activity {
                         try
                         {
                             Thread.sleep(3000);
-                            intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionPianoList);
+                            intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                             startActivity(intent);
                         }
                         catch (InterruptedException e)
@@ -292,10 +293,6 @@ public class PianoActivity extends Activity {
                         }
                     }
                 }).start();
-                 // passe a la question suivante ou retourne au levelactivity
-                count++;
-                intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
-                startActivity(intent);
             }
             numNote = 0;
         }

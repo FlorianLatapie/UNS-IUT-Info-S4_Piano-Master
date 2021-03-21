@@ -6,7 +6,7 @@
         <shape android:shape="rectangle">
             <corners android:radius="8dp"/>
             <size android:height="20dp"/>
-            <solid android:color="@color/gris_clair"/>
+            <solid android:color="@color/stroke_clavier"/>
         </shape>
     </item>
     <item

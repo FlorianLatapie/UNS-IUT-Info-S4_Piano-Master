@@ -56,18 +56,18 @@ public class PianoActivity extends Activity {
     private List<QuestionPiano> questionPianoList;
     private ProgressBar pb;
 
-    Button btn_do;
-    Button btn_do_diese;
-    Button btn_re;
-    Button btn_re_diese;
-    Button btn_mi;
-    Button btn_fa;
-    Button btn_fa_diese;
-    Button btn_sol;
-    Button btn_sol_diese;
-    Button btn_la;
-    Button btn_si_bemol;
-    Button btn_si;
+    View btn_do;
+    View btn_do_diese;
+    View btn_re;
+    View btn_re_diese;
+    View btn_mi;
+    View btn_fa;
+    View btn_fa_diese;
+    View btn_sol;
+    View btn_sol_diese;
+    View btn_la;
+    View btn_si_bemol;
+    View btn_si;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -316,7 +316,7 @@ public class PianoActivity extends Activity {
         }
     }
 
-    public Button getButtonByName(String name){
+    public View getButtonByName(String name){
         switch (name){
             case "do":
                 return btn_do;

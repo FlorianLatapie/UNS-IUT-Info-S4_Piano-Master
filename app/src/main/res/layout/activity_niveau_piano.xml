@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <View
             android:id="@+id/b_do"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/stroke_clavier" />
 
-        <Button
+        <View
             android:id="@+id/b_re"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -52,7 +52,7 @@
             app:layout_constraintStart_toEndOf="@+id/b_do"
             app:strokeColor="@color/stroke_clavier" />
 
-        <Button
+        <View
             android:id="@+id/b_mi"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -62,7 +62,7 @@
             app:layout_constraintStart_toEndOf="@+id/b_re"
             app:strokeColor="@color/stroke_clavier" />
 
-        <Button
+        <View
             android:id="@+id/b_fa"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -72,7 +72,7 @@
             app:layout_constraintStart_toEndOf="@+id/b_mi"
             app:strokeColor="@color/stroke_clavier" />
 
-        <Button
+        <View
             android:id="@+id/b_sol"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toStartOf="@+id/b_la"
             app:layout_constraintStart_toEndOf="@+id/b_fa" />
 
-        <Button
+        <View
             android:id="@+id/b_la"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -91,7 +91,7 @@
             app:layout_constraintStart_toEndOf="@+id/b_sol"
             app:strokeColor="@color/stroke_clavier" />
 
-        <Button
+        <View
             android:id="@+id/b_si"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -101,7 +101,7 @@
             app:layout_constraintStart_toEndOf="@+id/b_la"
             app:strokeColor="@color/stroke_clavier" />
 
-        <Button
+        <View
             android:id="@+id/b_do_diese"
             android:layout_width="75dp"
             android:layout_height="125dp"
@@ -111,7 +111,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/b_do" />
 
-        <Button
+        <View
             android:id="@+id/b_re_diese"
             android:layout_width="75dp"
             android:layout_height="125dp"
@@ -121,7 +121,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_do_diese" />
 
-        <Button
+        <View
             android:id="@+id/b_fa_diese"
             android:layout_width="75dp"
             android:layout_height="125dp"
@@ -131,7 +131,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_re_diese" />
 
-        <Button
+        <View
             android:id="@+id/b_sol_diese"
             android:layout_width="75dp"
             android:layout_height="125dp"
@@ -141,7 +141,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_fa_diese" />
 
-        <Button
+        <View
             android:id="@+id/b_si_bemol"
             android:layout_width="75dp"
             android:layout_height="125dp"
@@ -212,33 +212,47 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/tvTentatives"
-        android:layout_width="98dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Nombre \n tentatives"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerTentative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_titre_niveau_piano"
+        app:layout_constraintEnd_toStartOf="@+id/tv_titre_niveau_piano"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tv_titre_niveau_piano">
 
-    <TextView
-        android:id="@+id/tvNbTentative"
-        android:layout_width="33dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tvTentatives"
+            android:layout_width="98dp"
+            android:layout_height="59dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Nombre \n tentatives"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvNbTentative"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNbTentative"
+            android:layout_width="33dp"
+            android:layout_height="59dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvTentatives"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

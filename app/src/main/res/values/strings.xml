@@ -13,4 +13,5 @@
     <string name="recommencer">Réécouter</string>
     <string name="erreurs">Erreurs</string>
     <string name="recommencez">Recommencez</string>
+    <string name="chargement_niveau">Téléchargement du nombre de niveaux en cours...</string>
 </resources>

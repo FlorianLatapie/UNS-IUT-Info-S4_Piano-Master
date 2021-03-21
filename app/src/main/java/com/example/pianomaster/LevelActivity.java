@@ -18,7 +18,7 @@ public class LevelActivity extends Activity {
     private Context mContext = this;
     private final String URL_RESSOURCES = "https://androidpianomaster.000webhostapp.com/ressources";
     private ProgressDialog pDialog;
-    private int nbNiveaux = 10;
+    private int nbNiveaux;
     private GridView gridview;
 
     @Override
@@ -32,35 +32,27 @@ public class LevelActivity extends Activity {
 
     private class GetNbNiveau extends AsyncTask<Void, Void, Void> {
 
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(mContext);
-            pDialog.setMessage("Téléchargement du nombre de niveaux en cours...");
+            pDialog.setMessage(getString(R.string.chargement_niveau));
             pDialog.setCancelable(false);
             pDialog.show();
 
         }
 
-        @Override
-
         // appelee automatiquement après onPreExecute
+        @Override
         protected Void doInBackground(Void... arg0) {
-            System.out.println("background task lanched");
             HttpHandler sh = new HttpHandler();
 
             String jsonStr = sh.makeServiceCall(URL_RESSOURCES + "/nbNiveaux.json");
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
-
                     JSONObject jsonObj = jsonArray.getJSONObject(0);
-                    nbNiveaux =  Integer.parseInt(jsonObj.getString("nbNiveaux"));
-                    System.out.println("73 nb niveaux" + nbNiveaux);
-
-
-
+                    nbNiveaux = Integer.parseInt(jsonObj.getString("nbNiveaux"));
                 } catch (final JSONException e) {
                     System.err.println("Erreur : lecture JSON :" + e.getMessage());
                 }
@@ -76,15 +68,8 @@ public class LevelActivity extends Activity {
 
             if (pDialog.isShowing())
                 pDialog.dismiss();
-
-            System.out.println("93 nb niveaux" + nbNiveaux);
-
             gridview = findViewById(R.id.gridView);
             gridview.setAdapter(new LevelAdapter(mContext, nbNiveaux));
-
-
         }
-
-
     }
 }

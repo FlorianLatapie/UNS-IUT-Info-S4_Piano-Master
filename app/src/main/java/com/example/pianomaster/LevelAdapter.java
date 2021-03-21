@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
@@ -18,7 +20,6 @@ public class LevelAdapter extends BaseAdapter {
     private Context mContext;
     private int btn_id = 1;
     private int nbNiveaux = 10;
-
 
     public LevelAdapter(Context context) {
         this.mContext = context;
@@ -60,6 +61,10 @@ public class LevelAdapter extends BaseAdapter {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.retressicement);
+                animation.setDuration(100);
+                btn.startAnimation(animation);
+
                 Intent intent = new Intent(mContext, CreerQuestionActivity.class);
                 mContext.startActivity(intent);
                 //TODO parcellable avec le btn id pour lancer le bon niveau

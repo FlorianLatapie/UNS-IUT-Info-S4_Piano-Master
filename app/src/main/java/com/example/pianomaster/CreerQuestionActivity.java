@@ -32,12 +32,9 @@ import java.util.List;
 public class CreerQuestionActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int score = 0;
-    private static int nbQuestion=0;
+    private static int nbQuestion = 0;
 
     private static int niveau = 0;
-
-    private ProgressDialog pDialog;
-
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     Button b1, b2, b3, b4; // boutons de réponse
@@ -65,15 +62,14 @@ public class CreerQuestionActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
-        if (niveau == 0){
+        if (niveau == 0) {
             niveau = getIntent().getExtras().getInt("numNiveau");
         }
-        System.out.println("Niveau dans creerQuestion : "+niveau);
-        if(score>0) {
-            score = getIntent().getExtras().getInt("score");
-        }
+        System.out.println("Niveau dans creerQuestion : " + niveau);
+        score = getIntent().getExtras().getInt("score");
+
         Question.setScore(score);
-        url_ressources = "https://androidpianomaster.000webhostapp.com/ressources/Niveau"+niveau+"/";
+        url_ressources = "https://androidpianomaster.000webhostapp.com/ressources/Niveau" + niveau + "/";
         new GetRessources().execute();
     }
 
@@ -82,16 +78,10 @@ public class CreerQuestionActivity extends Activity {
      * Tache asynchrone
      */
     private class GetRessources extends AsyncTask<Void, Void, Void> {
-        Drawable d;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //pDialog = new ProgressDialog(CreerQuestionActivity.this);
-            //pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
-            //pDialog.setCancelable(false);
-            //pDialog.show();
-
         }
 
         @RequiresApi(api = Build.VERSION_CODES.R)
@@ -102,11 +92,11 @@ public class CreerQuestionActivity extends Activity {
             System.out.println("background task lanched creer question");
             HttpHandler sh = new HttpHandler();
 
-            String jsonStr = sh.makeServiceCall(url_ressources +"Niveau"+niveau+".json");
+            String jsonStr = sh.makeServiceCall(url_ressources + "Niveau" + niveau + ".json");
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
-                    for(int j=0; j<4; j++) {
+                    for (int j = 0; j < 4; j++) {
                         JSONObject jsonObj = jsonArray.getJSONObject(j);
                         numQuestion = jsonObj.getString("num_question");
                         typeQuestion = jsonObj.getString("type");
@@ -121,8 +111,7 @@ public class CreerQuestionActivity extends Activity {
                             }
                             listQuestionMultiple.add(new QuestionMultiple(questions, numQuestion, niveau, score, image, url_ressources, listProposition, reponse));
                             listProposition = new ArrayList<>();
-                        }
-                        else if(typeQuestion.equals("piano")){
+                        } else if (typeQuestion.equals("piano")) {
                             String audio = jsonObj.getString("sons");
                             String note = jsonObj.getString("reponse");
                             String[] parts = note.split(" ");
@@ -143,28 +132,33 @@ public class CreerQuestionActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-           /* if (pDialog.isShowing())
-                pDialog.dismiss();*/
-
             String nb;
-            if((nb=getIntent().getStringExtra("nbQuestion"))!=null){
+            if ((nb = getIntent().getStringExtra("nbQuestion")) != null) {
                 nbQuestion = Integer.parseInt(nb);
             }
-            switch (nbQuestion){
+
+            System.out.println("151 nb question " + nbQuestion);
+
+            switch (nbQuestion) {
+                // case 3:
                 case 2:
-                    Intent intent = new Intent(CreerQuestionActivity.this, PianoActivity.class);
-                    intent.putParcelableArrayListExtra("listQuestionPiano", listQuestionPiano);
-                    startActivity(intent);
+                    Intent intent0 = new Intent(CreerQuestionActivity.this, PianoActivity.class);
+                    intent0.putParcelableArrayListExtra("listQuestionPiano", listQuestionPiano);
+                    startActivity(intent0);
                     break;
                 case 4:
                     nbQuestion = 0;
                     Intent intent2 = new Intent(CreerQuestionActivity.this, SMSActivity.class);
                     startActivity(intent2);
                     break;
+                //  case 1:
                 case 0:
                     Intent intent3 = new Intent(CreerQuestionActivity.this, Question4RepActivity.class);
                     intent3.putParcelableArrayListExtra("listQuestion4Rep", listQuestionMultiple);
                     startActivity(intent3);
+                    break;
+                default:
+                    System.out.println("169 nb question " + nbQuestion);
                     break;
             }
         }

@@ -23,6 +23,7 @@ public class Question4RepActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int count = 0;
     private static int nbPoint = 0;
+    private static long delaiEntreChaqueQuestion = 1000;
 
     private int niveau;
 
@@ -58,6 +59,7 @@ public class Question4RepActivity extends Activity {
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "2");
             Question.addScore(nbPoint);
+            System.out.println("score actuel "+Question.getScore());
             startActivity(intent);
         }
         else{
@@ -124,7 +126,8 @@ public class Question4RepActivity extends Activity {
         new Thread(() -> {
             try
             {
-                Thread.sleep(3000);
+
+                Thread.sleep(delaiEntreChaqueQuestion);
                 intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
                 intent.putExtra("numNiveau", question.getNumNiveau());
                 startActivity(intent);

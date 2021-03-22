@@ -23,7 +23,7 @@ import java.util.List;
 
 public class PianoActivity extends Activity {
     private ProgressDialog pDialog;
-    private int pourcentagePB =0 ;
+    private int pourcentagePB = 0;
     private Handler mHandler = new Handler();
 
     private static int count = 0;
@@ -50,8 +50,9 @@ public class PianoActivity extends Activity {
     private int numNote = 0;
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
-    QuestionPiano question;
+    QuestionPiano question = null;
     TextView tvQuestion, tvNiveau;
+    Button btn_reecoutez;
     private int nbTentative = 0;
 
     Intent intent;
@@ -93,7 +94,7 @@ public class PianoActivity extends Activity {
         btn_la = findViewById(R.id.b_la);
         btn_si_bemol = findViewById(R.id.b_si_bemol);
         btn_si = findViewById(R.id.b_si);
-        Button btn_reecoutez = findViewById(R.id.b_recommencer_piano);
+        btn_reecoutez = findViewById(R.id.b_recommencer_piano);
         tvNiveau = findViewById(R.id.tv_titre_niveau_piano);
         tvQuestion = findViewById(R.id.tv_question_piano);
 
@@ -112,12 +113,11 @@ public class PianoActivity extends Activity {
 
         tvQuestion.setText("Ecoutez et jouez");
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             questionPianoList = savedInstanceState.getParcelableArrayList("list");
-            System.out.println("Data recup "+questionPianoList);
+            System.out.println("Data recup " + questionPianoList);
             count = savedInstanceState.getInt("count");
-        }
-        else {
+        } else {
 
             intent = new Intent(PianoActivity.this, PianoActivity.class);
             if (count > 1) {
@@ -127,16 +127,23 @@ public class PianoActivity extends Activity {
                 Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
                 intent.putExtra("nbQuestion", "4");
                 Question.addScore(nbPoint);
+                System.out.println("score actuel "+Question.getScore());
                 startActivity(intent);
             } else {
                 questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
-                System.out.println(questionPianoList);
-                new GetRessources().execute();
-                question = questionPianoList.get(count);
-                System.out.println("Count piano" + count);
-                listNote = question.getReponse();
-                tvQuestion.setText(question.getTitre());
-                tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
+
+                if (questionPianoList == null) {
+                    System.out.println(getIntent().getExtras());
+                    System.out.println("134 vide");
+                } else {
+                    System.out.println(questionPianoList);
+                    new GetRessources().execute();
+                    question = questionPianoList.get(count);
+                    System.out.println("Count piano" + count);
+                    listNote = question.getReponse();
+                    tvQuestion.setText(question.getTitre());
+                    tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
+                }
             }
         }
 
@@ -201,10 +208,11 @@ public class PianoActivity extends Activity {
         new PianoActivity.GetRessources().execute();
     }
 
+    @Override
     protected void onSaveInstanceState(Bundle saveInstance) {
         super.onSaveInstanceState(saveInstance);
         saveInstance.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) questionPianoList);
-        System.out.println("Save list "+ questionPianoList);
+        System.out.println("Save list " + questionPianoList);
         count++;
         saveInstance.putInt("count", count);
     }
@@ -219,7 +227,7 @@ public class PianoActivity extends Activity {
         @Override
         // appelee automatiquement après onPreExecute
         protected Void doInBackground(Void... arg0) {
-            if(question != null) {
+            if (question != null) {
                 String url = question.getUrl() + question.getIdAudio();
                 System.out.println("background task lanched piano activity");
                 try {
@@ -229,6 +237,7 @@ public class PianoActivity extends Activity {
                     currentSong.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     currentSong.prepare();
                     currentSong.start();
+                    runProgressBar(3000, pb, btn_reecoutez);
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
                 }
@@ -243,50 +252,41 @@ public class PianoActivity extends Activity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void checkNote(String note){
+    public void checkNote(String note) {
         Intent intent = new Intent(PianoActivity.this, PianoActivity.class);
-        if(tvQuestion.getText().equals("Recommencer")) tvQuestion.setText("Ecoutez et jouez !");
-        if(numNote <= listNote.size()-1 && listNote.get(numNote).equals(note)) {
+        if (tvQuestion.getText().equals("Recommencer")) tvQuestion.setText("Ecoutez et jouez !");
+        if (numNote <= listNote.size() - 1 && listNote.get(numNote).equals(note)) {
             numNote++;
-            if(numNote == 4) {
+            if (numNote == 4) {
                 colorNote();
                 count++;
                 nbPoint++;
                 new Thread(() -> {
-                    try
-                    {
+                    try {
                         Thread.sleep(3000);
-                        //intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                        intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                         startActivity(intent);
-                    }
-                    catch (InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }).start();
             }
-        }
-        else {
+        } else {
             tvQuestion.setText("Recommencer");
             nbTentative++;
-            tvNbTentative.setText(""+nbTentative);
-            if (nbTentative == 3){
+            tvNbTentative.setText("" + nbTentative);
+            if (nbTentative == 3) {
                 colorNote();
                 count++;
                 nbPoint++;
-                new Thread(new Runnable()
-                {
+                new Thread(new Runnable() {
                     @Override
-                    public void run()
-                    {
-                        try
-                        {
+                    public void run() {
+                        try {
                             Thread.sleep(3000);
-                            //intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                            intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
                             startActivity(intent);
-                        }
-                        catch (InterruptedException e)
-                        {
+                        } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -297,14 +297,14 @@ public class PianoActivity extends Activity {
         }
     }
 
-    public void colorNote(){
-        for (String bonneNote: listNote) {
+    public void colorNote() {
+        for (String bonneNote : listNote) {
             getButtonByName(bonneNote).setBackground(getDrawable(R.drawable.button_brep));
         }
     }
 
-    public View getButtonByName(String name){
-        switch (name){
+    public View getButtonByName(String name) {
+        switch (name) {
             case "do":
                 return btn_do;
             case "do_diese":
@@ -363,5 +363,11 @@ public class PianoActivity extends Activity {
             }
         });
         t.start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, LevelActivity.class);
+        startActivity(intent);
     }
 }

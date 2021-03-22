@@ -3,6 +3,7 @@ package com.example.pianomaster;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.GridView;
@@ -68,5 +69,11 @@ public class LevelActivity extends Activity {
             gridview = findViewById(R.id.gridView);
             gridview.setAdapter(new LevelAdapter(mContext, nbNiveaux));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

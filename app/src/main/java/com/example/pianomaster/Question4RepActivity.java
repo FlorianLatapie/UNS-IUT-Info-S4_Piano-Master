@@ -203,6 +203,10 @@ public class Question4RepActivity extends Activity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, LevelActivity.class);
+        startActivity(intent);
+    }
 
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.AudioAttributes;
@@ -27,7 +28,7 @@ public class PianoActivity extends Activity {
     private Handler mHandler = new Handler();
 
     private static int count = 0;
-    private int nbPoint = 0;
+    private static int nbPoint = 0;
 
     private int niveau;
 
@@ -113,37 +114,37 @@ public class PianoActivity extends Activity {
 
         tvQuestion.setText("Ecoutez et jouez");
 
-        if (savedInstanceState != null) {
-            questionPianoList = savedInstanceState.getParcelableArrayList("list");
-            System.out.println("Data recup " + questionPianoList);
-            count = savedInstanceState.getInt("count");
-        } else {
-
-            intent = new Intent(PianoActivity.this, PianoActivity.class);
-            if (count > 1) {
+        intent = new Intent(PianoActivity.this, PianoActivity.class);
+        if (count > 1) {
                 nbTentative = 0;
                 count = 0;
                 numNote = 0;
                 Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
                 intent.putExtra("nbQuestion", "4");
-                Question.addScore(nbPoint);
-                System.out.println("score actuel "+Question.getScore());
+                SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+                int getScore = sp.getInt("getScore", -1);
+                int score = getScore + nbPoint;
+                System.out.println("Score recu "+getScore);
+                System.out.println("nbPoint QuestionPiano : "+nbPoint);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt("getScore", score);
+                //editor.putInt("getNiveau", question.getNumNiveau());
+                editor.apply();
+                nbPoint = 0;
                 startActivity(intent);
             } else {
-                questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
+            questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
 
-                if (questionPianoList == null) {
-                    System.out.println(getIntent().getExtras());
-                    System.out.println("134 vide");
-                } else {
-                    System.out.println(questionPianoList);
-                    new GetRessources().execute();
-                    question = questionPianoList.get(count);
-                    System.out.println("Count piano" + count);
-                    listNote = question.getReponse();
-                    tvQuestion.setText(question.getTitre());
-                    tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
-                }
+            if (questionPianoList == null) {
+                System.out.println(getIntent().getExtras());
+                System.out.println("134 vide");
+            } else {
+                System.out.println(questionPianoList);
+                new GetRessources().execute();
+                question = questionPianoList.get(count);
+                listNote = question.getReponse();
+                tvQuestion.setText(question.getTitre());
+                tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
             }
         }
 
@@ -208,15 +209,6 @@ public class PianoActivity extends Activity {
         new PianoActivity.GetRessources().execute();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle saveInstance) {
-        super.onSaveInstanceState(saveInstance);
-        saveInstance.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) questionPianoList);
-        System.out.println("Save list " + questionPianoList);
-        count++;
-        saveInstance.putInt("count", count);
-    }
-
     private class GetRessources extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -261,6 +253,7 @@ public class PianoActivity extends Activity {
                 colorNote();
                 count++;
                 nbPoint++;
+                System.out.println("Mauvaise réponse pd");
                 new Thread(() -> {
                     try {
                         Thread.sleep(3000);
@@ -278,7 +271,6 @@ public class PianoActivity extends Activity {
             if (nbTentative == 3) {
                 colorNote();
                 count++;
-                nbPoint++;
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -367,7 +359,18 @@ public class PianoActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+        SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("getNiveau", 0);
+        editor.apply();
+
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt("getScore", 0);
+        editor2.apply();
         Intent intent = new Intent(this, LevelActivity.class);
+        intent.putExtra("numNiveau", 0);
         startActivity(intent);
     }
 }

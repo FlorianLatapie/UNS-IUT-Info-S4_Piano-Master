@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -33,8 +34,9 @@ public class CreerQuestionActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int score = 0;
     private static int nbQuestion = 0;
+    private static int nbCount = 0;
 
-    private static int niveau = 0;
+    private int niveau = 0;
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     Button b1, b2, b3, b4; // boutons de réponse
@@ -62,13 +64,18 @@ public class CreerQuestionActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
-        if (niveau == 0) {
+        if (niveau == 0 && nbCount < 1) {
+            nbCount++;
             niveau = getIntent().getExtras().getInt("numNiveau");
+            SharedPreferences sp = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("getNiveau", niveau);
+            editor.apply();
+        } else{
+            SharedPreferences sp = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+            niveau = sp.getInt("getNiveau", -1);
         }
-        System.out.println("Niveau dans creerQuestion : " + niveau);
-        score = getIntent().getExtras().getInt("score");
 
-        Question.setScore(score);
         url_ressources = "https://androidpianomaster.000webhostapp.com/ressources/Niveau" + niveau + "/";
         new GetRessources().execute();
     }
@@ -91,8 +98,9 @@ public class CreerQuestionActivity extends Activity {
         protected Void doInBackground(Void... arg0) {
             System.out.println("background task lanched creer question");
             HttpHandler sh = new HttpHandler();
-
-            String jsonStr = sh.makeServiceCall(url_ressources + "Niveau" + niveau + ".json");
+            SharedPreferences sp = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+            int niv = sp.getInt("getNiveau", -1);
+            String jsonStr = sh.makeServiceCall(url_ressources + "Niveau" + niv + ".json");
             if (jsonStr != null) {
                 try {
                     JSONArray jsonArray = new JSONArray(jsonStr);
@@ -136,9 +144,6 @@ public class CreerQuestionActivity extends Activity {
             if ((nb = getIntent().getStringExtra("nbQuestion")) != null) {
                 nbQuestion = Integer.parseInt(nb);
             }
-
-            System.out.println("151 nb question " + nbQuestion);
-
             switch (nbQuestion) {
                 // case 3:
                 case 2:
@@ -148,6 +153,7 @@ public class CreerQuestionActivity extends Activity {
                     break;
                 case 4:
                     nbQuestion = 0;
+                    nbCount = 0;
                     Intent intent2 = new Intent(CreerQuestionActivity.this, SMSActivity.class);
                     startActivity(intent2);
                     break;

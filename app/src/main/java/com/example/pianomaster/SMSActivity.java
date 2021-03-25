@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -33,9 +35,21 @@ public class SMSActivity extends AppCompatActivity {
 
         this.etNumroSMS = (EditText) this.findViewById(R.id.et_numero_sms);
         this.etContenuSMS = (EditText) this.findViewById(R.id.et_contenu_sms);
-        int score = Question.getScore();
-        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+" "+getString(R.string.sms_contenu2)+" X "+getString(R.string.sms_contenu3));
+        SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+        SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+        int niveau = sp2.getInt("getNiveau", -1);
+        int score2 = sp.getInt("getScore", -1);
+
+        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score2+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
         this.buttonSend = (Button) this.findViewById(R.id.b_envoyer_sms);
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("getNiveau", 0);
+        editor.apply();
+
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt("getScore", 0);
+        editor2.apply();
 
         this.buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +163,18 @@ public class SMSActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
+        SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+        SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("getNiveau", 0);
+        editor.apply();
+
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt("getScore", 0);
+        editor2.apply();
         Intent intent = new Intent(mContext, LevelActivity.class);
+        intent.putExtra("numNiveau", 0);
         startActivity(intent);
     }
 }

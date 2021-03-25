@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -58,8 +59,12 @@ public class Question4RepActivity extends Activity {
             count = 0;
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "2");
-            Question.addScore(nbPoint);
-            System.out.println("score actuel "+Question.getScore());
+            SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            System.out.println("nbPoint Question4Rep : "+nbPoint);
+            editor.putInt("getScore", nbPoint);
+            editor.apply();
+            nbPoint = 0;
             startActivity(intent);
         }
         else{
@@ -208,7 +213,18 @@ public class Question4RepActivity extends Activity {
     }
     @Override
     public void onBackPressed() {
+        SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+        SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("getNiveau", 0);
+        editor.apply();
+
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt("getScore", 0);
+        editor2.apply();
         Intent intent = new Intent(this, LevelActivity.class);
+        intent.putExtra("numNiveau", 0);
         startActivity(intent);
     }
 

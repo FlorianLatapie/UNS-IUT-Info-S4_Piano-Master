@@ -1,8 +1,10 @@
 package com.example.pianomaster;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.View;
@@ -67,7 +69,6 @@ public class LevelAdapter extends BaseAdapter {
 
                 Intent intent = new Intent(mContext, CreerQuestionActivity.class);
                 intent.putExtra("numNiveau", (i+1));
-                intent.putExtra("score", 0);
                 mContext.startActivity(intent);
             }
         });

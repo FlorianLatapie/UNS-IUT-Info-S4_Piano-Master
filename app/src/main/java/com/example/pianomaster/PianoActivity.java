@@ -29,6 +29,7 @@ public class PianoActivity extends Activity {
 
     private static int count = 0;
     private static int nbPoint = 0;
+    private static int score = 0;
 
     private int niveau;
 
@@ -52,7 +53,7 @@ public class PianoActivity extends Activity {
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     QuestionPiano question = null;
-    TextView tvQuestion, tvNiveau;
+    TextView tvQuestion, tvNiveau, tvScore;
     Button btn_reecoutez;
     private int nbTentative = 0;
 
@@ -98,6 +99,7 @@ public class PianoActivity extends Activity {
         btn_reecoutez = findViewById(R.id.b_recommencer_piano);
         tvNiveau = findViewById(R.id.tv_titre_niveau_piano);
         tvQuestion = findViewById(R.id.tv_question_piano);
+        tvScore = findViewById(R.id.tv_score_piano);
 
         media_do = MediaPlayer.create(getApplicationContext(), R.raw.note_do);
         media_do_diese = MediaPlayer.create(getApplicationContext(), R.raw.do_diese);
@@ -116,24 +118,29 @@ public class PianoActivity extends Activity {
 
         intent = new Intent(PianoActivity.this, PianoActivity.class);
         if (count > 1) {
-                nbTentative = 0;
-                count = 0;
-                numNote = 0;
-                Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
-                intent.putExtra("nbQuestion", "4");
-                SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
-                int getScore = sp.getInt("getScore", -1);
-                int score = getScore + nbPoint;
-                System.out.println("Score recu "+getScore);
-                System.out.println("nbPoint QuestionPiano : "+nbPoint);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putInt("getScore", score);
-                //editor.putInt("getNiveau", question.getNumNiveau());
-                editor.apply();
-                nbPoint = 0;
-                startActivity(intent);
-            } else {
+            nbTentative = 0;
+            count = 0;
+            numNote = 0;
+            Intent intent = new Intent(PianoActivity.this, CreerQuestionActivity.class);
+            intent.putExtra("nbQuestion", "4");
+            SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+            int getScore = sp.getInt("getScore", -1);
+            score = getScore + nbPoint;
+            tvScore.setText(score+"/4");
+            System.out.println("Score recu " + getScore);
+            System.out.println("nbPoint QuestionPiano : " + nbPoint);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("getScore", score);
+            //editor.putInt("getNiveau", question.getNumNiveau());
+            editor.apply();
+            nbPoint = 0;
+            startActivity(intent);
+        } else {
             questionPianoList = getIntent().getParcelableArrayListExtra("listQuestionPiano");
+            SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
+            int getScore = sp.getInt("getScore", -1);
+            score = getScore + nbPoint;
+            tvScore.setText(score+"/4");
 
             if (questionPianoList == null) {
                 System.out.println(getIntent().getExtras());

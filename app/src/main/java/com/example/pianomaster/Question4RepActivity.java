@@ -33,7 +33,7 @@ public class Question4RepActivity extends Activity {
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     Button b1, b2, b3, b4; // boutons de réponse
-    TextView tvQuestion, tvNiveau;
+    TextView tvQuestion, tvNiveau, tvScore;
     ImageView ivQuestion;
     QuestionMultiple question;
     Drawable d;
@@ -53,9 +53,11 @@ public class Question4RepActivity extends Activity {
         tvQuestion = findViewById(R.id.tv_question_q4rep);
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
+        tvScore = findViewById(R.id.tv_score_q4rep);
         intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
 
         if(count>1){
+            tvScore.setText(nbPoint+"/4");
             count = 0;
             Intent intent = new Intent(Question4RepActivity.this, CreerQuestionActivity.class);
             intent.putExtra("nbQuestion", "2");
@@ -73,6 +75,7 @@ public class Question4RepActivity extends Activity {
             question = questionMultipleList.get(count);
             tvQuestion.setText(question.getTitre());
             tvNiveau.setText("Niveau "+question.getNumNiveau()+ " - Question " + question.getNumQuestion());
+            tvScore.setText(nbPoint+"/4");
             b1.setText(question.getReponses().get(0));
             b1.setTextColor(Color.WHITE);
             b2.setText(question.getReponses().get(1));

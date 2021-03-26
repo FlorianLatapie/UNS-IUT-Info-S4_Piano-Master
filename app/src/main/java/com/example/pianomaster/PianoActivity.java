@@ -25,7 +25,7 @@ import java.util.List;
 public class PianoActivity extends Activity {
     private ProgressDialog pDialog;
     private int pourcentagePB = 0;
-    private Handler mHandler = new Handler();
+    private Handler mHandler;
 
     private static int count = 0;
     private static int nbPoint = 0;
@@ -46,7 +46,7 @@ public class PianoActivity extends Activity {
     private MediaPlayer media_si_bemol;
     private MediaPlayer media_si;
 
-    private MediaPlayer currentSong = new MediaPlayer();
+    private MediaPlayer currentSong;
     private TextView tvNbTentative;
     private List<String> listNote = new ArrayList<>();
     private int numNote = 0;
@@ -83,6 +83,8 @@ public class PianoActivity extends Activity {
 
         tvNbTentative = findViewById(R.id.tvNbTentative);
         pb = findViewById(R.id.progressBar);
+        mHandler = new Handler();
+        currentSong = new MediaPlayer();
 
         btn_do = findViewById(R.id.b_do);
         btn_do_diese = findViewById(R.id.b_do_diese);
@@ -260,7 +262,7 @@ public class PianoActivity extends Activity {
                 colorNote();
                 count++;
                 nbPoint++;
-                System.out.println("Mauvaise réponse pd");
+                currentSong.stop();
                 new Thread(() -> {
                     try {
                         Thread.sleep(3000);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bleu_fonce">
+
+    <EditText
+        android:id="@+id/et_numero_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="06 10 20 30 40"
+        android:inputType="phone"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gris_clair" />
+</LinearLayout>

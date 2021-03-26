@@ -32,6 +32,10 @@ public class SMSActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envoyer_sms);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.edit_num, new FragmentSms()).commit();
+        }
 
         this.etNumroSMS = (EditText) this.findViewById(R.id.et_numero_sms);
         this.etContenuSMS = (EditText) this.findViewById(R.id.et_contenu_sms);

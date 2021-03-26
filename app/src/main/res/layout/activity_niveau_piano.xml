@@ -38,8 +38,39 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_titre_niveau_piano"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toEndOf="@+id/tv_titre_niveau_piano"
-        app:layout_constraintTop_toTopOf="@+id/tv_titre_niveau_piano" />
+        app:layout_constraintTop_toTopOf="@+id/tv_titre_niveau_piano"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/progressPiano"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="102dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="588dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_circle"
+        android:progress="50"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintEnd_toStartOf="@+id/tv_num_question_piano"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_num_question_piano"
+        android:layout_width="53dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="X/4"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/progressPiano"
+        app:layout_constraintTop_toTopOf="@+id/progressPiano" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerTouches"

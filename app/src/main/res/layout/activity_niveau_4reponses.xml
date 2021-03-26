@@ -13,14 +13,15 @@
         android:background="@drawable/box"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/iv_question_q4rep"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/iv_question_q4rep"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep"
+        app:layout_constraintVertical_bias="0.785" />
 
     <TextView
         android:id="@+id/tv_titre_niveau_q4rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:fontFamily="@font/montserrat_bold"
         android:text="Niveau X"
         android:textAlignment="center"
@@ -31,11 +32,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/progressQuestion"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="102dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_circle"
+        android:progress="50"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintEnd_toStartOf="@+id/tv_titre_niveau_q4rep"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_num_question_q4rep"
+        android:layout_width="53dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="X/4"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_titre_niveau_q4rep"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toStartOf="@+id/progressQuestion"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_score_q4rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:fontFamily="@font/montserrat_bold"
         android:text="X/4"
         android:textAlignment="center"
@@ -61,7 +90,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="385dp"
         android:layout_height="270dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/box"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

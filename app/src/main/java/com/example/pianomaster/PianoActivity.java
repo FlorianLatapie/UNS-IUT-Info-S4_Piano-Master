@@ -74,6 +74,9 @@ public class PianoActivity extends Activity {
     View btn_si_bemol;
     View btn_si;
 
+    TextView tvNbQuestion;
+    ProgressBar pgCirclePiano;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +120,8 @@ public class PianoActivity extends Activity {
         media_si = MediaPlayer.create(getApplicationContext(), R.raw.si);
 
         tvQuestion.setText("Ecoutez et jouez");
+        tvNbQuestion = findViewById(R.id.tv_num_question_piano);
+        pgCirclePiano = findViewById(R.id.progressPiano);
 
         intent = new Intent(PianoActivity.this, PianoActivity.class);
         if (count > 1) {
@@ -154,6 +159,8 @@ public class PianoActivity extends Activity {
                 listNote = question.getReponse();
                 tvQuestion.setText(question.getTitre());
                 tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
+                tvNbQuestion.setText(question.getNumQuestion()+"/4");
+                pgCirclePiano.setProgress(Integer.parseInt(question.getNumQuestion())*25);
             }
         }
 

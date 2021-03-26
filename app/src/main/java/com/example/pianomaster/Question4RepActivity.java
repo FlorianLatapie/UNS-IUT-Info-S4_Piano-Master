@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.InputStream;
@@ -33,7 +34,8 @@ public class Question4RepActivity extends Activity {
 
     private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     Button b1, b2, b3, b4; // boutons de réponse
-    TextView tvQuestion, tvNiveau, tvScore;
+    TextView tvQuestion, tvNiveau, tvScore, tvNumQuestion;
+    ProgressBar pgCircle;
     ImageView ivQuestion;
     QuestionMultiple question;
     Drawable d;
@@ -54,6 +56,8 @@ public class Question4RepActivity extends Activity {
         tvNiveau = findViewById(R.id.tv_titre_niveau_q4rep);
         ivQuestion = findViewById(R.id.iv_question_q4rep);
         tvScore = findViewById(R.id.tv_score_q4rep);
+        tvNumQuestion = findViewById(R.id.tv_num_question_q4rep);
+        pgCircle = findViewById(R.id.progressQuestion);
         intent = new Intent(Question4RepActivity.this, Question4RepActivity.class);
 
         if(count>1){
@@ -74,7 +78,10 @@ public class Question4RepActivity extends Activity {
             new GetRessources().execute();
             question = questionMultipleList.get(count);
             tvQuestion.setText(question.getTitre());
-            tvNiveau.setText("Niveau "+question.getNumNiveau()+ " - Question " + question.getNumQuestion());
+            tvNiveau.setText("Niveau "+question.getNumNiveau());
+            tvNiveau.setText("Niveau "+question.getNumNiveau());
+            tvNumQuestion.setText(question.getNumQuestion()+"/4");
+            pgCircle.setProgress(Integer.parseInt(question.getNumQuestion())*25);
             tvScore.setText(nbPoint+"/4");
             b1.setText(question.getReponses().get(0));
             b1.setTextColor(Color.WHITE);

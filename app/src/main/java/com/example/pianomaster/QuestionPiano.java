@@ -10,21 +10,21 @@ public class QuestionPiano extends Question implements Parcelable {
     private String idAudio;
     private String url;
 
-    public QuestionPiano(String titre, String numQuestion, int numNiveau, int score, String url, String idAudio, List<String> list){
-        super(titre, numQuestion, numNiveau);
+    public QuestionPiano(String titre, String numQuestion, int numNiveau, int score, String url, String idAudio, List<String> list, String titreEn){
+        super(titre, numQuestion, numNiveau, titreEn);
         this.url = url;
         this.idAudio = idAudio;
         this.listNotes = list;
     }
 
-    public QuestionPiano(String titre, String numQuestion, int numNiveau, int score, String url){
-        super(titre, numQuestion, numNiveau);
+    public QuestionPiano(String titre, String numQuestion, int numNiveau, int score, String url, String titreEn){
+        super(titre, numQuestion, numNiveau, titreEn);
         this.url = url;
         this.idAudio = "";
     }
 
     protected QuestionPiano(Parcel in) {
-        super(in.readString(), in.readString(), in.readInt());
+        super(in.readString(), in.readString(), in.readInt(), in.readString());
         url = in.readString();
         idAudio = in.readString();
         listNotes = in.createStringArrayList();
@@ -72,6 +72,7 @@ public class QuestionPiano extends Question implements Parcelable {
         dest.writeString(getTitre());
         dest.writeString(getNumQuestion());
         dest.writeInt(getNumNiveau());
+        dest.writeString(getTitreEn());
         dest.writeString(url);
         dest.writeString(idAudio);
         dest.writeStringList(listNotes);

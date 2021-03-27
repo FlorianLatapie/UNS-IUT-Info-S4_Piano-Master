@@ -120,14 +120,14 @@ public class CreerQuestionActivity extends Activity {
                                 String jsonString = propositions.getString(i);
                                 listProposition.add(jsonString);
                             }
-                            listQuestionMultiple.add(new QuestionMultiple(questions, numQuestion, niveau, score, image, url_ressources, listProposition, reponse));
+                            listQuestionMultiple.add(new QuestionMultiple(questions, numQuestion, niveau, score, image, url_ressources, listProposition, reponse, questionsEn));
                             listProposition = new ArrayList<>();
                         } else if (typeQuestion.equals("piano")) {
                             String audio = jsonObj.getString("sons");
                             String note = jsonObj.getString("reponse");
                             String[] parts = note.split(" ");
                             List<String> list = List.of(parts);
-                            listQuestionPiano.add(new QuestionPiano(questions, numQuestion, niveau, score, url_ressources, audio, list));
+                            listQuestionPiano.add(new QuestionPiano(questions, numQuestion, niveau, score, url_ressources, audio, list, questionsEn));
                         }
                     }
                 } catch (final JSONException e) {

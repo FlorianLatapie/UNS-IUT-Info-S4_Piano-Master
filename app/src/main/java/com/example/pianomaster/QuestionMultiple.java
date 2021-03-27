@@ -11,8 +11,8 @@ public class QuestionMultiple extends Question implements Parcelable {
     private String idImage;
     private String url;
 
-    public QuestionMultiple(String titre, String numQuestion, int numNiveau, int score, String idImage, String url, List<String> reponses, String reponse){
-        super(titre, numQuestion, numNiveau);
+    public QuestionMultiple(String titre, String numQuestion, int numNiveau, int score, String idImage, String url, List<String> reponses, String reponse, String titreEn){
+        super(titre, numQuestion, numNiveau, titreEn);
         this.reponses = reponses;
         this.reponse = reponse;
         this.idImage = idImage;
@@ -20,7 +20,7 @@ public class QuestionMultiple extends Question implements Parcelable {
     }
 
     protected QuestionMultiple(Parcel in) {
-        super(in.readString(), in.readString(), in.readInt());
+        super(in.readString(), in.readString(), in.readInt(), in.readString());
         idImage = in.readString();
         url = in.readString();
         reponses = in.createStringArrayList();
@@ -77,6 +77,7 @@ public class QuestionMultiple extends Question implements Parcelable {
         dest.writeString(getTitre());
         dest.writeString(getNumQuestion());
         dest.writeInt(getNumNiveau());
+        dest.writeString(getTitreEn());
         dest.writeString(idImage);
         dest.writeString(url);
         dest.writeStringList(reponses);

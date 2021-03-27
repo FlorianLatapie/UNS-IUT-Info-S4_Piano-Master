@@ -281,6 +281,7 @@ public class PianoActivity extends Activity {
             }
             currentSong.start();
         });
+        new GetRessources().execute();
     }
 
     private class GetRessources extends AsyncTask<Void, Void, Void> {
@@ -394,9 +395,17 @@ public class PianoActivity extends Activity {
         media_si.reset();
     }
 
+    @SuppressLint("SetTextI18n")
     public void colorNote() {
+        int i=0;
         for (String bonneNote : listNote) {
+            i++;
             getButtonByName(bonneNote).setBackground(getDrawable(R.drawable.button_brep));
+            System.out.println(bonneNote);
+            if(!getTextViewByName(bonneNote).getText().equals(""))
+                getTextViewByName(bonneNote).setText(getTextViewByName(bonneNote).getText()+", "+i);
+            else
+                getTextViewByName(bonneNote).setText(""+i);
         }
     }
 

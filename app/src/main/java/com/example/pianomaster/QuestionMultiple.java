@@ -7,14 +7,14 @@ import java.util.List;
 
 public class QuestionMultiple extends Question implements Parcelable {
     private List<String> reponses;
-    private String response;
+    private String reponse;
     private String idImage;
     private String url;
 
-    public QuestionMultiple(String titre, String numQuestion, int numNiveau, int score, String idImage, String url, List<String> reponses, String response){
+    public QuestionMultiple(String titre, String numQuestion, int numNiveau, int score, String idImage, String url, List<String> reponses, String reponse){
         super(titre, numQuestion, numNiveau);
         this.reponses = reponses;
-        this.response = response;
+        this.reponse = reponse;
         this.idImage = idImage;
         this.url = url;
     }
@@ -24,7 +24,7 @@ public class QuestionMultiple extends Question implements Parcelable {
         idImage = in.readString();
         url = in.readString();
         reponses = in.createStringArrayList();
-        response = in.readString();
+        reponse = in.readString();
     }
 
     public static final Creator<QuestionMultiple> CREATOR = new Creator<QuestionMultiple>() {
@@ -48,7 +48,7 @@ public class QuestionMultiple extends Question implements Parcelable {
     }
 
     public boolean isResponseCorrect(String responseChoose){
-        return responseChoose.equals(response);
+        return responseChoose.equals(reponse);
     }
 
     public List<String> getReponses() {
@@ -59,8 +59,8 @@ public class QuestionMultiple extends Question implements Parcelable {
         this.reponses = reponses;
     }
 
-    public String getResponse() {
-        return response;
+    public String getReponse() {
+        return reponse;
     }
 
     public String getIdImage() {
@@ -80,7 +80,7 @@ public class QuestionMultiple extends Question implements Parcelable {
         dest.writeString(idImage);
         dest.writeString(url);
         dest.writeStringList(reponses);
-        dest.writeString(response);
+        dest.writeString(reponse);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class QuestionMultiple extends Question implements Parcelable {
         return "QuestionMultiple{" +
                 "numNiveau="+ super.getNumNiveau() +
                 "reponses=" + reponses +
-                ", response='" + response + '\'' +
+                ", response='" + reponse + '\'' +
                 ", idImage='" + idImage + '\'' +
                 ", url='" + url + '\'' +
                 '}';

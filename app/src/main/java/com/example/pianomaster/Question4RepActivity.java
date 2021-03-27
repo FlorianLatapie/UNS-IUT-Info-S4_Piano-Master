@@ -127,7 +127,7 @@ public class Question4RepActivity extends Activity {
 
     public void checkReponse(int index){
         MediaPlayer sonRep;
-        if (question.getReponses().get(index).equals(question.getResponse())) {
+        if (question.getReponses().get(index).equals(question.getReponse())) {
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.bonne_reponse);
             sonRep.start();
             nbPoint++;
@@ -156,22 +156,22 @@ public class Question4RepActivity extends Activity {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void colorReponseButton(){
-        if (question.getReponses().get(0).equals(question.getResponse())) {
+        if (question.getReponses().get(0).equals(question.getReponse())) {
             b1.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b1.setBackground(getDrawable(R.drawable.button_mrep));
         }
-        if (question.getReponses().get(1).equals(question.getResponse())) {
+        if (question.getReponses().get(1).equals(question.getReponse())) {
             b2.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b2.setBackground(getDrawable(R.drawable.button_mrep));
         }
-        if (question.getReponses().get(2).equals(question.getResponse())) {
+        if (question.getReponses().get(2).equals(question.getReponse())) {
             b3.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b3.setBackground(getDrawable(R.drawable.button_mrep));
         }
-        if (question.getReponses().get(3).equals(question.getResponse())) {
+        if (question.getReponses().get(3).equals(question.getReponse())) {
             b4.setBackground(getDrawable(R.drawable.button_brep));
         } else {
             b4.setBackground(getDrawable(R.drawable.button_mrep));

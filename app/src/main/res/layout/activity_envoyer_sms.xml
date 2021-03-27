@@ -13,7 +13,7 @@
 
         android:fontFamily="@font/montserrat_bold"
         android:padding="8dp"
-        android:text="@string/envoyer_sms_titre"
+        android:text="@string/bravo"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"

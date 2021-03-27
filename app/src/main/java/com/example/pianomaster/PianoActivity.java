@@ -345,7 +345,7 @@ public class PianoActivity extends Activity {
             tvQuestion.setText("Recommencer");
             nbTentative++;
             tvNbTentative.setText("" + nbTentative);
-            if (nbTentative == 3) {
+            if (nbTentative < 3) {
                 colorNote();
                 count++;
                 currentSong.stop();

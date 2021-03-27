@@ -6,8 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -30,6 +28,7 @@ public class PianoActivity extends Activity {
     private static int count = 0;
     private static int nbPoint = 0;
     private static int score = 0;
+    private static long delaiEntreChaqueQuestion = 3000;
 
     private int niveau;
 
@@ -161,55 +160,90 @@ public class PianoActivity extends Activity {
             }
         }
 
-        btn_do.setOnClickListener(v -> {
-            media_do.start();
-            checkNote("do");
-        });
+        new Thread(() -> {
+            btn_do.setOnClickListener(v -> {
+                media_do.start();
+                checkNote("do");
+            });
+        }).start();
 
-        btn_do_diese.setOnClickListener(v -> {
-            media_do_diese.start();
-            checkNote("do_diese");
-        });
-        btn_re.setOnClickListener(v -> {
-            media_re.start();
-            checkNote("re");
-        });
-        btn_re_diese.setOnClickListener(v -> {
-            media_re_diese.start();
-            checkNote("re_diese");
-        });
-        btn_mi.setOnClickListener(v -> {
-            media_mi.start();
-            checkNote("mi");
-        });
-        btn_fa.setOnClickListener(v -> {
-            media_fa.start();
-            checkNote("fa");
-        });
-        btn_fa_diese.setOnClickListener(v -> {
-            media_fa_diese.start();
-            checkNote("fa_diese");
-        });
-        btn_sol.setOnClickListener(v -> {
-            media_sol.start();
-            checkNote("sol");
-        });
-        btn_sol_diese.setOnClickListener(v -> {
-            media_sol_diese.start();
-            checkNote("sol_diese");
-        });
-        btn_la.setOnClickListener(v -> {
-            media_la.start();
-            checkNote("la");
-        });
-        btn_si_bemol.setOnClickListener(v -> {
-            media_si_bemol.start();
-            checkNote("si_bemol");
-        });
-        btn_si.setOnClickListener(v -> {
-            media_si.start();
-            checkNote("si");
-        });
+
+        new Thread(() -> {
+            btn_do_diese.setOnClickListener(v -> {
+                media_do_diese.start();
+                checkNote("do_diese");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_re.setOnClickListener(v -> {
+                media_re.start();
+                checkNote("re");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_re_diese.setOnClickListener(v -> {
+                media_re_diese.start();
+                checkNote("re_diese");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_mi.setOnClickListener(v -> {
+                media_mi.start();
+                checkNote("mi");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_fa.setOnClickListener(v -> {
+                media_fa.start();
+                checkNote("fa");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_fa_diese.setOnClickListener(v -> {
+                media_fa_diese.start();
+                checkNote("fa_diese");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_sol.setOnClickListener(v -> {
+                media_sol.start();
+                checkNote("sol");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_sol_diese.setOnClickListener(v -> {
+                media_sol_diese.start();
+                checkNote("sol_diese");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_la.setOnClickListener(v -> {
+                media_la.start();
+                checkNote("la");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_si_bemol.setOnClickListener(v -> {
+                media_si_bemol.start();
+                checkNote("si_bemol");
+            });
+        }).start();
+
+        new Thread(() -> {
+            btn_si.setOnClickListener(v -> {
+                media_si.start();
+                checkNote("si");
+            });
+        }).start();
 
         btn_reecoutez.setOnClickListener(v -> {
             try {
@@ -219,7 +253,7 @@ public class PianoActivity extends Activity {
             }
             currentSong.start();
         });
-        new PianoActivity.GetRessources().execute();
+        new GetRessources().execute();
     }
 
     private class GetRessources extends AsyncTask<Void, Void, Void> {
@@ -267,10 +301,12 @@ public class PianoActivity extends Activity {
                 count++;
                 nbPoint++;
                 currentSong.stop();
+                stopAndResetSound();
                 new Thread(() -> {
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(delaiEntreChaqueQuestion);
                         intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                        stopAndResetSound();
                         startActivity(intent);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -288,8 +324,9 @@ public class PianoActivity extends Activity {
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(3000);
+                            Thread.sleep(delaiEntreChaqueQuestion);
                             intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                            stopAndResetSound();
                             startActivity(intent);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
@@ -300,6 +337,33 @@ public class PianoActivity extends Activity {
             }
             numNote = 0;
         }
+    }
+
+    public void stopAndResetSound(){
+        media_do.stop();
+        media_do_diese.stop();
+        media_re.stop();
+        media_re_diese.stop();
+        media_mi.stop();
+        media_fa.stop();
+        media_fa_diese.stop();
+        media_sol.stop();
+        media_sol_diese.stop();
+        media_la.stop();
+        media_si_bemol.stop();
+        media_si.stop();
+        media_do.reset();
+        media_do_diese.reset();
+        media_re.reset();
+        media_re_diese.reset();
+        media_mi.reset();
+        media_fa.reset();
+        media_fa_diese.reset();
+        media_sol.reset();
+        media_sol_diese.reset();
+        media_la.reset();
+        media_si_bemol.reset();
+        media_si.reset();
     }
 
     public void colorNote() {

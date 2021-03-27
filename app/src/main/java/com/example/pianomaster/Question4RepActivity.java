@@ -26,7 +26,7 @@ public class Question4RepActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
     private static int count = 0;
     private static int nbPoint = 0;
-    private static long delaiEntreChaqueQuestion = 1000;
+    private static long delaiEntreChaqueQuestion = 3000;
 
     private int niveau;
 
@@ -188,10 +188,10 @@ public class Question4RepActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Question4RepActivity.this);
-            pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
-            pDialog.setCancelable(false);
-            pDialog.show();
+            //pDialog = new ProgressDialog(Question4RepActivity.this);
+            //pDialog.setMessage("Téléchargement en cours...\nIl est possible que cela prenne 30s à 2 minutes");
+            //pDialog.setCancelable(false);
+            //pDialog.show();
 
         }
 
@@ -213,8 +213,8 @@ public class Question4RepActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            if (pDialog.isShowing())
-                pDialog.dismiss();
+            //if (pDialog.isShowing())
+               // pDialog.dismiss();
 
             if(count<2) {
                 ivQuestion.setImageDrawable(d);

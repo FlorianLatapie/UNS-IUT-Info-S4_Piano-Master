@@ -134,8 +134,6 @@ public class PianoActivity extends Activity {
             int getScore = sp.getInt("getScore", -1);
             score = getScore + nbPoint;
             tvScore.setText(score+"/4");
-            System.out.println("Score recu " + getScore);
-            System.out.println("nbPoint QuestionPiano : " + nbPoint);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("getScore", score);
             //editor.putInt("getNiveau", question.getNumNiveau());
@@ -151,7 +149,6 @@ public class PianoActivity extends Activity {
 
             if (questionPianoList == null) {
                 System.out.println(getIntent().getExtras());
-                System.out.println("134 vide");
             } else {
                 System.out.println(questionPianoList);
                 new GetRessources().execute();

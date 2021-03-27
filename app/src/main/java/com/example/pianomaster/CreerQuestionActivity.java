@@ -164,7 +164,7 @@ public class CreerQuestionActivity extends Activity {
                     startActivity(intent3);
                     break;
                 default:
-                    System.out.println("169 nb question " + nbQuestion);
+                    System.out.println("167 nb question " + nbQuestion);
                     break;
             }
         }

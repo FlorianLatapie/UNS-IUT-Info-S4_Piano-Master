@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -48,6 +49,7 @@ public class Question4RepActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveau_4reponses);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         b1 = findViewById(R.id.b_rep_1);
         b2 = findViewById(R.id.b_rep_2);
         b3 = findViewById(R.id.b_rep_3);
@@ -67,7 +69,6 @@ public class Question4RepActivity extends Activity {
             intent.putExtra("nbQuestion", "2");
             SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
-            System.out.println("nbPoint Question4Rep : "+nbPoint);
             editor.putInt("getScore", nbPoint);
             editor.apply();
             nbPoint = 0;
@@ -92,7 +93,6 @@ public class Question4RepActivity extends Activity {
             b4.setText(question.getReponses().get(3));
             b4.setTextColor(Color.WHITE);
         }
-        System.out.println("Count :" + count);
         b1.setOnClickListener(v -> {
             checkReponse(0);
             b1.setClickable(false);

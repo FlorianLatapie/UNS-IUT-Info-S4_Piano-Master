@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SMSActivity extends AppCompatActivity {
@@ -25,9 +27,11 @@ public class SMSActivity extends AppCompatActivity {
 
     private EditText etNumroSMS;
     private EditText etContenuSMS;
+    private TextView tMessage;
 
     private Button buttonSend, b_retour;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +43,19 @@ public class SMSActivity extends AppCompatActivity {
 
         this.etNumroSMS = (EditText) this.findViewById(R.id.et_numero_sms);
         this.etContenuSMS = (EditText) this.findViewById(R.id.et_contenu_sms);
+        tMessage = findViewById(R.id.tv_titre_sms);
         SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
         SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
         int niveau = sp2.getInt("getNiveau", -1);
-        int score2 = sp.getInt("getScore", -1);
+        int score = sp.getInt("getScore", -1);
 
-        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score2+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
+        if(score<=1){
+            tMessage.setText("Dommage !");
+        } else{
+            tMessage.setText("Bravo !");
+        }
+
+        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
         this.buttonSend = (Button) this.findViewById(R.id.b_envoyer_sms);
 
         SharedPreferences.Editor editor = sp.edit();

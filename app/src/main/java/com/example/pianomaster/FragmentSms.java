@@ -25,8 +25,8 @@ public class FragmentSms extends Fragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_sms, container, false);
-        final EditText editNumSms = rootView.findViewById(R.id.edit_num);
+        final View rootView = inflater.inflate(R.layout.fragment_score, container, false);
+        final EditText editNumSms = rootView.findViewById(R.id.frame_score);
         editNumSms.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) { }

@@ -1,7 +1,9 @@
 package com.example.pianomaster;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -13,14 +15,22 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SMSActivity extends AppCompatActivity {
-    private Context mContext =this;
+import java.util.List;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
+public class SMSActivity extends Fragment {
     private static final int MY_PERMISSION_REQUEST_CODE_SEND_SMS = 1;
 
     private static final String LOG_TAG = "AndroidExample";
@@ -28,58 +38,28 @@ public class SMSActivity extends AppCompatActivity {
     private EditText etNumroSMS;
     private EditText etContenuSMS;
     private TextView tMessage;
+    private TextView tvNumTel;
 
     private Button buttonSend, b_retour;
+    private String numTel;
+    public SMSActivity(String num){
+        this.numTel = num;
+    }
+    View rootView;
+
+    public SMSActivity(){}
 
     @SuppressLint("SetTextI18n")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_envoyer_sms);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.edit_num, new FragmentSms()).commit();
+        Bundle b = getArguments();
+        if(b!=null)
+        {
+            this.numTel = getArguments().getString("numTel");
         }
 
-        this.etNumroSMS = (EditText) this.findViewById(R.id.et_numero_sms);
-        this.etContenuSMS = (EditText) this.findViewById(R.id.et_contenu_sms);
-        tMessage = findViewById(R.id.tv_titre_sms);
-        SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
-        SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
-        int niveau = sp2.getInt("getNiveau", -1);
-        int score = sp.getInt("getScore", -1);
 
-        if(score<=1){
-            tMessage.setText(getString(R.string.dommage));
-        } else{
-            tMessage.setText(getString(R.string.bravo));
-        }
-
-        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
-        this.buttonSend = (Button) this.findViewById(R.id.b_envoyer_sms);
-
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("getNiveau", 0);
-        editor.apply();
-
-        SharedPreferences.Editor editor2 = sp2.edit();
-        editor2.putInt("getScore", 0);
-        editor2.apply();
-
-        this.buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                askPermissionAndSendSMS();
-            }
-        });
-
-        b_retour = findViewById(R.id.b_retour_accueil);
-        b_retour.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, LevelActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void askPermissionAndSendSMS() {
@@ -88,7 +68,7 @@ public class SMSActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >=  android.os.Build.VERSION_CODES.M) { // 23
 
             // Check if we have send SMS permission
-            int sendSmsPermisson = ActivityCompat.checkSelfPermission(this,
+            int sendSmsPermisson = ActivityCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.SEND_SMS);
 
             if (sendSmsPermisson != PackageManager.PERMISSION_GRANTED) {
@@ -119,11 +99,11 @@ public class SMSActivity extends AppCompatActivity {
                     null);
 
             Log.i( LOG_TAG,"Your sms has successfully sent!");
-            Toast.makeText(getApplicationContext(),getString(R.string.sms_envoye),
+            Toast.makeText(getActivity(),getString(R.string.sms_envoye),
                     Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Log.e( LOG_TAG,"Your sms has failed...\n Error :", ex);
-            Toast.makeText(getApplicationContext(),getString(R.string.sms_refuse) + ex.getMessage(),
+            Toast.makeText(getActivity(),getString(R.string.sms_refuse) + ex.getMessage(),
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
@@ -146,14 +126,14 @@ public class SMSActivity extends AppCompatActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     Log.i( LOG_TAG,"Permission granted!");
-                    Toast.makeText(this, getString(R.string.autorisation_sms_oui), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.autorisation_sms_oui), Toast.LENGTH_LONG).show();
 
                     this.sendSMS_by_smsManager();
                 }
                 // Cancelled or denied.
                 else {
                     Log.i( LOG_TAG,"Permission denied!");
-                    Toast.makeText(this, getString(R.string.autorisation_sms_non), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.autorisation_sms_non), Toast.LENGTH_LONG).show();
                 }
                 break;
             }
@@ -162,24 +142,42 @@ public class SMSActivity extends AppCompatActivity {
 
     // When results returned
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == MY_PERMISSION_REQUEST_CODE_SEND_SMS) {
             if (resultCode == RESULT_OK) {
                 // Do something with data (Result returned).
-                Toast.makeText(this, getString(R.string.action_ok), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.action_ok), Toast.LENGTH_LONG).show();
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.action_canceled), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, getString(R.string.action_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.action_failed), Toast.LENGTH_LONG).show();
             }
         }
     }
-    @Override
-    public void onBackPressed() {
-        SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
-        SharedPreferences sp2 = getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+
+    @SuppressLint("SetTextI18n")
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_sms, null);
+
+        this.etNumroSMS = (EditText) rootView.findViewById(R.id.et_numero_sms);
+        this.etContenuSMS = (EditText) rootView.findViewById(R.id.et_contenu_sms);
+        tvNumTel = rootView.findViewById(R.id.tv_numero_tel);
+        tMessage = rootView.findViewById(R.id.tv_titre_sms);
+        SharedPreferences sp = getActivity().getSharedPreferences("score", Activity.MODE_PRIVATE);
+        SharedPreferences sp2 = getActivity().getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+        int niveau = sp2.getInt("getNiveau", -1);
+        int score = sp.getInt("getScore", -1);
+
+        if(score<=1){
+            tMessage.setText(getString(R.string.dommage));
+        } else{
+            tMessage.setText(getString(R.string.bravo));
+        }
+        tvNumTel.setText(tvNumTel.getText().toString()+" "+ numTel);
+        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
+        this.buttonSend = (Button) rootView.findViewById(R.id.b_envoyer_sms);
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("getNiveau", 0);
@@ -188,8 +186,35 @@ public class SMSActivity extends AppCompatActivity {
         SharedPreferences.Editor editor2 = sp2.edit();
         editor2.putInt("getScore", 0);
         editor2.apply();
-        Intent intent = new Intent(mContext, LevelActivity.class);
-        intent.putExtra("numNiveau", 0);
-        startActivity(intent);
+
+        this.buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askPermissionAndSendSMS();
+            }
+        });
+
+        b_retour = rootView.findViewById(R.id.b_retour_accueil);
+        b_retour.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SharedPreferences sp = getActivity().getSharedPreferences("score", Activity.MODE_PRIVATE);
+                SharedPreferences sp2 = getActivity().getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt("getNiveau", 0);
+                editor.apply();
+
+                SharedPreferences.Editor editor2 = sp2.edit();
+                editor2.putInt("getScore", 0);
+                editor2.apply();
+                Intent intent = new Intent(getActivity(), LevelActivity.class);
+                intent.putExtra("numNiveau", 0);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
     }
+
+
 }

@@ -253,7 +253,6 @@ public class PianoActivity extends Activity {
             }
             currentSong.start();
         });
-        new GetRessources().execute();
     }
 
     private class GetRessources extends AsyncTask<Void, Void, Void> {

@@ -343,9 +343,11 @@ public class PianoActivity extends Activity {
             }
         } else {
             tvQuestion.setText("Recommencer");
-            nbTentative++;
+            if(nbTentative<3) {
+                nbTentative++;
+            }
             tvNbTentative.setText("" + nbTentative);
-            if (nbTentative < 3) {
+            if (nbTentative == 3) {
                 colorNote();
                 count++;
                 currentSong.stop();

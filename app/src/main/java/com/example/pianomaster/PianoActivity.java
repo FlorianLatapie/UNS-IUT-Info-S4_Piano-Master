@@ -146,7 +146,7 @@ public class PianoActivity extends Activity {
         media_si_bemol = MediaPlayer.create(getApplicationContext(), R.raw.si_bemol);
         media_si = MediaPlayer.create(getApplicationContext(), R.raw.si);
 
-        tvQuestion.setText("Ecoutez et jouez");
+        tvQuestion.setText(getString(R.string.ecoutez_jouez)/*"Ecoutez et jouez"*/);
         tvNbQuestion = findViewById(R.id.tv_num_question_piano);
         pgCirclePiano = findViewById(R.id.progressPiano);
 
@@ -160,7 +160,7 @@ public class PianoActivity extends Activity {
             SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
             int getScore = sp.getInt("getScore", -1);
             score = getScore + nbPoint;
-            tvScore.setText(score+"/4");
+            tvScore.setText(score+"/4 points");
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("getScore", score);
             //editor.putInt("getNiveau", question.getNumNiveau());
@@ -172,7 +172,7 @@ public class PianoActivity extends Activity {
             SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
             int getScore = sp.getInt("getScore", -1);
             score = getScore + nbPoint;
-            tvScore.setText(score+"/4");
+            tvScore.setText(score+"/4 points");
 
             if (questionPianoList == null) {
                 System.out.println(getIntent().getExtras());
@@ -182,7 +182,7 @@ public class PianoActivity extends Activity {
                 question = questionPianoList.get(count);
                 listNote = question.getReponse();
                 tvQuestion.setText(question.getTitre());
-                tvNiveau.setText("Niveau " + question.getNumNiveau() + " - Question " + question.getNumQuestion());
+                tvNiveau.setText(getString(R.string.niveau)+" " + question.getNumNiveau() /*+ " - "+getString(R.string.question) +" "+ question.getNumQuestion()*/);
                 tvNbQuestion.setText(question.getNumQuestion()+"/4");
                 pgCirclePiano.setProgress(Integer.parseInt(question.getNumQuestion())*25);
             }
@@ -321,7 +321,7 @@ public class PianoActivity extends Activity {
     @SuppressLint("SetTextI18n")
     public void checkNote(String note) {
         Intent intent = new Intent(PianoActivity.this, PianoActivity.class);
-        if (tvQuestion.getText().equals("Recommencer")) tvQuestion.setText("Ecoutez et jouez !");
+        if (tvQuestion.getText().equals(getString(R.string.recommencer)/*"Recommencer"*/)) tvQuestion.setText(getString(R.string.ecoutez_jouez)/*"Ecoutez et jouez !"*/);
         if (numNote <= listNote.size() - 1 && listNote.get(numNote).equals(note)) {
             numNote++;
             if (numNote == 4) {

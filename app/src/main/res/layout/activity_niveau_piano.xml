@@ -22,8 +22,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ProgressBar
@@ -37,8 +36,7 @@
         android:progressDrawable="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="@+id/tv_titre_niveau_piano"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/tv_score_piano"
+        app:layout_constraintStart_toEndOf="@+id/tv_titre_niveau_piano"
         app:layout_constraintTop_toTopOf="@+id/tv_titre_niveau_piano" />
 
     <TextView
@@ -63,16 +61,15 @@
         android:layout_height="wrap_content"
 
         android:fontFamily="@font/montserrat_bold"
-        android:text="X/4"
+        android:text="X/4 Points"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_titre_niveau_piano"
-        app:layout_constraintEnd_toStartOf="@+id/progressPiano"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/tv_titre_niveau_piano"
-        app:layout_constraintTop_toTopOf="@+id/tv_titre_niveau_piano"/>
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/tv_titre_niveau_piano"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerTentative" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerTouches"
@@ -252,7 +249,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/b_do_diese"
             app:layout_constraintEnd_toEndOf="@+id/b_do_diese"
@@ -274,7 +271,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/b_re_diese"
             app:layout_constraintEnd_toEndOf="@+id/b_re_diese"
@@ -296,7 +293,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/b_fa_diese"
             app:layout_constraintEnd_toEndOf="@+id/b_fa_diese"
@@ -318,7 +315,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/b_sol_diese"
             app:layout_constraintEnd_toEndOf="@+id/b_sol_diese"
@@ -340,7 +337,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/b_si_bemol"
             app:layout_constraintEnd_toEndOf="@+id/b_si_bemol"
@@ -351,10 +348,10 @@
 
     <TextView
         android:id="@+id/tv_question_piano"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Écoutez et reproduisez"
+        android:text="@string/ecoutez_jouez"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="28sp"
@@ -440,7 +437,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
-            android:text="0"
+            android:text="0/3"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="28sp"

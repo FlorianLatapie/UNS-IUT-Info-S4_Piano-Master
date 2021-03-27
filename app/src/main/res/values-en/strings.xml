@@ -24,4 +24,7 @@
     <string name="action_canceled">Action canceled</string>
     <string name="score_texte">"You have obtained a score of "</string>
     <string name="dommage">"Too bad ! "</string>
+    <string name="niveau">Level</string>
+    <string name="question">question</string>
+    <string name="ecoutez_jouez">Listen and play back</string>
 </resources>

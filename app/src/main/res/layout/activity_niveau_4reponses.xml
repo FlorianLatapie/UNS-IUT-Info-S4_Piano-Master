@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/iv_question_q4rep"
         app:layout_constraintTop_toBottomOf="@+id/tv_titre_niveau_q4rep"
-        app:layout_constraintVertical_bias="0.785" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/tv_titre_niveau_q4rep"
@@ -68,10 +68,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="X/4"
+        android:text="X/4 points"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_titre_niveau_q4rep"
         app:layout_constraintEnd_toEndOf="parent"

@@ -23,4 +23,7 @@
     <string name="action_ok">Action OK</string>
     <string name="action_canceled">Action annulée</string>
     <string name="action_failed">Action échouée</string>
+    <string name="ecoutez_jouez">Écoutez et jouez</string>
+    <string name="niveau">Niveau</string>
+    <string name="question">question</string>
 </resources>

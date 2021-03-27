@@ -79,11 +79,10 @@ public class Question4RepActivity extends Activity {
             new GetRessources().execute();
             question = questionMultipleList.get(count);
             tvQuestion.setText(question.getTitre());
-            tvNiveau.setText("Niveau "+question.getNumNiveau());
-            tvNiveau.setText("Niveau "+question.getNumNiveau());
+            tvNiveau.setText(getString(R.string.niveau) +" "+question.getNumNiveau());
             tvNumQuestion.setText(question.getNumQuestion()+"/4");
             pgCircle.setProgress(Integer.parseInt(question.getNumQuestion())*25);
-            tvScore.setText(nbPoint+"/4");
+            tvScore.setText(nbPoint+"/4 points");
             b1.setText(question.getReponses().get(0));
             b1.setTextColor(Color.WHITE);
             b2.setText(question.getReponses().get(1));

@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Question4RepActivity extends Activity {
     private String TAG = MainActivity.class.getSimpleName();
@@ -78,7 +79,12 @@ public class Question4RepActivity extends Activity {
             questionMultipleList = getIntent().getParcelableArrayListExtra("listQuestion4Rep");
             new GetRessources().execute();
             question = questionMultipleList.get(count);
-            tvQuestion.setText(question.getTitre());
+            if (Locale.getDefault().getDisplayLanguage().toString().equals("français")){
+                tvQuestion.setText(question.getTitre());
+            }
+            else {
+                tvQuestion.setText(question.getTitreEn());
+            }
             tvNiveau.setText(getString(R.string.niveau) +" "+question.getNumNiveau());
             tvNumQuestion.setText(question.getNumQuestion()+"/4");
             pgCircle.setProgress(Integer.parseInt(question.getNumQuestion())*25);

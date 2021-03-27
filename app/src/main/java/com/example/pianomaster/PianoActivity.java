@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PianoActivity extends Activity {
     private ProgressDialog pDialog;
@@ -181,7 +182,12 @@ public class PianoActivity extends Activity {
                 new GetRessources().execute();
                 question = questionPianoList.get(count);
                 listNote = question.getReponse();
-                tvQuestion.setText(question.getTitre());
+                if (Locale.getDefault().getDisplayLanguage().toString().equals("français")){
+                    tvQuestion.setText(question.getTitre());
+                }
+                else {
+                    tvQuestion.setText(question.getTitreEn());
+                }
                 tvNiveau.setText(getString(R.string.niveau)+" " + question.getNumNiveau() /*+ " - "+getString(R.string.question) +" "+ question.getNumQuestion()*/);
                 tvNbQuestion.setText(question.getNumQuestion()+"/4");
                 pgCirclePiano.setProgress(Integer.parseInt(question.getNumQuestion())*25);
@@ -400,6 +406,19 @@ public class PianoActivity extends Activity {
     @SuppressLint("SetTextI18n")
     public void colorNote() {
         int i=0;
+        btn_do.setClickable(false);
+        btn_do_diese.setClickable(false);
+        btn_re.setClickable(false);
+        btn_re_diese.setClickable(false);
+        btn_mi.setClickable(false);
+        btn_fa.setClickable(false);
+        btn_fa_diese.setClickable(false);
+        btn_sol.setClickable(false);
+        btn_sol_diese.setClickable(false);
+        btn_la.setClickable(false);
+        btn_si_bemol.setClickable(false);
+        btn_si.setClickable(false);
+        btn_reecoutez.setClickable(false);
         for (String bonneNote : listNote) {
             i++;
             getButtonByName(bonneNote).setBackground(getDrawable(R.drawable.button_brep));

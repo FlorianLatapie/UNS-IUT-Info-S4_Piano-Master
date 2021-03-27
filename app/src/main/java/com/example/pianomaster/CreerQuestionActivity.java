@@ -46,6 +46,7 @@ public class CreerQuestionActivity extends Activity {
     private String numQuestion;
     private String typeQuestion;
     private String questions;
+    private String questionsEn;
     private List<String> listProposition = new ArrayList<>();
     private String reponse;
     private String image;
@@ -109,6 +110,8 @@ public class CreerQuestionActivity extends Activity {
                         numQuestion = jsonObj.getString("num_question");
                         typeQuestion = jsonObj.getString("type");
                         questions = jsonObj.getString("questions");
+                        questionsEn = jsonObj.getString("questions-en");
+                        //System.out.println("question-en:"+questionsEn);
                         if (typeQuestion.equals("multiple")) {
                             reponse = jsonObj.getString("reponse");
                             image = jsonObj.getString("image");

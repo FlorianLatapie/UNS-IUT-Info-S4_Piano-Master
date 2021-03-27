@@ -3,7 +3,7 @@
     <string name="app_name">Piano Master</string>
     <string name="jouer">PLAY</string>
     <string name="tire_choix_du_niveau">Choose level</string>
-    <string name="envoyer_sms_titre">Congratulations !</string>
+    <string name="bravo">Congratulations !</string>
     <string name="retour_accueil">"Back "</string>
     <string name="envoyer">Send it</string>
     <string name="q_envoyer_resultat">Send the result?</string>
@@ -22,4 +22,6 @@
     <string name="action_ok">Action OK</string>
     <string name="action_failed">Action Failed</string>
     <string name="action_canceled">Action canceled</string>
+    <string name="score_texte">"You have obtained a score of "</string>
+    <string name="dommage">"Too bad ! "</string>
 </resources>

@@ -50,9 +50,9 @@ public class SMSActivity extends AppCompatActivity {
         int score = sp.getInt("getScore", -1);
 
         if(score<=1){
-            tMessage.setText("Dommage !");
+            tMessage.setText(getString(R.string.dommage));
         } else{
-            tMessage.setText("Bravo !");
+            tMessage.setText(getString(R.string.bravo));
         }
 
         etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));

@@ -87,10 +87,24 @@
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@drawable/button_white"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_re"
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/stroke_clavier" />
+
+        <TextView
+            android:id="@+id/tv_do"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/b_do"
+            app:layout_constraintEnd_toEndOf="@+id/b_do"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
 
         <View
             android:id="@+id/b_re"
@@ -102,6 +116,18 @@
             app:layout_constraintStart_toEndOf="@+id/b_do"
             app:strokeColor="@color/stroke_clavier" />
 
+        <TextView
+            android:id="@+id/tv_re"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/b_re"
+            app:layout_constraintStart_toEndOf="@+id/b_do"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
+
         <View
             android:id="@+id/b_mi"
             android:layout_width="100dp"
@@ -111,6 +137,18 @@
             app:layout_constraintEnd_toStartOf="@+id/b_fa"
             app:layout_constraintStart_toEndOf="@+id/b_re"
             app:strokeColor="@color/stroke_clavier" />
+
+        <TextView
+            android:id="@+id/tv_mi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/b_mi"
+            app:layout_constraintStart_toEndOf="@+id/b_re"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
 
         <View
             android:id="@+id/b_fa"
@@ -122,6 +160,18 @@
             app:layout_constraintStart_toEndOf="@+id/b_mi"
             app:strokeColor="@color/stroke_clavier" />
 
+        <TextView
+            android:id="@+id/tv_fa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_fa"
+            app:layout_constraintEnd_toEndOf="@+id/b_fa"
+            app:layout_constraintStart_toEndOf="@+id/b_mi"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
+
         <View
             android:id="@+id/b_sol"
             android:layout_width="100dp"
@@ -130,6 +180,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_la"
             app:layout_constraintStart_toEndOf="@+id/b_fa" />
+
+        <TextView
+            android:id="@+id/tv_sol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_sol"
+            app:layout_constraintEnd_toEndOf="@+id/b_sol"
+            app:layout_constraintStart_toEndOf="@+id/b_fa"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
 
         <View
             android:id="@+id/b_la"
@@ -141,6 +203,18 @@
             app:layout_constraintStart_toEndOf="@+id/b_sol"
             app:strokeColor="@color/stroke_clavier" />
 
+        <TextView
+            android:id="@+id/tv_la"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_la"
+            app:layout_constraintEnd_toEndOf="@+id/b_la"
+            app:layout_constraintStart_toEndOf="@+id/b_sol"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
+
         <View
             android:id="@+id/b_si"
             android:layout_width="100dp"
@@ -150,6 +224,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_la"
             app:strokeColor="@color/stroke_clavier" />
+
+        <TextView
+            android:id="@+id/tv_si"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_la"
+            app:layout_constraintTop_toBottomOf="@+id/b_do_diese" />
 
         <View
             android:id="@+id/b_do_diese"
@@ -161,6 +247,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/b_do" />
 
+        <TextView
+            android:id="@+id/tv_do_diese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_do_diese"
+            app:layout_constraintEnd_toEndOf="@+id/b_do_diese"
+            app:layout_constraintStart_toStartOf="@+id/b_do_diese"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <View
             android:id="@+id/b_re_diese"
             android:layout_width="75dp"
@@ -170,6 +268,18 @@
             android:background="@drawable/button_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_do_diese" />
+
+        <TextView
+            android:id="@+id/tv_re_diese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_re_diese"
+            app:layout_constraintEnd_toEndOf="@+id/b_re_diese"
+            app:layout_constraintStart_toStartOf="@+id/b_re_diese"
+            app:layout_constraintTop_toTopOf="@+id/b_re_diese" />
 
         <View
             android:id="@+id/b_fa_diese"
@@ -181,6 +291,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_re_diese" />
 
+        <TextView
+            android:id="@+id/tv_fa_diese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_fa_diese"
+            app:layout_constraintEnd_toEndOf="@+id/b_fa_diese"
+            app:layout_constraintStart_toStartOf="@+id/b_fa_diese"
+            app:layout_constraintTop_toTopOf="@+id/b_fa_diese" />
+
         <View
             android:id="@+id/b_sol_diese"
             android:layout_width="75dp"
@@ -191,6 +313,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_fa_diese" />
 
+        <TextView
+            android:id="@+id/tv_sol_diese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_sol_diese"
+            app:layout_constraintEnd_toEndOf="@+id/b_sol_diese"
+            app:layout_constraintStart_toStartOf="@+id/b_sol_diese"
+            app:layout_constraintTop_toTopOf="@+id/b_sol_diese" />
+
         <View
             android:id="@+id/b_si_bemol"
             android:layout_width="75dp"
@@ -200,6 +334,18 @@
             android:background="@drawable/button_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/b_sol_diese" />
+
+        <TextView
+            android:id="@+id/tv_si_bemol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/b_si_bemol"
+            app:layout_constraintEnd_toEndOf="@+id/b_si_bemol"
+            app:layout_constraintStart_toStartOf="@+id/b_si_bemol"
+            app:layout_constraintTop_toTopOf="@+id/b_si_bemol" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

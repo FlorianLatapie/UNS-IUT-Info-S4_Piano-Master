@@ -73,6 +73,19 @@ public class PianoActivity extends Activity {
     View btn_si_bemol;
     View btn_si;
 
+    TextView tv_do;
+    TextView tv_do_diese;
+    TextView tv_re;
+    TextView tv_re_diese;
+    TextView tv_mi;
+    TextView tv_fa;
+    TextView tv_fa_diese;
+    TextView tv_sol;
+    TextView tv_sol_diese;
+    TextView tv_la;
+    TextView tv_si_bemol;
+    TextView tv_si;
+
     TextView tvNbQuestion;
     ProgressBar pgCirclePiano;
 
@@ -100,7 +113,22 @@ public class PianoActivity extends Activity {
         btn_la = findViewById(R.id.b_la);
         btn_si_bemol = findViewById(R.id.b_si_bemol);
         btn_si = findViewById(R.id.b_si);
+
+        tv_do = findViewById(R.id.tv_do);
+        tv_do_diese = findViewById(R.id.tv_do_diese);
+        tv_re = findViewById(R.id.tv_re);
+        tv_re_diese = findViewById(R.id.tv_re_diese);
+        tv_mi = findViewById(R.id.tv_mi);
+        tv_fa = findViewById(R.id.tv_fa);
+        tv_fa_diese = findViewById(R.id.tv_fa_diese);
+        tv_sol = findViewById(R.id.tv_sol);
+        tv_sol_diese = findViewById(R.id.tv_sol_diese);
+        tv_la = findViewById(R.id.tv_la);
+        tv_si_bemol = findViewById(R.id.tv_si_bemol);
+        tv_si = findViewById(R.id.tv_si);
+
         btn_reecoutez = findViewById(R.id.b_recommencer_piano);
+
         tvNiveau = findViewById(R.id.tv_titre_niveau_piano);
         tvQuestion = findViewById(R.id.tv_question_piano);
         tvScore = findViewById(R.id.tv_score_piano);
@@ -253,6 +281,7 @@ public class PianoActivity extends Activity {
             }
             currentSong.start();
         });
+        new GetRessources().execute();
     }
 
     private class GetRessources extends AsyncTask<Void, Void, Void> {
@@ -366,9 +395,17 @@ public class PianoActivity extends Activity {
         media_si.reset();
     }
 
+    @SuppressLint("SetTextI18n")
     public void colorNote() {
+        int i=0;
         for (String bonneNote : listNote) {
+            i++;
             getButtonByName(bonneNote).setBackground(getDrawable(R.drawable.button_brep));
+            System.out.println(bonneNote);
+            if(!getTextViewByName(bonneNote).getText().equals(""))
+                getTextViewByName(bonneNote).setText(getTextViewByName(bonneNote).getText()+", "+i);
+            else
+                getTextViewByName(bonneNote).setText(""+i);
         }
     }
 
@@ -400,6 +437,37 @@ public class PianoActivity extends Activity {
                 return btn_si;
             default:
                 return btn_do;
+        }
+    }
+
+    public TextView getTextViewByName(String name) {
+        switch (name) {
+            case "do":
+                return tv_do;
+            case "do_diese":
+                return tv_do_diese;
+            case "re":
+                return tv_re;
+            case "re_diese":
+                return tv_re_diese;
+            case "mi":
+                return tv_mi;
+            case "fa":
+                return tv_fa;
+            case "fa_diese":
+                return tv_fa_diese;
+            case "sol":
+                return tv_sol;
+            case "sol_diese":
+                return tv_sol_diese;
+            case "la":
+                return tv_la;
+            case "si_bemol":
+                return tv_si_bemol;
+            case "si":
+                return tv_si;
+            default:
+                return tv_do;
         }
     }
 

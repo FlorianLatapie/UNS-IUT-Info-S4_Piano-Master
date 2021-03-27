@@ -41,32 +41,31 @@
         android:id="@+id/edit_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/et_contenu_sms"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_question_sms"
-        app:layout_constraintVertical_bias="0.329" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_question_sms" />
 
     <EditText
         android:id="@+id/et_contenu_sms"
         android:layout_width="385dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:lines="2"
+        android:lines="3"
         android:maxLines="10"
         android:minLines="1"
         android:scrollbars="vertical"
         android:text="@string/sms_contenu"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/b_envoyer_sms"
+        app:layout_constraintBottom_toTopOf="@+id/b_retour_accueil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_num" />
 
     <Button
         android:id="@+id/b_retour_accueil"

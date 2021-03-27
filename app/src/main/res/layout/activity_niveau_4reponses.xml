@@ -22,6 +22,7 @@
         android:id="@+id/tv_titre_niveau_q4rep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Niveau X"
         android:textAlignment="center"
@@ -37,29 +38,30 @@
         style="?android:progressBarStyleHorizontal"
         android:layout_width="102dp"
         android:layout_height="69dp"
-        android:layout_marginTop="4dp"
+
         android:background="@drawable/background_circle"
         android:progress="50"
         android:progressDrawable="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_titre_niveau_q4rep"
         app:layout_constraintEnd_toStartOf="@+id/tv_titre_niveau_q4rep"
-        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tv_titre_niveau_q4rep" />
 
     <TextView
         android:id="@+id/tv_num_question_q4rep"
-        android:layout_width="53dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         android:fontFamily="@font/montserrat_bold"
         android:text="X/4"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_titre_niveau_q4rep"
-        app:layout_constraintHorizontal_bias="0.285"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/progressQuestion"
+        app:layout_constraintEnd_toEndOf="@+id/progressQuestion"
         app:layout_constraintStart_toStartOf="@+id/progressQuestion"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/progressQuestion" />
 
     <TextView
         android:id="@+id/tv_score_q4rep"

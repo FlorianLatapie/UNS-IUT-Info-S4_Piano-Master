@@ -320,6 +320,7 @@ public class PianoActivity extends Activity {
             if (nbTentative == 3) {
                 colorNote();
                 count++;
+                currentSong.stop();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

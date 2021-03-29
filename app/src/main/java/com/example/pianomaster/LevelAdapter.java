@@ -1,12 +1,9 @@
 package com.example.pianomaster;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -14,12 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class LevelAdapter extends BaseAdapter {
-    private Context mContext;
+    private final Context mContext;
     private int btn_id = 1;
     private int nbNiveaux = 10;
 
@@ -47,12 +40,13 @@ public class LevelAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
         Button btn;
         if (view == null) {
             btn = new Button(mContext);
-            btn.setText(btn_id++ +"");
+            btn.setText(++btn_id +"");
             btn.setTextColor(Color.WHITE);
             btn.setTextSize(30);
             btn.setBackgroundResource(R.drawable.button_style);

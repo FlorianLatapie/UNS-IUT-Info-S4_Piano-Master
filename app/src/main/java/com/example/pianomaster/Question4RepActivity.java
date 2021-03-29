@@ -24,10 +24,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class Question4RepActivity extends Activity {
-    private String TAG = MainActivity.class.getSimpleName();
+    private final String TAG = MainActivity.class.getSimpleName();
     private static int count = 0;
     private static int nbPoint = 0;
-    private static long delaiEntreChaqueQuestion = 3000;
+    private static final long delaiEntreChaqueQuestion = 3000;
 
     private int niveau;
     private MediaPlayer sonRep;
@@ -35,7 +35,7 @@ public class Question4RepActivity extends Activity {
     private ProgressDialog pDialog;
 
 
-    private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
+    private static final String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     Button b1, b2, b3, b4; // boutons de réponse
     TextView tvQuestion, tvNiveau, tvScore, tvNumQuestion;
     ProgressBar pgCircle;
@@ -80,7 +80,7 @@ public class Question4RepActivity extends Activity {
             questionMultipleList = getIntent().getParcelableArrayListExtra("listQuestion4Rep");
             new GetRessources().execute();
             question = questionMultipleList.get(count);
-            if (Locale.getDefault().getDisplayLanguage().toString().equals("français")){
+            if (Locale.getDefault().getDisplayLanguage().equals("français")){
                 tvQuestion.setText(question.getTitre());
             }
             else {

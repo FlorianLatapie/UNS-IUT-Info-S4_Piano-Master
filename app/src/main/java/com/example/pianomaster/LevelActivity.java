@@ -1,5 +1,6 @@
 package com.example.pianomaster;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,8 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LevelActivity extends Activity {
-    private Context mContext = this;
-    private final String URL_RESSOURCES = "https://androidpianomaster.000webhostapp.com/ressources";
+    private final Context mContext = this;
     private ProgressDialog pDialog;
     private int nbNiveaux;
     private GridView gridview;
@@ -30,6 +30,7 @@ public class LevelActivity extends Activity {
         new GetNbNiveau().execute();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class GetNbNiveau extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -47,6 +48,7 @@ public class LevelActivity extends Activity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
+            String URL_RESSOURCES = "https://androidpianomaster.000webhostapp.com/ressources";
             String jsonStr = sh.makeServiceCall(URL_RESSOURCES + "/nbNiveaux.json");
             if (jsonStr != null) {
                 try {

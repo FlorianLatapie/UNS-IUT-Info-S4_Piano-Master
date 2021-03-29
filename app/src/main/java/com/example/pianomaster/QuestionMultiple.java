@@ -7,8 +7,8 @@ import java.util.List;
 
 public class QuestionMultiple extends Question implements Parcelable {
     private List<String> reponses;
-    private String reponse;
-    private String idImage;
+    private final String reponse;
+    private final String idImage;
     private String url;
 
     public QuestionMultiple(String titre, String numQuestion, int numNiveau, int score, String idImage, String url, List<String> reponses, String reponse, String titreEn){

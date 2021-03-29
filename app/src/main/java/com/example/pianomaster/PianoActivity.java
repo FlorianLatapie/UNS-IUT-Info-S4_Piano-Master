@@ -2,7 +2,6 @@ package com.example.pianomaster;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -12,25 +11,21 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class PianoActivity extends Activity {
-    private ProgressDialog pDialog;
     private int pourcentagePB = 0;
     private Handler mHandler;
 
     private static int count = 0;
     private static int nbPoint = 0;
-    private static int score = 0;
-    private static long delaiEntreChaqueQuestion = 3000;
+    private static final long delaiEntreChaqueQuestion = 3000;
 
     private int niveau;
 
@@ -52,7 +47,6 @@ public class PianoActivity extends Activity {
     private List<String> listNote = new ArrayList<>();
     private int numNote = 0;
 
-    private static String url_ressources = "https://androidpianomaster.000webhostapp.com/ressources";
     QuestionPiano question = null;
     TextView tvQuestion, tvNiveau, tvScore;
     Button btn_reecoutez;
@@ -91,6 +85,9 @@ public class PianoActivity extends Activity {
 
     TextView tvNbQuestion;
     ProgressBar pgCirclePiano;
+
+    public PianoActivity() {
+    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -154,6 +151,7 @@ public class PianoActivity extends Activity {
         pgCirclePiano = findViewById(R.id.progressPiano);
 
         intent = new Intent(PianoActivity.this, PianoActivity.class);
+        int score;
         if (count > 1) {
             nbTentative = 0;
             count = 0;
@@ -163,7 +161,7 @@ public class PianoActivity extends Activity {
             SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
             int getScore = sp.getInt("getScore", -1);
             score = getScore + nbPoint;
-            tvScore.setText(score+"/4 points");
+            tvScore.setText(score +"/4 points");
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("getScore", score);
             //editor.putInt("getNiveau", question.getNumNiveau());
@@ -175,7 +173,7 @@ public class PianoActivity extends Activity {
             SharedPreferences sp = getSharedPreferences("score", Activity.MODE_PRIVATE);
             int getScore = sp.getInt("getScore", -1);
             score = getScore + nbPoint;
-            tvScore.setText(score+"/4 points");
+            tvScore.setText(score +"/4 points");
 
             if (questionPianoList == null) {
                 System.out.println(getIntent().getExtras());
@@ -184,7 +182,7 @@ public class PianoActivity extends Activity {
                 new GetRessources().execute();
                 question = questionPianoList.get(count);
                 listNote = question.getReponse();
-                if (Locale.getDefault().getDisplayLanguage().toString().equals("français")){
+                if (Locale.getDefault().getDisplayLanguage().equals("français")){
                     tvQuestion.setText(question.getTitre());
                 }
                 else {
@@ -196,102 +194,78 @@ public class PianoActivity extends Activity {
             }
         }
 
-        new Thread(() -> {
-            btn_do.setOnClickListener(v -> {
-                media_do.start();
-                listMediaPlayer.add(media_do);
-                checkNote("do");
-            });
-        }).start();
+        new Thread(() -> btn_do.setOnClickListener(v -> {
+            media_do.start();
+            listMediaPlayer.add(media_do);
+            checkNote("do");
+        })).start();
 
 
-        new Thread(() -> {
-            btn_do_diese.setOnClickListener(v -> {
-                media_do_diese.start();
-                listMediaPlayer.add(media_do_diese);
-                checkNote("do_diese");
-            });
-        }).start();
+        new Thread(() -> btn_do_diese.setOnClickListener(v -> {
+            media_do_diese.start();
+            listMediaPlayer.add(media_do_diese);
+            checkNote("do_diese");
+        })).start();
 
-        new Thread(() -> {
-            btn_re.setOnClickListener(v -> {
-                media_re.start();
-                listMediaPlayer.add(media_re);
-                checkNote("re");
-            });
-        }).start();
+        new Thread(() -> btn_re.setOnClickListener(v -> {
+            media_re.start();
+            listMediaPlayer.add(media_re);
+            checkNote("re");
+        })).start();
 
-        new Thread(() -> {
-            btn_re_diese.setOnClickListener(v -> {
-                media_re_diese.start();
-                listMediaPlayer.add(media_re_diese);
-                checkNote("re_diese");
-            });
-        }).start();
+        new Thread(() -> btn_re_diese.setOnClickListener(v -> {
+            media_re_diese.start();
+            listMediaPlayer.add(media_re_diese);
+            checkNote("re_diese");
+        })).start();
 
-        new Thread(() -> {
-            btn_mi.setOnClickListener(v -> {
-                media_mi.start();
-                listMediaPlayer.add(media_mi);
-                checkNote("mi");
-            });
-        }).start();
+        new Thread(() -> btn_mi.setOnClickListener(v -> {
+            media_mi.start();
+            listMediaPlayer.add(media_mi);
+            checkNote("mi");
+        })).start();
 
-        new Thread(() -> {
-            btn_fa.setOnClickListener(v -> {
-                media_fa.start();
-                listMediaPlayer.add(media_fa);
-                checkNote("fa");
-            });
-        }).start();
+        new Thread(() -> btn_fa.setOnClickListener(v -> {
+            media_fa.start();
+            listMediaPlayer.add(media_fa);
+            checkNote("fa");
+        })).start();
 
-        new Thread(() -> {
-            btn_fa_diese.setOnClickListener(v -> {
-                media_fa_diese.start();
-                listMediaPlayer.add(media_fa_diese);
-                checkNote("fa_diese");
-            });
-        }).start();
+        new Thread(() -> btn_fa_diese.setOnClickListener(v -> {
+            media_fa_diese.start();
+            listMediaPlayer.add(media_fa_diese);
+            checkNote("fa_diese");
+        })).start();
 
-        new Thread(() -> {
-            btn_sol.setOnClickListener(v -> {
-                media_sol.start();
-                listMediaPlayer.add(media_sol);
-                checkNote("sol");
-            });
-        }).start();
+        new Thread(() -> btn_sol.setOnClickListener(v -> {
+            media_sol.start();
+            listMediaPlayer.add(media_sol);
+            checkNote("sol");
+        })).start();
 
-        new Thread(() -> {
-            btn_sol_diese.setOnClickListener(v -> {
-                media_sol_diese.start();
-                listMediaPlayer.add(media_sol_diese);
-                checkNote("sol_diese");
-            });
-        }).start();
+        new Thread(() -> btn_sol_diese.setOnClickListener(v -> {
+            media_sol_diese.start();
+            listMediaPlayer.add(media_sol_diese);
+            checkNote("sol_diese");
+        })).start();
 
-        new Thread(() -> {
-            btn_la.setOnClickListener(v -> {
-                media_la.start();
-                listMediaPlayer.add(media_la);
-                checkNote("la");
-            });
-        }).start();
+        new Thread(() -> btn_la.setOnClickListener(v -> {
+            media_la.start();
+            listMediaPlayer.add(media_la);
+            checkNote("la");
+        })).start();
 
-        new Thread(() -> {
-            btn_si_bemol.setOnClickListener(v -> {
-                media_si_bemol.start();
-                listMediaPlayer.add(media_si_bemol);
-                checkNote("si_bemol");
-            });
-        }).start();
+        new Thread(() -> btn_si_bemol.setOnClickListener(v -> {
+            media_si_bemol.start();
+            listMediaPlayer.add(media_si_bemol);
+            checkNote("si_bemol");
+        })).start();
 
-        new Thread(() -> {
-            btn_si.setOnClickListener(v -> {
-                media_si.start();
-                listMediaPlayer.add(media_si);
-                checkNote("si");
-            });
-        }).start();
+        new Thread(() -> btn_si.setOnClickListener(v -> {
+            media_si.start();
+            listMediaPlayer.add(media_si);
+            checkNote("si");
+        })).start();
 
         btn_reecoutez.setOnClickListener(v -> {
             try {
@@ -304,6 +278,7 @@ public class PianoActivity extends Activity {
         new GetRessources().execute();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class GetRessources extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -371,18 +346,15 @@ public class PianoActivity extends Activity {
                 colorNote();
                 count++;
                 currentSong.stop();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(delaiEntreChaqueQuestion);
-                            intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
-                            stopAndResetSound();
-                            startActivity(intent);
-                        } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(delaiEntreChaqueQuestion);
+                        intent.putParcelableArrayListExtra("listQuestionPiano", (ArrayList<? extends Parcelable>) questionPianoList);
+                        stopAndResetSound();
+                        startActivity(intent);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
                 }).start();
             }
@@ -396,7 +368,7 @@ public class PianoActivity extends Activity {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
     public void colorNote() {
         int i=0;
         btn_do.setClickable(false);
@@ -490,28 +462,16 @@ public class PianoActivity extends Activity {
         bRecommencer.setEnabled(false);
         pourcentagePB = 0;
         pb.setProgress(pourcentagePB);
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (pourcentagePB < 100) {
-                    pourcentagePB++;
-                    android.os.SystemClock.sleep(nbMS / 100);
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            pb.setProgress(pourcentagePB);
-                        }
-                    });
-                }
-                ;
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        bRecommencer.setEnabled(true);
-                        //TODO bouton recommencer visible
-                    }
-                });
+        Thread t = new Thread(() -> {
+            while (pourcentagePB < 100) {
+                pourcentagePB++;
+                android.os.SystemClock.sleep(nbMS / 100);
+                mHandler.post(() -> pb.setProgress(pourcentagePB));
             }
+            mHandler.post(() -> {
+                bRecommencer.setEnabled(true);
+                //TODO bouton recommencer visible
+            });
         });
         t.start();
     }

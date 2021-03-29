@@ -23,15 +23,13 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         playButton = findViewById(R.id.b_jouer);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.sortie);
-                animation.setDuration(100);
-                playButton.startAnimation(animation);
+        playButton.setOnClickListener(v -> {
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.sortie);
+            animation.setDuration(100);
+            playButton.startAnimation(animation);
 
-                Intent intent = new Intent(MainActivity.this, LevelActivity.class);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(MainActivity.this, LevelActivity.class);
+            startActivity(intent);
         });
     }
 }

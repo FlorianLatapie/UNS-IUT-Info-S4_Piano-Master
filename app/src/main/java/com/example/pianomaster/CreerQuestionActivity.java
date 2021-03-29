@@ -1,38 +1,22 @@
 package com.example.pianomaster;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreerQuestionActivity extends Activity {
-    private String TAG = MainActivity.class.getSimpleName();
-    private static int score = 0;
     private static int nbQuestion = 0;
     private static int nbCount = 0;
 
@@ -43,15 +27,9 @@ public class CreerQuestionActivity extends Activity {
     TextView tvQuestion, tvNiveau;
     ImageView ivQuestion;
 
-    private String numQuestion;
-    private String typeQuestion;
-    private String questions;
-    private String questionsEn;
     private List<String> listProposition = new ArrayList<>();
-    private String reponse;
-    private String image;
-    private ArrayList<QuestionMultiple> listQuestionMultiple = new ArrayList<>();
-    private ArrayList<QuestionPiano> listQuestionPiano = new ArrayList<>();
+    private final ArrayList<QuestionMultiple> listQuestionMultiple = new ArrayList<>();
+    private final ArrayList<QuestionPiano> listQuestionPiano = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,14 +85,15 @@ public class CreerQuestionActivity extends Activity {
                     JSONArray jsonArray = new JSONArray(jsonStr);
                     for (int j = 0; j < 4; j++) {
                         JSONObject jsonObj = jsonArray.getJSONObject(j);
-                        numQuestion = jsonObj.getString("num_question");
-                        typeQuestion = jsonObj.getString("type");
-                        questions = jsonObj.getString("questions");
-                        questionsEn = jsonObj.getString("questions-en");
+                        String numQuestion = jsonObj.getString("num_question");
+                        String typeQuestion = jsonObj.getString("type");
+                        String questions = jsonObj.getString("questions");
+                        String questionsEn = jsonObj.getString("questions-en");
                         //System.out.println("question-en:"+questionsEn);
+                        int score = 0;
                         if (typeQuestion.equals("multiple")) {
-                            reponse = jsonObj.getString("reponse");
-                            image = jsonObj.getString("image");
+                            String reponse = jsonObj.getString("reponse");
+                            String image = jsonObj.getString("image");
                             JSONArray propositions = jsonObj.getJSONArray("proposition");
                             for (int i = 0; i < propositions.length(); i++) {
                                 String jsonString = propositions.getString(i);

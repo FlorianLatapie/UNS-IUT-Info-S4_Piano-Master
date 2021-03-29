@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -59,6 +60,7 @@ public class PianoActivity extends Activity {
 
     Intent intent;
     private List<QuestionPiano> questionPianoList;
+    private List<MediaPlayer> listMediaPlayer = new ArrayList<>();
     private ProgressBar pb;
 
     View btn_do;
@@ -197,6 +199,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_do.setOnClickListener(v -> {
                 media_do.start();
+                listMediaPlayer.add(media_do);
                 checkNote("do");
             });
         }).start();
@@ -205,6 +208,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_do_diese.setOnClickListener(v -> {
                 media_do_diese.start();
+                listMediaPlayer.add(media_do_diese);
                 checkNote("do_diese");
             });
         }).start();
@@ -212,6 +216,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_re.setOnClickListener(v -> {
                 media_re.start();
+                listMediaPlayer.add(media_re);
                 checkNote("re");
             });
         }).start();
@@ -219,6 +224,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_re_diese.setOnClickListener(v -> {
                 media_re_diese.start();
+                listMediaPlayer.add(media_re_diese);
                 checkNote("re_diese");
             });
         }).start();
@@ -226,6 +232,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_mi.setOnClickListener(v -> {
                 media_mi.start();
+                listMediaPlayer.add(media_mi);
                 checkNote("mi");
             });
         }).start();
@@ -233,6 +240,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_fa.setOnClickListener(v -> {
                 media_fa.start();
+                listMediaPlayer.add(media_fa);
                 checkNote("fa");
             });
         }).start();
@@ -240,6 +248,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_fa_diese.setOnClickListener(v -> {
                 media_fa_diese.start();
+                listMediaPlayer.add(media_fa_diese);
                 checkNote("fa_diese");
             });
         }).start();
@@ -247,6 +256,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_sol.setOnClickListener(v -> {
                 media_sol.start();
+                listMediaPlayer.add(media_sol);
                 checkNote("sol");
             });
         }).start();
@@ -254,6 +264,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_sol_diese.setOnClickListener(v -> {
                 media_sol_diese.start();
+                listMediaPlayer.add(media_sol_diese);
                 checkNote("sol_diese");
             });
         }).start();
@@ -261,6 +272,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_la.setOnClickListener(v -> {
                 media_la.start();
+                listMediaPlayer.add(media_la);
                 checkNote("la");
             });
         }).start();
@@ -268,6 +280,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_si_bemol.setOnClickListener(v -> {
                 media_si_bemol.start();
+                listMediaPlayer.add(media_si_bemol);
                 checkNote("si_bemol");
             });
         }).start();
@@ -275,6 +288,7 @@ public class PianoActivity extends Activity {
         new Thread(() -> {
             btn_si.setOnClickListener(v -> {
                 media_si.start();
+                listMediaPlayer.add(media_si);
                 checkNote("si");
             });
         }).start();
@@ -377,30 +391,9 @@ public class PianoActivity extends Activity {
     }
 
     public void stopAndResetSound(){
-        media_do.reset();
-        media_do_diese.reset();
-        media_re.reset();
-        media_re_diese.reset();
-        media_mi.reset();
-        media_fa.reset();
-        media_fa_diese.reset();
-        media_sol.reset();
-        media_sol_diese.reset();
-        media_la.reset();
-        media_si_bemol.reset();
-        media_si.reset();
-        media_do.release();
-        media_do_diese.release();
-        media_re.release();
-        media_re_diese.release();
-        media_mi.release();
-        media_fa.release();
-        media_fa_diese.release();
-        media_sol.release();
-        media_sol_diese.release();
-        media_la.release();
-        media_si_bemol.release();
-        media_si.release();
+        for(MediaPlayer mediaPlayer : listMediaPlayer){
+            mediaPlayer.release();
+        }
     }
 
     @SuppressLint("SetTextI18n")

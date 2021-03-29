@@ -17,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LevelActivity" />
-        <activity android:name=".PianoActivity" />
-        <activity android:name=".ScoreActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".CreerQuestionActivity"/>
-        <activity android:name=".Question4RepActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".LevelActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <activity android:name=".PianoActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <activity android:name=".ScoreActivity" android:theme="@style/Theme.AppCompat.NoActionBar" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <activity android:name=".CreerQuestionActivity" android:configChanges="keyboardHidden|screenLayout|orientation"/>
+        <activity android:name=".Question4RepActivity" android:theme="@style/Theme.AppCompat.NoActionBar" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 
 
         <meta-data

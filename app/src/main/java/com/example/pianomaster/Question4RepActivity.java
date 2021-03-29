@@ -30,6 +30,7 @@ public class Question4RepActivity extends Activity {
     private static long delaiEntreChaqueQuestion = 3000;
 
     private int niveau;
+    private MediaPlayer sonRep;
 
     private ProgressDialog pDialog;
 
@@ -132,7 +133,6 @@ public class Question4RepActivity extends Activity {
 
 
     public void checkReponse(int index){
-        MediaPlayer sonRep;
         if (question.getReponses().get(index).equals(question.getReponse())) {
             sonRep = MediaPlayer.create(getApplicationContext(), R.raw.bonne_reponse);
             sonRep.start();
@@ -150,6 +150,7 @@ public class Question4RepActivity extends Activity {
                 Thread.sleep(delaiEntreChaqueQuestion);
                 intent.putParcelableArrayListExtra("listQuestion4Rep", (ArrayList<? extends Parcelable>) questionMultipleList);
                 intent.putExtra("numNiveau", question.getNumNiveau());
+                stopAndResetSound();
                 startActivity(intent);
             }
             catch (InterruptedException e)
@@ -158,6 +159,11 @@ public class Question4RepActivity extends Activity {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    public void stopAndResetSound(){
+        sonRep.reset();
+        sonRep.release();
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

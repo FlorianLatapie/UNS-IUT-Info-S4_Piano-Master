@@ -377,18 +377,6 @@ public class PianoActivity extends Activity {
     }
 
     public void stopAndResetSound(){
-        media_do.stop();
-        media_do_diese.stop();
-        media_re.stop();
-        media_re_diese.stop();
-        media_mi.stop();
-        media_fa.stop();
-        media_fa_diese.stop();
-        media_sol.stop();
-        media_sol_diese.stop();
-        media_la.stop();
-        media_si_bemol.stop();
-        media_si.stop();
         media_do.reset();
         media_do_diese.reset();
         media_re.reset();
@@ -401,6 +389,18 @@ public class PianoActivity extends Activity {
         media_la.reset();
         media_si_bemol.reset();
         media_si.reset();
+        media_do.release();
+        media_do_diese.release();
+        media_re.release();
+        media_re_diese.release();
+        media_mi.release();
+        media_fa.release();
+        media_fa_diese.release();
+        media_sol.release();
+        media_sol_diese.release();
+        media_la.release();
+        media_si_bemol.release();
+        media_si.release();
     }
 
     @SuppressLint("SetTextI18n")

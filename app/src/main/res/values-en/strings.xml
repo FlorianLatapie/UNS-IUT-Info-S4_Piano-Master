@@ -27,4 +27,6 @@
     <string name="niveau">Level</string>
     <string name="question">question</string>
     <string name="ecoutez_jouez">Listen and play back</string>
+    <string name="valider">Submit</string>
+    <string name="numero">Phone number :</string>
 </resources>

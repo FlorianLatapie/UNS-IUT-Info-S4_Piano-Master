@@ -26,4 +26,6 @@
     <string name="ecoutez_jouez">Écoutez et jouez</string>
     <string name="niveau">Niveau</string>
     <string name="question">question</string>
+    <string name="valider">Valider</string>
+    <string name="numero">Numéro :</string>
 </resources>

@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".LevelActivity" />
         <activity android:name=".PianoActivity" />
-        <activity android:name=".ScoreActivity"/>
+        <activity android:name=".ScoreActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".CreerQuestionActivity"/>
         <activity android:name=".Question4RepActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
 

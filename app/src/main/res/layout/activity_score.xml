@@ -9,21 +9,20 @@
 
     <FrameLayout
         android:id="@+id/frame_score"
-        android:layout_width="408dp"
-        android:layout_height="282dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
         app:layout_constraintBottom_toTopOf="@+id/frame_sms"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/frame_sms"
-        android:layout_width="411dp"
-        android:layout_height="457dp"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_score" />
 

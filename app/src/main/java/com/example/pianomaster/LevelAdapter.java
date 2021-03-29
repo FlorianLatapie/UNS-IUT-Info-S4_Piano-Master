@@ -46,7 +46,7 @@ public class LevelAdapter extends BaseAdapter {
         Button btn;
         if (view == null) {
             btn = new Button(mContext);
-            btn.setText(++btn_id +"");
+            btn.setText(btn_id++ +"");
             btn.setTextColor(Color.WHITE);
             btn.setTextSize(30);
             btn.setBackgroundResource(R.drawable.button_style);

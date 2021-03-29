@@ -6,54 +6,26 @@
     android:layout_height="match_parent"
     android:background="@color/bleu_fonce">
 
-    <TextView
-        android:id="@+id/tv_titre_sms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:padding="8dp"
-        android:text="@string/bravo"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_question_sms"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_question_sms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/q_envoyer_resultat"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_numero_tel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Numero : "
         android:textColor="@color/white"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_contenu_sms"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_question_sms" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_contenu_sms"
         android:layout_width="385dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textMultiLine"
@@ -67,14 +39,13 @@
         app:layout_constraintBottom_toTopOf="@+id/b_retour_accueil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_numero_tel" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/b_retour_accueil"
         android:layout_width="165dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="84dp"
         android:background="@drawable/box"
         android:backgroundTint="@color/bleu_clair"
         android:fontFamily="@font/montserrat_bold"
@@ -85,7 +56,6 @@
         app:layout_constraintEnd_toStartOf="@+id/b_envoyer_sms"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <Button
         android:id="@+id/b_envoyer_sms"
@@ -101,6 +71,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_retour_accueil"
-        app:layout_constraintTop_toTopOf="@+id/b_retour_accueil" />
+        app:layout_constraintTop_toTopOf="@+id/b_retour_accueil"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_titre_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:padding="8dp"
+        android:text="@string/bravo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/et_contenu_sms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_numero_tel"
+        app:layout_constraintVertical_bias="0.368" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

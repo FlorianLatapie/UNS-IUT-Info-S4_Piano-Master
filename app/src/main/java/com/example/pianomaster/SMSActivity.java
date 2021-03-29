@@ -44,6 +44,7 @@ public class SMSActivity extends Fragment {
     private String numTel;
     public SMSActivity(String num){
         this.numTel = num;
+        System.out.println(num);
     }
     View rootView;
 
@@ -57,9 +58,69 @@ public class SMSActivity extends Fragment {
         if(b!=null)
         {
             this.numTel = getArguments().getString("numTel");
+            System.out.println("getArguments "+this.numTel);
         }
 
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_sms, null);
+
+        etNumroSMS = (EditText) rootView.findViewById(R.id.et_numero_sms);
+        etContenuSMS = (EditText) rootView.findViewById(R.id.et_contenu_sms);
+        tvNumTel = rootView.findViewById(R.id.tv_numero_tel);
+        tMessage = rootView.findViewById(R.id.tv_titre_sms);
+        SharedPreferences sp = getActivity().getSharedPreferences("score", Activity.MODE_PRIVATE);
+        SharedPreferences sp2 = getActivity().getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+        int niveau = sp2.getInt("getNiveau", -1);
+        int score = sp.getInt("getScore", -1);
+
+        if(score<=1){
+            tMessage.setText(getString(R.string.dommage));
+        } else{
+            tMessage.setText(getString(R.string.bravo));
+        }
+        tvNumTel.setText(tvNumTel.getText().toString()+" "+ numTel);
+        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
+        this.buttonSend = (Button) rootView.findViewById(R.id.b_envoyer_sms);
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("getNiveau", 0);
+        editor.apply();
+
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt("getScore", 0);
+        editor2.apply();
+
+        this.buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askPermissionAndSendSMS();
+            }
+        });
+
+        b_retour = rootView.findViewById(R.id.b_retour_accueil);
+        b_retour.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SharedPreferences sp = getActivity().getSharedPreferences("score", Activity.MODE_PRIVATE);
+                SharedPreferences sp2 = getActivity().getSharedPreferences("niveau", Activity.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt("getNiveau", 0);
+                editor.apply();
+
+                SharedPreferences.Editor editor2 = sp2.edit();
+                editor2.putInt("getScore", 0);
+                editor2.apply();
+                Intent intent = new Intent(getActivity(), LevelActivity.class);
+                intent.putExtra("numNiveau", 0);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
     }
 
     private void askPermissionAndSendSMS() {
@@ -85,14 +146,13 @@ public class SMSActivity extends Fragment {
 
     private void sendSMS_by_smsManager()  {
 
-        String phoneNumber = this.etNumroSMS.getText().toString();
-        String message = this.etContenuSMS.getText().toString();
+        String message = etContenuSMS.getText().toString();
 
         try {
             // Get the default instance of the SmsManager
             SmsManager smsManager = SmsManager.getDefault();
             // Send Message
-            smsManager.sendTextMessage(phoneNumber,
+            smsManager.sendTextMessage(numTel,
                     null,
                     message,
                     null,
@@ -157,64 +217,7 @@ public class SMSActivity extends Fragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_sms, null);
 
-        this.etNumroSMS = (EditText) rootView.findViewById(R.id.et_numero_sms);
-        this.etContenuSMS = (EditText) rootView.findViewById(R.id.et_contenu_sms);
-        tvNumTel = rootView.findViewById(R.id.tv_numero_tel);
-        tMessage = rootView.findViewById(R.id.tv_titre_sms);
-        SharedPreferences sp = getActivity().getSharedPreferences("score", Activity.MODE_PRIVATE);
-        SharedPreferences sp2 = getActivity().getSharedPreferences("niveau", Activity.MODE_PRIVATE);
-        int niveau = sp2.getInt("getNiveau", -1);
-        int score = sp.getInt("getScore", -1);
-
-        if(score<=1){
-            tMessage.setText(getString(R.string.dommage));
-        } else{
-            tMessage.setText(getString(R.string.bravo));
-        }
-        tvNumTel.setText(tvNumTel.getText().toString()+" "+ numTel);
-        etContenuSMS.setText(getString(R.string.sms_contenu1)+" "+score+"/4"+" "+getString(R.string.sms_contenu2)+" "+niveau+" "+getString(R.string.sms_contenu3));
-        this.buttonSend = (Button) rootView.findViewById(R.id.b_envoyer_sms);
-
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("getNiveau", 0);
-        editor.apply();
-
-        SharedPreferences.Editor editor2 = sp2.edit();
-        editor2.putInt("getScore", 0);
-        editor2.apply();
-
-        this.buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                askPermissionAndSendSMS();
-            }
-        });
-
-        b_retour = rootView.findViewById(R.id.b_retour_accueil);
-        b_retour.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                SharedPreferences sp = getActivity().getSharedPreferences("score", Activity.MODE_PRIVATE);
-                SharedPreferences sp2 = getActivity().getSharedPreferences("niveau", Activity.MODE_PRIVATE);
-
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putInt("getNiveau", 0);
-                editor.apply();
-
-                SharedPreferences.Editor editor2 = sp2.edit();
-                editor2.putInt("getScore", 0);
-                editor2.apply();
-                Intent intent = new Intent(getActivity(), LevelActivity.class);
-                intent.putExtra("numNiveau", 0);
-                startActivity(intent);
-            }
-        });
-
-        return rootView;
-    }
 
 
 }

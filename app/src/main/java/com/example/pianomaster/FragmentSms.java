@@ -26,23 +26,11 @@ public class FragmentSms extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_score, container, false);
-        final EditText editNumSms = rootView.findViewById(R.id.frame_score);
-        editNumSms.addTextChangedListener(new TextWatcher() {
-
-            public void afterTextChanged(Editable s) { }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int longueur = editNumSms.getText().length();
-                if (longueur != 0) {
-                    Button btnSuivant = (Button) rootView.findViewById(R.id.btn_suivant);
-                    btnSuivant.setOnClickListener(v -> {
-                        if (!(editNumSms.getText().toString().equals(""))) {
-                            mCallBack.onButtonClicked(editNumSms.getText().toString());
-                        }
-                    });
-                }
+        final EditText editNumSms = rootView.findViewById(R.id.et_numero_sms);
+        final Button btnSuivant = (Button) rootView.findViewById(R.id.btn_suivant);
+        btnSuivant.setOnClickListener(v -> {
+            if (!(editNumSms.getText().toString().equals(""))) {
+                mCallBack.onButtonClicked(editNumSms.getText().toString());
             }
         });
         return rootView;

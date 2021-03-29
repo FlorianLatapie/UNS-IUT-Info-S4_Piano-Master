@@ -157,7 +157,7 @@ public class CreerQuestionActivity extends Activity {
                 case 4:
                     nbQuestion = 0;
                     nbCount = 0;
-                    Intent intent2 = new Intent(CreerQuestionActivity.this, SMSActivity.class);
+                    Intent intent2 = new Intent(CreerQuestionActivity.this, ScoreActivity.class);
                     startActivity(intent2);
                     break;
                 //  case 1:

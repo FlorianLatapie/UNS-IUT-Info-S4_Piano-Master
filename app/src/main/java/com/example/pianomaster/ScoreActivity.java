@@ -17,7 +17,7 @@ public class ScoreActivity extends AppCompatActivity implements IntActivityClick
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_score, new FragmentSms()).commit();
+                    .add(R.id.frame_score, new FragmentScore()).commit();
         }
     }
 

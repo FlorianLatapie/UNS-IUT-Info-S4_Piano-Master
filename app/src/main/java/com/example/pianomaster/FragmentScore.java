@@ -11,9 +11,9 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-public class FragmentSms extends Fragment {
+public class FragmentScore extends Fragment {
     private IntActivityClick mCallBack;
-    public FragmentSms(){    }
+    public FragmentScore(){    }
 
     @Override
     public void setTargetFragment(Fragment fragment, int requestCode) {}

@@ -337,7 +337,7 @@ public class PianoActivity extends Activity {
                 }).start();
             }
         } else {
-            tvQuestion.setText("Recommencer");
+            tvQuestion.setText(getString(R.string.recommencez));
             if(nbTentative<3) {
                 nbTentative++;
             }
